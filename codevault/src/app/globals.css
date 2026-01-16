@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --sidebar-width: 280px;
+  --header-height: 56px;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --accent: #f0f9ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+/* OBC Table Styles */
+.obc-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 0 auto;
+}
+
+.obc-table-container th,
+.obc-table-container td {
+  border: 1px solid #9ca3af;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+.obc-table-container thead {
+  background-color: #f3f4f6;
+}
+
+.obc-table-container thead th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.obc-table-container tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.obc-table-container tbody th {
+  font-weight: 500;
+  background-color: #f9fafb;
+  text-align: left;
+}

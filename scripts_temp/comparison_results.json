@@ -1,0 +1,83 @@
+{
+  "method_scores": {
+    "pdfplumber": 214.9,
+    "camelot": 315.3,
+    "pymupdf": 220.6,
+    "tabula": 0
+  },
+  "winner": "camelot",
+  "details": {
+    "Table 9.3.1.7": {
+      "pdfplumber": {
+        "error": null,
+        "tables_count": 1
+      },
+      "camelot": {
+        "error": null,
+        "tables_count": 2
+      },
+      "pymupdf": {
+        "error": null,
+        "tables_count": 1
+      },
+      "tabula": {
+        "error": null,
+        "tables_count": 0
+      }
+    },
+    "Table 9.4.3.1": {
+      "pdfplumber": {
+        "error": null,
+        "tables_count": 1
+      },
+      "camelot": {
+        "error": null,
+        "tables_count": 5
+      },
+      "pymupdf": {
+        "error": null,
+        "tables_count": 2
+      },
+      "tabula": {
+        "error": null,
+        "tables_count": 0
+      }
+    },
+    "Table 9.3.2.1": {
+      "pdfplumber": {
+        "error": null,
+        "tables_count": 1
+      },
+      "camelot": {
+        "error": null,
+        "tables_count": 2
+      },
+      "pymupdf": {
+        "error": null,
+        "tables_count": 1
+      },
+      "tabula": {
+        "error": null,
+        "tables_count": 0
+      }
+    },
+    "Table 9.9.1.1-A": {
+      "pdfplumber": {
+        "error": null,
+        "tables_count": 0
+      },
+      "camelot": {
+        "error": null,
+        "tables_count": 1
+      },
+      "pymupdf": {
+        "error": null,
+        "tables_count": 0
+      },
+      "tabula": {
+        "error": null,
+        "tables_count": 0
+      }
+    }
+  }
+}

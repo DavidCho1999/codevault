@@ -1,0 +1,17 @@
+claude --dangerously-skip-permissions
+
+/resume
+
+server 열어줘
+
+/mcp
+
+튕겼어 계속 진행해줘
+
+e2e playwright 써서
+
+/context
+
+/catchup
+
+/create

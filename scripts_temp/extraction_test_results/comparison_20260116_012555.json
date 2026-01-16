@@ -1,0 +1,542 @@
+[
+  {
+    "method": "pdfplumber",
+    "average": 0.9402857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 14,
+          "actual_cols": 5,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.571,
+          "overall": 0.829
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 7,
+          "actual_cols": 3,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.75,
+          "overall": 0.9
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 2,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.933
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 19,
+          "actual_cols": 11,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.8,
+          "overall": 0.92
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 13,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      }
+    }
+  },
+  {
+    "method": "camelot_lattice",
+    "average": 0.9402857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 14,
+          "actual_cols": 5,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.571,
+          "overall": 0.829
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 7,
+          "actual_cols": 3,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.75,
+          "overall": 0.9
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 2,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.933
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 19,
+          "actual_cols": 11,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.8,
+          "overall": 0.92
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 13,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      }
+    }
+  },
+  {
+    "method": "camelot_stream",
+    "average": 0.7542857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 19,
+          "actual_cols": 5,
+          "row_accuracy": 0.737,
+          "col_accuracy": 1.0,
+          "content_score": 0.429,
+          "overall": 0.692
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 10,
+          "actual_cols": 3,
+          "row_accuracy": 0.7,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 0.91
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 16,
+          "actual_cols": 2,
+          "row_accuracy": 0.375,
+          "col_accuracy": 0.333,
+          "content_score": 0.75,
+          "overall": 0.512
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 2,
+          "row_accuracy": 0.667,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.833
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 24,
+          "actual_cols": 6,
+          "row_accuracy": 0.375,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 0.812
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 61,
+          "actual_cols": 6,
+          "row_accuracy": 0.311,
+          "col_accuracy": 0.545,
+          "content_score": 0.8,
+          "overall": 0.577
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 16,
+          "actual_cols": 6,
+          "row_accuracy": 0.812,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 0.944
+        },
+        "best_method": null
+      }
+    }
+  },
+  {
+    "method": "pymupdf",
+    "average": 0.9402857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 14,
+          "actual_cols": 5,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.571,
+          "overall": 0.829
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 7,
+          "actual_cols": 3,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.75,
+          "overall": 0.9
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 2,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.933
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 19,
+          "actual_cols": 11,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.8,
+          "overall": 0.92
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 13,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      }
+    }
+  },
+  {
+    "method": "coordinate_based",
+    "average": 0.8142857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 20,
+          "actual_cols": 7,
+          "row_accuracy": 0.7,
+          "col_accuracy": 0.714,
+          "content_score": 0.571,
+          "overall": 0.653
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 8,
+          "actual_cols": 5,
+          "row_accuracy": 0.875,
+          "col_accuracy": 0.6,
+          "content_score": 1.0,
+          "overall": 0.843
+        },
+        "best_method": null
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 6,
+          "row_accuracy": 0.667,
+          "col_accuracy": 1.0,
+          "content_score": 0.75,
+          "overall": 0.8
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 2,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.933
+        },
+        "best_method": null
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 20,
+          "actual_cols": 6,
+          "row_accuracy": 0.45,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 0.835
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 58,
+          "actual_cols": 8,
+          "row_accuracy": 0.328,
+          "col_accuracy": 0.727,
+          "content_score": 0.8,
+          "overall": 0.636
+        },
+        "best_method": null
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 13,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": null
+      }
+    }
+  },
+  {
+    "method": "ensemble",
+    "average": 0.9402857142857143,
+    "results": {
+      "Table 9.3.2.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 14,
+          "actual_cols": 5,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.571,
+          "overall": 0.829
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.20.3.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 7,
+          "actual_cols": 3,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.20.3.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.75,
+          "overall": 0.9
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.23.3.1": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 6,
+          "actual_cols": 2,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.833,
+          "overall": 0.933
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.23.3.5.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 9,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.20.5.2.-A": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 19,
+          "actual_cols": 11,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 0.8,
+          "overall": 0.92
+        },
+        "best_method": "pdfplumber"
+      },
+      "Table 9.20.5.2.-B": {
+        "accuracy": {
+          "found": true,
+          "actual_rows": 13,
+          "actual_cols": 6,
+          "row_accuracy": 1.0,
+          "col_accuracy": 1.0,
+          "content_score": 1.0,
+          "overall": 1.0
+        },
+        "best_method": "pdfplumber"
+      }
+    }
+  }
+]

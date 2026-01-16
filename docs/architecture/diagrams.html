@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeVault Architecture Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --accent: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        nav button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        nav button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .diagram-section {
+            display: none;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .diagram-section.active {
+            display: block;
+        }
+
+        .diagram-section h2 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .diagram-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .info-card h3 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+            }
+
+            nav button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CodeVault Architecture</h1>
+            <p>Ontario Building Code Part 9 Search Service - Interactive Architecture Diagrams</p>
+        </header>
+
+        <nav>
+            <button class="active" data-target="context">System Context</button>
+            <button data-target="container">Container</button>
+            <button data-target="component">Component</button>
+            <button data-target="data-flow">Data Flow</button>
+            <button data-target="search-flow">Search Flow</button>
+        </nav>
+
+        <!-- System Context -->
+        <section id="context" class="diagram-section active">
+            <h2>System Context Diagram (C4 Level 1)</h2>
+            <p>시스템의 전체적인 맥락과 외부 시스템과의 관계를 보여줍니다.</p>
+
+            <div class="mermaid">
+flowchart TB
+    subgraph External["External Systems"]
+        PDF["📄 OBC PDF<br/>(Ontario Building Code 2024)"]
+    end
+
+    subgraph Users["Users"]
+        User["👷 Building Professional<br/>(건축사, 시공자, 인스펙터)"]
+    end
+
+    subgraph System["CodeVault System"]
+        App["🏛️ CodeVault<br/>(Web Application)"]
+    end
+
+    User -->|"검색 및 탐색<br/>(HTTPS)"| App
+    PDF -->|"데이터 추출<br/>(빌드 타임)"| App
+
+    style App fill:#3b82f6,color:#fff
+    style User fill:#10b981,color:#fff
+    style PDF fill:#f59e0b,color:#fff
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>👷 Building Professional</h3>
+                    <p>건축 전문가, 설계자, 시공자, 인스펙터가 OBC Part 9 규정을 검색하고 참조합니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🏛️ CodeVault</h3>
+                    <p>Next.js 16 기반 웹 애플리케이션으로 Building Code를 검색하고 탐색할 수 있습니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📄 OBC PDF</h3>
+                    <p>Ontario Building Code 2024 공식 PDF 문서로, 빌드 타임에 Python으로 파싱됩니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container Diagram -->
+        <section id="container" class="diagram-section">
+            <h2>Container Diagram (C4 Level 2)</h2>
+            <p>시스템을 구성하는 컨테이너(배포 가능한 단위)를 보여줍니다.</p>
+
+            <div class="mermaid">
+flowchart TB
+    subgraph Runtime["Runtime Environment"]
+        subgraph NextJS["Next.js Application"]
+            Server["🖥️ Server<br/>(SSG, Node.js)"]
+            Client["🌐 Browser Client<br/>(React Components)"]
+        end
+
+        subgraph Data["JSON Data Store"]
+            Part9["part9.json<br/>(Full Content)"]
+            Index["part9-index.json<br/>(Search Index)"]
+            TOC["toc.json<br/>(Navigation)"]
+            Tables["part9_tables.json<br/>(HTML Tables)"]
+        end
+    end
+
+    subgraph BuildTime["Build-time Processing"]
+        Parser["🐍 PDF Parser<br/>(Python + PyMuPDF)"]
+        PDF["📄 OBC PDF"]
+    end
+
+    User["👷 User"] -->|"HTTPS"| Client
+    Client <-->|"Hydration"| Server
+    Server -->|"Static Import"| Data
+    Client -->|"Client Search"| Index
+    Parser -->|"fitz.open()"| PDF
+    Parser -->|"JSON Write"| Data
+
+    style NextJS fill:#000,color:#fff
+    style Data fill:#10b981,color:#fff
+    style Parser fill:#3b82f6,color:#fff
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>🖥️ Next.js Server</h3>
+                    <p>빌드 타임에 모든 페이지를 사전 생성 (SSG). Node.js 기반.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌐 Browser Client</h3>
+                    <p>React 19 컴포넌트로 클라이언트 사이드 검색과 인터랙션 처리.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📁 JSON Data Store</h3>
+                    <p>정적 JSON 파일로 저장된 Building Code 데이터 (~3MB).</p>
+                </div>
+                <div class="info-card">
+                    <h3>🐍 PDF Parser</h3>
+                    <p>Python + PyMuPDF로 PDF 텍스트를 추출하고 구조화.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Diagram -->
+        <section id="component" class="diagram-section">
+            <h2>Component Diagram (C4 Level 3)</h2>
+            <p>Next.js 애플리케이션 내부의 주요 컴포넌트를 보여줍니다.</p>
+
+            <div class="mermaid">
+flowchart TB
+    subgraph Layout["Layout Components"]
+        RootLayout["📐 RootLayout<br/>(layout.tsx)"]
+        Header["🔍 Header<br/>(Search Bar)"]
+        Sidebar["📑 Sidebar<br/>(TOC Navigation)"]
+    end
+
+    subgraph Pages["Page Components"]
+        HomePage["🏠 HomePage<br/>(Section Grid)"]
+        SearchPage["🔎 SearchPage<br/>(Results List)"]
+        CodePage["📄 CodePage<br/>([...section])"]
+    end
+
+    subgraph Content["Content Components"]
+        SectionView["📝 SectionView<br/>(Content Parser)"]
+        EquationRenderer["➗ EquationRenderer<br/>(KaTeX)"]
+    end
+
+    subgraph Utils["Utilities"]
+        SearchUtils["🔧 search.ts"]
+        Types["📋 types.ts"]
+    end
+
+    RootLayout --> Header
+    RootLayout --> Sidebar
+    RootLayout --> Pages
+
+    HomePage --> Layout
+    SearchPage --> Layout
+    CodePage --> Layout
+
+    CodePage --> SectionView
+    SectionView --> EquationRenderer
+
+    SearchPage --> SearchUtils
+    SearchUtils --> Types
+
+    style Layout fill:#3b82f6,color:#fff
+    style Pages fill:#10b981,color:#fff
+    style Content fill:#f59e0b,color:#fff
+    style Utils fill:#8b5cf6,color:#fff
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>📐 RootLayout</h3>
+                    <p>전체 페이지 구조 (Header + Sidebar + Main Content).</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔍 Header</h3>
+                    <p>검색바와 브랜딩. /search로 검색 쿼리 전달.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📑 Sidebar</h3>
+                    <p>재귀적 TocNode로 계층 목차 표시.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📝 SectionView</h3>
+                    <p>조문 텍스트를 구조화하여 렌더링 (Article, Clause 등).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Flow -->
+        <section id="data-flow" class="diagram-section">
+            <h2>Data Flow Diagram</h2>
+            <p>PDF에서 사용자 화면까지 데이터가 흐르는 과정을 보여줍니다.</p>
+
+            <div class="mermaid">
+flowchart LR
+    subgraph Source["Data Source"]
+        PDF["📄 OBC PDF<br/>301880.pdf"]
+    end
+
+    subgraph Processing["Data Processing"]
+        TOCExtract["get_toc_part9()"]
+        TextExtract["extract_page_text()"]
+        Structure["build_structure()"]
+    end
+
+    subgraph Storage["JSON Storage"]
+        Part9JSON["part9.json"]
+        IndexJSON["part9-index.json"]
+        TOCJSON["toc.json"]
+    end
+
+    subgraph Rendering["UI Rendering"]
+        CodePage["CodePage"]
+        SearchPage["SearchPage"]
+        Sidebar["Sidebar"]
+    end
+
+    PDF --> TOCExtract
+    PDF --> TextExtract
+    TOCExtract --> Structure
+    TextExtract --> Structure
+
+    Structure --> Part9JSON
+    Structure --> IndexJSON
+    Structure --> TOCJSON
+
+    Part9JSON --> CodePage
+    IndexJSON --> SearchPage
+    TOCJSON --> Sidebar
+
+    style Source fill:#f59e0b,color:#fff
+    style Processing fill:#3b82f6,color:#fff
+    style Storage fill:#10b981,color:#fff
+    style Rendering fill:#8b5cf6,color:#fff
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>1️⃣ PDF 추출</h3>
+                    <p>PyMuPDF로 TOC와 텍스트 추출. 헤더/푸터 제거.</p>
+                </div>
+                <div class="info-card">
+                    <h3>2️⃣ 구조화</h3>
+                    <p>Part → Section → Subsection → Article 계층 구조 생성.</p>
+                </div>
+                <div class="info-card">
+                    <h3>3️⃣ JSON 저장</h3>
+                    <p>용도별 JSON 파일 생성 (콘텐츠, 인덱스, TOC).</p>
+                </div>
+                <div class="info-card">
+                    <h3>4️⃣ UI 렌더링</h3>
+                    <p>각 페이지에서 필요한 JSON 데이터를 로드하여 표시.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Flow -->
+        <section id="search-flow" class="diagram-section">
+            <h2>Search Flow Sequence</h2>
+            <p>사용자가 검색을 수행할 때의 데이터 흐름을 보여줍니다.</p>
+
+            <div class="mermaid">
+sequenceDiagram
+    participant User as 👷 User
+    participant Header as 🔍 Header
+    participant Router as 🔀 Router
+    participant SearchPage as 📑 SearchPage
+    participant SearchUtils as 🔧 searchCode()
+    participant Index as 📁 part9-index.json
+
+    User->>Header: 검색어 입력 "concrete"
+    Header->>Router: Navigate /search?q=concrete
+    Router->>SearchPage: Load page with query
+    SearchPage->>Index: Import index data
+    SearchPage->>SearchUtils: searchCode(index, "concrete")
+
+    Note over SearchUtils: Score calculation:<br/>ID match: +100<br/>Title match: +30<br/>Content match: +10
+
+    SearchUtils->>SearchPage: Return top 50 results
+    SearchPage->>User: Display results with highlights
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>클라이언트 사이드 검색</h3>
+                    <p>서버 요청 없이 브라우저에서 즉시 검색. 응답 시간 < 10ms.</p>
+                </div>
+                <div class="info-card">
+                    <h3>점수 기반 정렬</h3>
+                    <p>ID 일치(+100), 제목 일치(+30), 내용 일치(+10)로 관련성 순위.</p>
+                </div>
+                <div class="info-card">
+                    <h3>useMemo 최적화</h3>
+                    <p>검색어가 변경될 때만 재계산. 불필요한 렌더링 방지.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>CodeVault Architecture Documentation | Generated: 2026-01-16</p>
+            <p>Built with Mermaid.js for interactive diagrams</p>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                diagramMarginX: 50,
+                diagramMarginY: 10
+            }
+        });
+
+        // Tab navigation
+        document.querySelectorAll('nav button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update active section
+                document.querySelectorAll('.diagram-section').forEach(s => s.classList.remove('active'));
+                document.getElementById(button.dataset.target).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

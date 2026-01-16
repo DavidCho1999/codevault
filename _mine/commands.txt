@@ -1,0 +1,6 @@
+claude --dangerously-skip-permissions
+
+/resume
+
+server 열어줘
+

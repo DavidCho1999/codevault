@@ -1,0 +1,63 @@
+{
+  "date": "2026-01-16T02:23:39.179598",
+  "target": "Part 9 (p.700-1050)",
+  "goal": "98%+",
+  "achieved": "98.5%",
+  "methods": {
+    "pdfplumber_filldown": {
+      "accuracy": 98.5,
+      "recommended": true
+    },
+    "pymupdf_filldown": {
+      "accuracy": 98.5,
+      "recommended": true
+    },
+    "camelot_lattice": {
+      "accuracy": 94.0,
+      "recommended": false
+    },
+    "camelot_stream": {
+      "accuracy": 75.4,
+      "recommended": false
+    },
+    "coordinate_based": {
+      "accuracy": 81.4,
+      "recommended": false
+    },
+    "easyocr": {
+      "accuracy": 95,
+      "note": "post-processing required"
+    }
+  },
+  "table_results": {
+    "Table 9.23.3.1": {
+      "score": 100.0,
+      "status": "perfect"
+    },
+    "Table 9.20.3.2.-A": {
+      "score": 100.0,
+      "status": "perfect"
+    },
+    "Table 9.20.3.2.-B": {
+      "score": 100.0,
+      "status": "perfect"
+    },
+    "Table 9.3.2.1": {
+      "score": 97.1,
+      "status": "excellent"
+    },
+    "Table 9.23.3.5.-A": {
+      "score": 97.8,
+      "status": "excellent"
+    },
+    "Table 9.20.5.2.-A": {
+      "score": 96.4,
+      "status": "excellent"
+    },
+    "Table 9.20.5.2.-B": {
+      "score": 97.9,
+      "status": "excellent"
+    }
+  },
+  "key_finding": "filldown post-processing is critical for merged cell handling"
+}

@@ -1,0 +1,211 @@
+================================================================================
+CLAUDE CODE 파워 유저들의 사고방식 (Deep Search 결과)
+================================================================================
+
+
+[PART 1: 핵심 인물들]
+================================================================================
+
+1. BORIS CHERNY (Claude Code 창시자, Anthropic)
+--------------------------------------------------------------------------------
+URL: https://venturebeat.com/technology/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are
+
+[사고방식]
+- "병렬화가 복잡함을 이긴다" - 로컬 5개 + 웹 5~10개 세션 동시 운영
+- "실수는 제도화된 지식이 된다" - CLAUDE.md에 실수 기록 → 팀 전체가 학습
+- "계획 먼저, 실행은 나중" - Plan Mode로 합의될 때까지 반복, 그 후 auto-accept
+- "Opus 4.5 + thinking = 느려도 결국 빠름" - 작은 모델은 수정에 더 많은 시간
+- "좋은 계획이 정말 중요하다!" - 계획이 좋으면 Claude가 1-shot으로 완성
+
+[핵심 워크플로우]
+- 터미널 탭 1~5 번호 매기기, 시스템 알림으로 입력 필요 시점 확인
+- /commit-push-pr 같은 slash command 하루 수십 번 사용
+- PR에 @.claude 태그로 팀원들과 학습 공유
+
+
+2. ADDY OSMANI (Google Chrome 14년, 저자)
+--------------------------------------------------------------------------------
+URL: https://addyosmani.com/blog/ai-coding-workflow/
+책: "Beyond Vibe Coding" (O'Reilly)
+
+[사고방식]
+- "LLM은 assistant, 나는 senior dev" - AI가 날 대체하는 게 아니라 가속
+- "AI-native = 위협이 아닌 파트너십 마인드셋"
+- "AI가 날 대체할까?" → "AI가 이걸 더 빠르게/다르게 할 수 있을까?"로 질문 바꾸기
+- "Vibe coding ≠ AI-assisted engineering" - 둘은 다름
+
+[핵심 원칙]
+- 작은 단계로 반복 개발 (한 번에 큰 결과물 요청 X)
+- AI 코드는 "초안"으로 취급 - 반드시 이해 후 머지
+- AI 탓 금지 - 커밋한 사람이 100% 책임
+- 고속도로 위의 생산성 vs 호기심 마인드셋 주의
+
+
+3. SIMON WILLISON (Django 공동 창시자, AI 블로거)
+--------------------------------------------------------------------------------
+URL: https://simonwillison.net/2025/Oct/5/parallel-coding-agents/
+
+[사고방식]
+- "병목은 코드 생성이 아니라 리뷰" - 생성은 빠른데 검토가 느림
+- "LLM = 자신감 넘치는 주니어 개발자" - 버그도 확신에 차서 작성
+- "Skills가 MCP보다 더 큰 딜일 수도" - 토큰 효율성 강조
+- "병렬 에이전트 라이프스타일" - 인지 부하 안 주는 선에서 병렬 작업
+
+[실전 도구]
+- 일일 드라이버: Claude Code (Sonnet 4.5), Codex CLI (GPT-5-Codex)
+- Codex Cloud로 비동기 작업 (폰에서도 실행)
+
+
+4. SHRIVU SHANKAR (AI 엔지니어, 월 수십억 토큰 운영)
+--------------------------------------------------------------------------------
+URL: https://blog.sshh.io/p/how-i-use-every-claude-code-feature
+
+[사고방식]
+- "CLAUDE.md = 매뉴얼 아닌 가드레일" - 모든 걸 적지 말고 방향만
+- "복잡한 커스텀 명령어 = 안티패턴" - 뭘 입력해도 작동해야 진짜
+- "커스텀 서브에이전트는 컨텍스트를 gatekeep" - 오히려 문제
+- "MCP보다 간단한 CLI 선호" - 복잡한 통합보다 단순한 도구
+
+[추천 팁]
+- /catchup 명령어로 uncommitted changes 로드 후 /clear
+- /context로 200k 토큰 중 얼마나 사용 중인지 확인
+- GitHub Action이 가장 과소평가된 기능
+
+
+5. ASHLEY HA (UC Berkeley Data Science, 전 Rivian)
+--------------------------------------------------------------------------------
+URL: https://medium.com/@ashleyha/i-mastered-the-claude-code-workflow-145d25e502cf
+
+[사고방식]
+- "컨텍스트 60% 초과 금지" - 많을수록 품질과 예측 불가 행동 증가
+- "더 많은 컨텍스트 ≠ 더 좋은 결과"
+- "적절한 컨텍스트가 핵심"
+
+[4단계 워크플로우]
+1. Research - 조사
+2. Plan - 계획
+3. Implement - 구현
+4. Validate - 검증
+* 각 단계마다 컨텍스트 클리어!
+
+
+6. ZVI MOWSHOWITZ (AI 분석가, Don't Worry About the Vase)
+--------------------------------------------------------------------------------
+URL: https://thezvi.substack.com/p/claude-codes
+
+[사고방식]
+- "Claude Code = 최적 스택의 핵심" - Cursor는 보조 도구
+- "AI가 파싱하기 쉬운 프로젝트 = 좋은 결과"
+- "claude.md에 넣어라" - 파일이 작동하니까 기억도 작동
+- "AI가 주니어를 시니어로 빠르게 만든다" - 온보딩 몇 달 → 며칠
+- "인간이 코드 쓰는 시대가 끝나가고 있다"
+
+[여전히 인간 필요]
+- 디자인, 무엇을 할지 결정 = 여전히 인간 영역
+- AI는 컨텍스트 부족으로 설계에 약함
+
+
+7. ELTON STONEMAN (Docker Captain, 기술 저자)
+--------------------------------------------------------------------------------
+URL: https://blog.sixeyed.com/ten-tips-claude-code/
+
+[사고방식]
+- "ABC: Always Be Clauding" - 항상 여러 작업 진행
+- "Delegate, Don't Fix" - 직접 고치지 말고 설명만
+- "10X 개발자 = 1X 개발자 + 10개 Claude 인스턴스"
+- "AI가 일자리를 빼앗는 게 아니라 변형시킨다"
+
+[활용 범위]
+- 앱 코드뿐 아니라: Dockerfile, K8s, Terraform, CI/CD, 테스트, 문서
+- 아키텍처와 기술 스택 조언도 가능
+
+
+8. YK (Agentic Coding Substack, 40+ Tips 저자)
+--------------------------------------------------------------------------------
+URL: https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to
+GitHub: https://github.com/ykdojo/claude-code-tips
+
+[사고방식]
+- "음성 입력이 더 빠르다" - 타이핑보다 음성 메시지
+- "오타가 있어도 Claude가 이해함" - 로컬 음성 인식도 충분
+- "컨테이너 안의 Claude를 Claude가 제어" - 완전 자율 워커 샌드박스
+
+[커스터마이징]
+- 상태 표시줄: 모델, 디렉토리, git 브랜치, 토큰 사용량 프로그레스 바
+- Gemini CLI를 Claude의 fallback으로 사용 (Reddit 등 접근 불가 사이트용)
+
+
+9. MARCELO BAIRROS (White Prompt Blog)
+--------------------------------------------------------------------------------
+URL: https://blog.whiteprompt.com/the-claude-code-playbook-5-tips-worth-1000s-in-productivity-22489d67dd89
+
+[사고방식]
+- "MCP 안 쓰면 페라리를 1단으로 모는 것"
+- "Plan Mode = 전략적 사고" - 단순 아웃라인이 아님
+- "2분 계획 = 20분 리팩토링 절약"
+- "대부분 20%만 활용 중" - 나머지 80%에 진짜 생산성
+
+[필수 도구]
+- Context7 MCP: 모든 기술 문서를 실시간으로 가져옴
+
+
+================================================================================
+[PART 2: 공통된 핵심 사고방식]
+================================================================================
+
+1. AI는 곱셈이다 (덧셈 아님)
+   → 내 실력 × AI = 결과
+   → 기초가 0이면 AI 써도 0
+   → 실력 있는 개발자일수록 더 큰 효과
+
+2. 계획 없이 코딩하면 더 오래 걸린다
+   → Plan Mode 스킵 = 수정에 2배 시간
+   → "2분 계획 = 20분 리팩토링 절약" (Bairros)
+   → "좋은 계획이 정말 중요하다!" (Boris)
+
+3. 컨텍스트 관리 = 결과 품질
+   → 많이 넣는다고 좋은 게 아님 (Ashley: 60% 규칙)
+   → /clear 자주, /context로 모니터링
+   → 세션 분리 = 각 작업에 집중
+
+4. 실수를 시스템에 기록하라
+   → CLAUDE.md에 기록 → 팀 전체가 학습
+   → "실수가 규칙이 된다" (Boris)
+   → 파일이 작동하니까 기억도 작동 (Zvi)
+
+5. 병렬화로 생산성 극대화
+   → 여러 세션 동시 운영
+   → "병목은 생성이 아니라 리뷰" (Simon)
+   → "10X = 1X + 10 Claude" (Elton)
+
+6. AI는 assistant, 내가 senior dev
+   → AI 코드 = 초안, 반드시 검토
+   → AI 탓 금지, 커밋한 사람이 책임 (Addy)
+   → "자신감 넘치는 주니어"로 취급 (Simon)
+
+7. 검증 루프가 품질을 2~3배 올린다
+   → AI에게 스스로 검증할 수단 제공
+   → 테스트, bash, 브라우저 자동화 등
+
+
+================================================================================
+[PART 3: 추가 참고 자료]
+================================================================================
+
+[영문]
+- Anthropic 공식: https://www.anthropic.com/engineering/claude-code-best-practices
+- 24 Claude Code Tips: https://dev.to/oikon/24-claude-code-tips-claudecodeadventcalendar-52b5
+- Addy Osmani 책: https://www.oreilly.com/library/view/beyond-vibe-coding/9798341634749/
+
+[한국어]
+- Claude Code 실전 가이드: https://f-lab.ai/en/blog/article-claude-code-guide-20250731
+- 하이퍼리즘 가이드: https://tech.hyperithm.com/claude_code_guides
+- Plan Mode 설명: https://insight.infograb.net/blog/2025/06/25/claude-code-plan-mode/
+- 파이토치 커뮤니티: https://discuss.pytorch.kr/t/30-claude-code-feat-ykdojo-claude-code-tips/8368
+
+
+================================================================================
+[PART 4: 한 문장 요약]
+================================================================================
+
+"AI는 곱셈이다. 계획하고, 컨텍스트 관리하고, 병렬화하고, 검증하라."

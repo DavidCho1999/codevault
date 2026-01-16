@@ -1,0 +1,1516 @@
+[
+  {
+    "id": "9.1",
+    "title": "General",
+    "children": [
+      {
+        "id": "9.1.1",
+        "title": "Application",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.2",
+    "title": "Definitions",
+    "children": [
+      {
+        "id": "9.2.1",
+        "title": "General",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.3",
+    "title": "Materials, Systems and Equipment",
+    "children": [
+      {
+        "id": "9.3.1",
+        "title": "Concrete",
+        "children": []
+      },
+      {
+        "id": "9.3.2",
+        "title": "Lumber and Wood Products",
+        "children": []
+      },
+      {
+        "id": "9.3.3",
+        "title": "Metal",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.4",
+    "title": "Structural Requirements",
+    "children": [
+      {
+        "id": "9.4.1",
+        "title": "Structural Design Requirements and Application Limitations",
+        "children": []
+      },
+      {
+        "id": "9.4.2",
+        "title": "Specified Loads",
+        "children": []
+      },
+      {
+        "id": "9.4.3",
+        "title": "Deflections",
+        "children": []
+      },
+      {
+        "id": "9.4.4",
+        "title": "Foundation Conditions",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.5",
+    "title": "Design of Areas, Spaces and Doorways",
+    "children": [
+      {
+        "id": "9.5.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.5.2",
+        "title": "Barrier-Free Design",
+        "children": []
+      },
+      {
+        "id": "9.5.3",
+        "title": "Ceiling Heights",
+        "children": []
+      },
+      {
+        "id": "9.5.4",
+        "title": "Hallways",
+        "children": []
+      },
+      {
+        "id": "9.5.5",
+        "title": "Doorway Sizes",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.6",
+    "title": "Glass",
+    "children": [
+      {
+        "id": "9.6.1",
+        "title": "General",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.7",
+    "title": "Windows, Doors and Skylights",
+    "children": [
+      {
+        "id": "9.7.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.7.2",
+        "title": "Required Windows, Doors and Skylights",
+        "children": []
+      },
+      {
+        "id": "9.7.3",
+        "title": "Performance of Windows, Doors and Skylights",
+        "children": []
+      },
+      {
+        "id": "9.7.4",
+        "title": "Manufactured Windows, Doors and Skylights",
+        "children": []
+      },
+      {
+        "id": "9.7.5",
+        "title": "Site-Built Windows, Doors and Skylights",
+        "children": []
+      },
+      {
+        "id": "9.7.6",
+        "title": "Installation",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.8",
+    "title": "Stairs, Ramps, Handrails and Guards",
+    "children": [
+      {
+        "id": "9.8.1",
+        "title": "Application",
+        "children": []
+      },
+      {
+        "id": "9.8.2",
+        "title": "Stair Dimensions",
+        "children": []
+      },
+      {
+        "id": "9.8.3",
+        "title": "Stair Configurations",
+        "children": []
+      },
+      {
+        "id": "9.8.4",
+        "title": "Step Dimensions  (See Note A-9.8.4.)",
+        "children": []
+      },
+      {
+        "id": "9.8.5",
+        "title": "Ramps",
+        "children": []
+      },
+      {
+        "id": "9.8.6",
+        "title": "Landings",
+        "children": []
+      },
+      {
+        "id": "9.8.7",
+        "title": "Handrails",
+        "children": []
+      },
+      {
+        "id": "9.8.8",
+        "title": "Guards",
+        "children": []
+      },
+      {
+        "id": "9.8.9",
+        "title": "Construction",
+        "children": []
+      },
+      {
+        "id": "9.8.10",
+        "title": "Cantilevered Precast Concrete Steps",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.9",
+    "title": "Means of Egress",
+    "children": [
+      {
+        "id": "9.9.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.9.2",
+        "title": "Types and Purpose of Exits",
+        "children": []
+      },
+      {
+        "id": "9.9.3",
+        "title": "Dimensions of Means of Egress",
+        "children": []
+      },
+      {
+        "id": "9.9.4",
+        "title": "Fire Protection of Exits",
+        "children": []
+      },
+      {
+        "id": "9.9.5",
+        "title": "Obstructions and Hazards in Means of Egress",
+        "children": []
+      },
+      {
+        "id": "9.9.6",
+        "title": "Doors in a Means of Egress",
+        "children": []
+      },
+      {
+        "id": "9.9.7",
+        "title": "Access to Exits",
+        "children": []
+      },
+      {
+        "id": "9.9.8",
+        "title": "Exits from Floor Areas",
+        "children": []
+      },
+      {
+        "id": "9.9.9",
+        "title": "Egress from Dwelling Units",
+        "children": []
+      },
+      {
+        "id": "9.9.10",
+        "title": "Egress from Bedrooms",
+        "children": []
+      },
+      {
+        "id": "9.9.11",
+        "title": "Signs",
+        "children": []
+      },
+      {
+        "id": "9.9.12",
+        "title": "Lighting",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.10",
+    "title": "Fire Protection",
+    "children": [
+      {
+        "id": "9.10.1",
+        "title": "Definitions and Application",
+        "children": []
+      },
+      {
+        "id": "9.10.2",
+        "title": "Occupancy Classification",
+        "children": []
+      },
+      {
+        "id": "9.10.3",
+        "title": "Ratings",
+        "children": []
+      },
+      {
+        "id": "9.10.4",
+        "title": "Building Size Determination",
+        "children": []
+      },
+      {
+        "id": "9.10.5",
+        "title": "Permitted Openings in Wall and Ceiling Assemblies",
+        "children": []
+      },
+      {
+        "id": "9.10.6",
+        "title": "Construction Types",
+        "children": []
+      },
+      {
+        "id": "9.10.7",
+        "title": "Steel Members",
+        "children": []
+      },
+      {
+        "id": "9.10.8",
+        "title": "Fire-Resistance and Combustibility in Relation to Occupancy, Height and Supported Elements",
+        "children": []
+      },
+      {
+        "id": "9.10.9",
+        "title": "Fire Separations and Smoke-tight Barriers between Rooms and Spaces within Buildings",
+        "children": []
+      },
+      {
+        "id": "9.10.10",
+        "title": "Service Rooms",
+        "children": []
+      },
+      {
+        "id": "9.10.11",
+        "title": "Firewalls",
+        "children": []
+      },
+      {
+        "id": "9.10.12",
+        "title": "Prevention of Fire Spread at Exterior Walls and     Between Storeys",
+        "children": []
+      },
+      {
+        "id": "9.10.13",
+        "title": "Doors, Dampers and Other Closures in Fire Separations",
+        "children": []
+      },
+      {
+        "id": "9.10.14",
+        "title": "Spatial Separation Between Buildings",
+        "children": []
+      },
+      {
+        "id": "9.10.15",
+        "title": "Spatial Separation Between Houses",
+        "children": []
+      },
+      {
+        "id": "9.10.16",
+        "title": "Fire Blocks",
+        "children": []
+      },
+      {
+        "id": "9.10.17",
+        "title": "Flame Spread Limits",
+        "children": []
+      },
+      {
+        "id": "9.10.18",
+        "title": "Alarm and Detection Systems",
+        "children": []
+      },
+      {
+        "id": "9.10.19",
+        "title": "Smoke Alarms",
+        "children": []
+      },
+      {
+        "id": "9.10.20",
+        "title": "Firefighting",
+        "children": []
+      },
+      {
+        "id": "9.10.21",
+        "title": "Fire Protection for Construction Camps",
+        "children": []
+      },
+      {
+        "id": "9.10.22",
+        "title": "Fire Protection for Gas, Propane and Electric Cooktops and Ovens  (See Note A-9.10.22.)",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.11",
+    "title": "Sound Transmission  (See Note A-9.11.)",
+    "children": [
+      {
+        "id": "9.11.1",
+        "title": "Protection from Airborne Noise",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.12",
+    "title": "Excavation",
+    "children": [
+      {
+        "id": "9.12.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.12.2",
+        "title": "Depth",
+        "children": []
+      },
+      {
+        "id": "9.12.3",
+        "title": "Backfill",
+        "children": []
+      },
+      {
+        "id": "9.12.4",
+        "title": "Trenches Beneath Footings",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.13",
+    "title": "Dampproofing, Waterproofing and  Soil Gas Control",
+    "children": [
+      {
+        "id": "9.13.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.13.2",
+        "title": "Dampproofing",
+        "children": []
+      },
+      {
+        "id": "9.13.3",
+        "title": "Waterproofing",
+        "children": []
+      },
+      {
+        "id": "9.13.4",
+        "title": "Soil Gas Control  (See Note A-9.13.4.)",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.14",
+    "title": "Drainage",
+    "children": [
+      {
+        "id": "9.14.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.14.2",
+        "title": "Foundation Drainage",
+        "children": []
+      },
+      {
+        "id": "9.14.3",
+        "title": "Drainage Tile and Pipe",
+        "children": []
+      },
+      {
+        "id": "9.14.4",
+        "title": "Granular Drainage Layer",
+        "children": []
+      },
+      {
+        "id": "9.14.5",
+        "title": "Drainage Disposal",
+        "children": []
+      },
+      {
+        "id": "9.14.6",
+        "title": "Surface Drainage",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.15",
+    "title": "Footings and Foundations",
+    "children": [
+      {
+        "id": "9.15.1",
+        "title": "Application",
+        "children": []
+      },
+      {
+        "id": "9.15.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.15.3",
+        "title": "Footings",
+        "children": []
+      },
+      {
+        "id": "9.15.4",
+        "title": "Foundation Walls",
+        "children": []
+      },
+      {
+        "id": "9.15.5",
+        "title": "Support of Joists and Beams on Masonry Foundation Walls",
+        "children": []
+      },
+      {
+        "id": "9.15.6",
+        "title": "Parging and Finishing of Masonry Foundation Walls",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.16",
+    "title": "Floors-on-Ground",
+    "children": [
+      {
+        "id": "9.16.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.16.2",
+        "title": "Material Beneath Floors",
+        "children": []
+      },
+      {
+        "id": "9.16.3",
+        "title": "Drainage",
+        "children": []
+      },
+      {
+        "id": "9.16.4",
+        "title": "Concrete",
+        "children": []
+      },
+      {
+        "id": "9.16.5",
+        "title": "Wood",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.17",
+    "title": "Columns",
+    "children": [
+      {
+        "id": "9.17.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.17.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.17.3",
+        "title": "Steel Columns",
+        "children": []
+      },
+      {
+        "id": "9.17.4",
+        "title": "Wood Columns",
+        "children": []
+      },
+      {
+        "id": "9.17.5",
+        "title": "Unit Masonry Columns",
+        "children": []
+      },
+      {
+        "id": "9.17.6",
+        "title": "Solid Concrete Columns",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.18",
+    "title": "Crawl Spaces",
+    "children": [
+      {
+        "id": "9.18.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.18.2",
+        "title": "Access",
+        "children": []
+      },
+      {
+        "id": "9.18.3",
+        "title": "Ventilation",
+        "children": []
+      },
+      {
+        "id": "9.18.4",
+        "title": "Clearance  (See also Article 9.3.2.9.)",
+        "children": []
+      },
+      {
+        "id": "9.18.5",
+        "title": "Drainage",
+        "children": []
+      },
+      {
+        "id": "9.18.6",
+        "title": "Ground Cover",
+        "children": []
+      },
+      {
+        "id": "9.18.7",
+        "title": "Fire Protection",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.19",
+    "title": "Roof Spaces",
+    "children": [
+      {
+        "id": "9.19.1",
+        "title": "Venting",
+        "children": []
+      },
+      {
+        "id": "9.19.2",
+        "title": "Access",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.20",
+    "title": "Masonry and Insulating Concrete Form Walls Not In Contact with the Ground",
+    "children": [
+      {
+        "id": "9.20.1",
+        "title": "Application",
+        "children": []
+      },
+      {
+        "id": "9.20.2",
+        "title": "Masonry Units",
+        "children": []
+      },
+      {
+        "id": "9.20.3",
+        "title": "Mortar",
+        "children": []
+      },
+      {
+        "id": "9.20.4",
+        "title": "Mortar Joints",
+        "children": []
+      },
+      {
+        "id": "9.20.5",
+        "title": "Masonry Support",
+        "children": []
+      },
+      {
+        "id": "9.20.6",
+        "title": "Thickness and Height",
+        "children": []
+      },
+      {
+        "id": "9.20.7",
+        "title": "Chases and Recesses",
+        "children": []
+      },
+      {
+        "id": "9.20.8",
+        "title": "Support of Loads",
+        "children": []
+      },
+      {
+        "id": "9.20.9",
+        "title": "Bonding and Tying",
+        "children": []
+      },
+      {
+        "id": "9.20.10",
+        "title": "Lateral Support",
+        "children": []
+      },
+      {
+        "id": "9.20.11",
+        "title": "Anchorage of Roofs, Floors and Intersecting Walls",
+        "children": []
+      },
+      {
+        "id": "9.20.12",
+        "title": "Corbelling",
+        "children": []
+      },
+      {
+        "id": "9.20.13",
+        "title": "Control of Rainwater Penetration",
+        "children": []
+      },
+      {
+        "id": "9.20.14",
+        "title": "Protection During Work",
+        "children": []
+      },
+      {
+        "id": "9.20.15",
+        "title": "Reinforcement for Earthquake Resistance",
+        "children": []
+      },
+      {
+        "id": "9.20.16",
+        "title": "Corrosion Resistance",
+        "children": []
+      },
+      {
+        "id": "9.20.17",
+        "title": "Above-Ground Flat Insulating Concrete Form Walls",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.21",
+    "title": "Masonry and Concrete Chimneys  and Flues",
+    "children": [
+      {
+        "id": "9.21.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.21.2",
+        "title": "Chimney Flues",
+        "children": []
+      },
+      {
+        "id": "9.21.3",
+        "title": "Chimney Lining",
+        "children": []
+      },
+      {
+        "id": "9.21.4",
+        "title": "Masonry and Concrete Chimney Construction",
+        "children": []
+      },
+      {
+        "id": "9.21.5",
+        "title": "Clearance from Combustible Construction",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.22",
+    "title": "Fireplaces",
+    "children": [
+      {
+        "id": "9.22.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.22.2",
+        "title": "Fireplace Liners",
+        "children": []
+      },
+      {
+        "id": "9.22.3",
+        "title": "Fireplace Walls",
+        "children": []
+      },
+      {
+        "id": "9.22.4",
+        "title": "Fire Chamber",
+        "children": []
+      },
+      {
+        "id": "9.22.5",
+        "title": "Hearth",
+        "children": []
+      },
+      {
+        "id": "9.22.6",
+        "title": "Damper",
+        "children": []
+      },
+      {
+        "id": "9.22.7",
+        "title": "Smoke Chamber",
+        "children": []
+      },
+      {
+        "id": "9.22.8",
+        "title": "Factory-Built Fireplaces",
+        "children": []
+      },
+      {
+        "id": "9.22.9",
+        "title": "Clearance of Combustible Material",
+        "children": []
+      },
+      {
+        "id": "9.22.10",
+        "title": "Fireplace Inserts and Hearth-Mounted Stoves",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.23",
+    "title": "Wood Frame Construction",
+    "children": [
+      {
+        "id": "9.23.1",
+        "title": "Application",
+        "children": []
+      },
+      {
+        "id": "9.23.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.23.3",
+        "title": "Fasteners and Connectors",
+        "children": []
+      },
+      {
+        "id": "9.23.4",
+        "title": "Maximum Spans",
+        "children": []
+      },
+      {
+        "id": "9.23.5",
+        "title": "Notching and Drilling",
+        "children": []
+      },
+      {
+        "id": "9.23.6",
+        "title": "Anchorage",
+        "children": []
+      },
+      {
+        "id": "9.23.7",
+        "title": "Sill Plates",
+        "children": []
+      },
+      {
+        "id": "9.23.8",
+        "title": "Beams to Support Floors",
+        "children": []
+      },
+      {
+        "id": "9.23.9",
+        "title": "Floor Joists",
+        "children": []
+      },
+      {
+        "id": "9.23.10",
+        "title": "Wall Studs",
+        "children": []
+      },
+      {
+        "id": "9.23.11",
+        "title": "Wall Plates",
+        "children": []
+      },
+      {
+        "id": "9.23.12",
+        "title": "Framing Over Openings",
+        "children": []
+      },
+      {
+        "id": "9.23.13",
+        "title": "Bracing to Resist Lateral Loads Due to Wind and Earthquake",
+        "children": []
+      },
+      {
+        "id": "9.23.14",
+        "title": "Roof and Ceiling Framing",
+        "children": []
+      },
+      {
+        "id": "9.23.15",
+        "title": "Subflooring",
+        "children": []
+      },
+      {
+        "id": "9.23.16",
+        "title": "Roof Sheathing",
+        "children": []
+      },
+      {
+        "id": "9.23.17",
+        "title": "Wall Sheathing",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.24",
+    "title": "Sheet Steel Stud Wall Framing",
+    "children": [
+      {
+        "id": "9.24.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.24.2",
+        "title": "Size of Framing",
+        "children": []
+      },
+      {
+        "id": "9.24.3",
+        "title": "Installation",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.25",
+    "title": "Heat Transfer, Air Leakage and Condensation Control",
+    "children": [
+      {
+        "id": "9.25.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.25.2",
+        "title": "Thermal Insulation",
+        "children": []
+      },
+      {
+        "id": "9.25.3",
+        "title": "Air Barrier Systems",
+        "children": []
+      },
+      {
+        "id": "9.25.4",
+        "title": "Vapour Barriers",
+        "children": []
+      },
+      {
+        "id": "9.25.5",
+        "title": "Properties and Position of Materials in the Building Envelope",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.26",
+    "title": "Roofing",
+    "children": [
+      {
+        "id": "9.26.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.26.2",
+        "title": "Roofing Materials",
+        "children": []
+      },
+      {
+        "id": "9.26.3",
+        "title": "Slope of Roof Surfaces",
+        "children": []
+      },
+      {
+        "id": "9.26.4",
+        "title": "Flashing at Intersections",
+        "children": []
+      },
+      {
+        "id": "9.26.5",
+        "title": "Eave Protection for Shingles and Shakes",
+        "children": []
+      },
+      {
+        "id": "9.26.6",
+        "title": "Underlay Beneath Shingles",
+        "children": []
+      },
+      {
+        "id": "9.26.7",
+        "title": "Asphalt Shingles on Slopes of 1 in 3 or Greater",
+        "children": []
+      },
+      {
+        "id": "9.26.8",
+        "title": "Asphalt Shingles on Slopes of Less Than 1 in 3",
+        "children": []
+      },
+      {
+        "id": "9.26.9",
+        "title": "Wood Roof Shingles",
+        "children": []
+      },
+      {
+        "id": "9.26.10",
+        "title": "Cedar Roof Shakes",
+        "children": []
+      },
+      {
+        "id": "9.26.11",
+        "title": "Built-Up Roofs",
+        "children": []
+      },
+      {
+        "id": "9.26.12",
+        "title": "Selvage Roofing",
+        "children": []
+      },
+      {
+        "id": "9.26.13",
+        "title": "Sheet Metal Roofing",
+        "children": []
+      },
+      {
+        "id": "9.26.14",
+        "title": "Glass Reinforced Polyester Roofing",
+        "children": []
+      },
+      {
+        "id": "9.26.15",
+        "title": "Hot Applied Rubberized Asphalt Roofing",
+        "children": []
+      },
+      {
+        "id": "9.26.16",
+        "title": "Polyvinyl Chloride Sheet Roofing",
+        "children": []
+      },
+      {
+        "id": "9.26.17",
+        "title": "Concrete Roof Tiles",
+        "children": []
+      },
+      {
+        "id": "9.26.18",
+        "title": "Roof Drains and Downspouts",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.27",
+    "title": "Cladding",
+    "children": [
+      {
+        "id": "9.27.1",
+        "title": "Application",
+        "children": []
+      },
+      {
+        "id": "9.27.2",
+        "title": "Required Protection from Precipitation  (See Note A-9.27.2.)",
+        "children": []
+      },
+      {
+        "id": "9.27.3",
+        "title": "Second Plane of Protection",
+        "children": []
+      },
+      {
+        "id": "9.27.4",
+        "title": "Sealants",
+        "children": []
+      },
+      {
+        "id": "9.27.5",
+        "title": "Attachment of Cladding",
+        "children": []
+      },
+      {
+        "id": "9.27.6",
+        "title": "Lumber Siding",
+        "children": []
+      },
+      {
+        "id": "9.27.7",
+        "title": "Wood Shingles and Shakes",
+        "children": []
+      },
+      {
+        "id": "9.27.8",
+        "title": "Plywood",
+        "children": []
+      },
+      {
+        "id": "9.27.9",
+        "title": "Hardboard",
+        "children": []
+      },
+      {
+        "id": "9.27.10",
+        "title": "OSB and Waferboard",
+        "children": []
+      },
+      {
+        "id": "9.27.11",
+        "title": "Metal",
+        "children": []
+      },
+      {
+        "id": "9.27.12",
+        "title": "Vinyl Siding, Insulated Vinyl Siding and Vinyl Soffits",
+        "children": []
+      },
+      {
+        "id": "9.27.13",
+        "title": "Polypropylene Siding",
+        "children": []
+      },
+      {
+        "id": "9.27.14",
+        "title": "Exterior Insulation Finish Systems",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.28",
+    "title": "Stucco",
+    "children": [
+      {
+        "id": "9.28.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.28.2",
+        "title": "Stucco Materials",
+        "children": []
+      },
+      {
+        "id": "9.28.3",
+        "title": "Fasteners",
+        "children": []
+      },
+      {
+        "id": "9.28.4",
+        "title": "Stucco Lath",
+        "children": []
+      },
+      {
+        "id": "9.28.5",
+        "title": "Stucco Mixes",
+        "children": []
+      },
+      {
+        "id": "9.28.6",
+        "title": "Stucco Application",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.29",
+    "title": "Interior Wall and Ceiling Finishes",
+    "children": [
+      {
+        "id": "9.29.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.29.2",
+        "title": "Waterproof Wall Finish",
+        "children": []
+      },
+      {
+        "id": "9.29.3",
+        "title": "Wood Furring",
+        "children": []
+      },
+      {
+        "id": "9.29.4",
+        "title": "Plastering",
+        "children": []
+      },
+      {
+        "id": "9.29.5",
+        "title": "Gypsum Board Finish (Taped Joints)",
+        "children": []
+      },
+      {
+        "id": "9.29.6",
+        "title": "Plywood Finish",
+        "children": []
+      },
+      {
+        "id": "9.29.7",
+        "title": "Hardboard Finish",
+        "children": []
+      },
+      {
+        "id": "9.29.8",
+        "title": "Insulating Fibreboard Finish",
+        "children": []
+      },
+      {
+        "id": "9.29.9",
+        "title": "Particleboard, OSB or Waferboard Finish",
+        "children": []
+      },
+      {
+        "id": "9.29.10",
+        "title": "Wall Tile Finish",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.30",
+    "title": "Flooring",
+    "children": [
+      {
+        "id": "9.30.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.30.2",
+        "title": "Panel-Type Underlay",
+        "children": []
+      },
+      {
+        "id": "9.30.3",
+        "title": "Wood Strip Flooring",
+        "children": []
+      },
+      {
+        "id": "9.30.4",
+        "title": "Parquet Flooring",
+        "children": []
+      },
+      {
+        "id": "9.30.5",
+        "title": "Resilient Flooring",
+        "children": []
+      },
+      {
+        "id": "9.30.6",
+        "title": "Ceramic Tile",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.31",
+    "title": "Plumbing Facilities",
+    "children": [
+      {
+        "id": "9.31.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.31.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.31.3",
+        "title": "Water Supply and Distribution",
+        "children": []
+      },
+      {
+        "id": "9.31.4",
+        "title": "Required Facilities",
+        "children": []
+      },
+      {
+        "id": "9.31.5",
+        "title": "Reserved",
+        "children": []
+      },
+      {
+        "id": "9.31.6",
+        "title": "Service Water Heating Facilities",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.32",
+    "title": "Ventilation",
+    "children": [
+      {
+        "id": "9.32.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.32.2",
+        "title": "Non-Heating-Season Ventilation",
+        "children": []
+      },
+      {
+        "id": "9.32.3",
+        "title": "Heating-Season Mechanical Ventilation  (See Note A-9.32.3.)",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.33",
+    "title": "Heating and Air-Conditioning",
+    "children": [
+      {
+        "id": "9.33.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.33.2",
+        "title": "Required Heating Systems",
+        "children": []
+      },
+      {
+        "id": "9.33.3",
+        "title": "Design Temperatures",
+        "children": []
+      },
+      {
+        "id": "9.33.4",
+        "title": "General Requirements for Heating and Air-Conditioning Systems",
+        "children": []
+      },
+      {
+        "id": "9.33.5",
+        "title": "Heating and Air-Conditioning Appliances and Equipment",
+        "children": []
+      },
+      {
+        "id": "9.33.6",
+        "title": "Air Duct Systems",
+        "children": []
+      },
+      {
+        "id": "9.33.7",
+        "title": "Radiators and Convectors",
+        "children": []
+      },
+      {
+        "id": "9.33.8",
+        "title": "Piping for Heating and Cooling Systems",
+        "children": []
+      },
+      {
+        "id": "9.33.9",
+        "title": "Refrigerating Systems and Equipment for Air-Conditioning",
+        "children": []
+      },
+      {
+        "id": "9.33.10",
+        "title": "Chimneys and Venting Equipment",
+        "children": []
+      },
+      {
+        "id": "9.34.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.34.2",
+        "title": "Lighting Outlets",
+        "children": []
+      },
+      {
+        "id": "9.34.3",
+        "title": "Emergency Lighting",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.35",
+    "title": "Garages and Carports",
+    "children": [
+      {
+        "id": "9.35.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.35.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.35.3",
+        "title": "Foundations",
+        "children": []
+      },
+      {
+        "id": "9.35.4",
+        "title": "Walls and Columns",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.36",
+    "title": "Reserved",
+    "children": []
+  },
+  {
+    "id": "9.37",
+    "title": "Cottages",
+    "children": [
+      {
+        "id": "9.37.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.37.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.37.3",
+        "title": "Tourist Accommodation",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.38",
+    "title": "Log Construction",
+    "children": [
+      {
+        "id": "9.38.1",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.38.2",
+        "title": "Walls",
+        "children": []
+      },
+      {
+        "id": "9.38.3",
+        "title": "Lintels",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.39",
+    "title": "Park Model Trailers",
+    "children": [
+      {
+        "id": "9.39.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.39.2",
+        "title": "General",
+        "children": []
+      },
+      {
+        "id": "9.39.3",
+        "title": "Requirements",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.40",
+    "title": "Reinforced Concrete Slabs  (See Note A-9.40.)",
+    "children": [
+      {
+        "id": "9.40.1",
+        "title": "Scope",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "9.41",
+    "title": "Additional Requirements for  Change of Use",
+    "children": [
+      {
+        "id": "9.41.1",
+        "title": "Scope",
+        "children": []
+      },
+      {
+        "id": "9.41.2",
+        "title": "Additional Construction",
+        "children": []
+      }
+    ]
+  }
+]

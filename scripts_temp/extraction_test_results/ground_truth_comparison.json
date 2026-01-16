@@ -1,0 +1,14 @@
+{
+  "results": {
+    "Table 9.23.3.1_pdfplumber": 1.0,
+    "Table 9.23.3.1_pymupdf": 1.0,
+    "Table 9.20.3.2.-A_pdfplumber": 1.0,
+    "Table 9.20.3.2.-A_pymupdf": 1.0,
+    "Table 9.20.3.2.-B_pdfplumber": 1.0,
+    "Table 9.20.3.2.-B_pymupdf": 1.0
+  },
+  "averages": {
+    "pdfplumber": 1.0,
+    "pymupdf": 1.0
+  }
+}
