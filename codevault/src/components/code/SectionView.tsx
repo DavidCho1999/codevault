@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 
 import tablesData from "../../../public/data/part9_tables.json";
-import EquationRenderer from "./EquationRenderer";
+import TextRenderer from "./TextRenderer";
 
 interface SectionViewProps {
   id: string;
@@ -145,7 +145,7 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
         result.push(
           <p key={i} className="my-3 pl-8 relative text-gray-700">
             <span className="absolute left-0 font-mono text-sm text-gray-500">({clauseMatch[1]})</span>
-            <EquationRenderer text={clauseMatch[2]} />
+            <TextRenderer text={clauseMatch[2]} />
           </p>
         );
         i++;
@@ -157,7 +157,7 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
         result.push(
           <p key={i} className="my-2 pl-14 relative text-gray-600 text-sm">
             <span className="absolute left-8 font-mono text-gray-400">({subclauseMatch[1]})</span>
-            <EquationRenderer text={subclauseMatch[2]} />
+            <TextRenderer text={subclauseMatch[2]} />
           </p>
         );
         i++;
@@ -169,7 +169,7 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
         result.push(
           <p key={i} className="my-1 pl-20 relative text-gray-600 text-sm">
             <span className="absolute left-14 font-mono text-gray-400">({romanMatch[1]})</span>
-            <EquationRenderer text={romanMatch[2]} />
+            <TextRenderer text={romanMatch[2]} />
           </p>
         );
         i++;
@@ -178,7 +178,7 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
 
       if (trimmed) {
         result.push(
-          <p key={i} className="my-2 text-gray-700"><EquationRenderer text={trimmed} /></p>
+          <p key={i} className="my-2 text-gray-700"><TextRenderer text={trimmed} /></p>
         );
       }
       i++;
