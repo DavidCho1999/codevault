@@ -83,7 +83,7 @@ function SearchResults() {
           {results.map((item) => (
             <Link
               key={item.id}
-              href={`/code/${item.id.replace(/\./g, "/")}`}
+              href={`/code/${item.id.replace(/\./g, "/")}?highlight=${encodeURIComponent(query)}`}
               className="block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/30 transition-colors"
             >
               <div className="flex items-start gap-3">

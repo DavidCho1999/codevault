@@ -109,6 +109,19 @@ upcode-clone/
 - **원인**: for p in range(page, next_page) 단순 연결
 - **해결**: 섹션 ID 패턴(예: 9.2.1.)으로 정확한 경계 분리 필요
 
+### 2026-01-17: npm run dev 실행 시 Claude Code 종료
+- **문제**: 서버 실행 명령 시 Claude Code가 종료됨
+- **증상**: `npm run dev` 실행 후 터미널 튕김
+- **원인**: 이미 실행 중인 Next.js 프로세스와 lock 파일 충돌
+- **해결**: 서버 시작 전 기존 프로세스 확인 필수
+  ```bash
+  # 1. 먼저 기존 프로세스 확인
+  netstat -ano | findstr :3001
+  # 2. 필요시 프로세스 종료
+  taskkill /PID <PID> /F
+  # 3. 또는 .next/dev/lock 파일 삭제
+  ```
+
 ---
 
 ## 참고

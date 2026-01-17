@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --sidebar-width: 280px;
   --header-height: 56px;
@@ -11,6 +14,22 @@
   --primary: #2563eb;
   --primary-foreground: #ffffff;
   --accent: #f0f9ff;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+}
+
+/* Dark Mode */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #1a1a1a;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --accent: #1e3a5f;
+  --card: #141414;
+  --card-foreground: #ededed;
 }
 
 @theme inline {
@@ -85,4 +104,159 @@ body {
   font-weight: 500;
   background-color: #f9fafb;
   text-align: left;
+}
+
+/* Table Notes Styling */
+.obc-table-container > div:last-child {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 0.375rem 0.375rem 0;
+  font-size: 0.875rem;
+}
+
+.obc-table-container > div:last-child p:first-child {
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 0.25rem;
+}
+
+.obc-table-container > div:last-child p:not(:first-child) {
+  color: #78350f;
+  margin: 0.25rem 0;
+}
+
+/* Dark Mode - Scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: #404040;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
+
+/* Dark Mode - Table Styles */
+.dark .obc-table-container th,
+.dark .obc-table-container td {
+  border-color: #404040;
+}
+
+.dark .obc-table-container thead {
+  background-color: #1f2937;
+}
+
+.dark .obc-table-container thead th {
+  color: #e5e7eb;
+}
+
+.dark .obc-table-container tbody tr:nth-child(even) {
+  background-color: #111827;
+}
+
+.dark .obc-table-container tbody tr:nth-child(odd) {
+  background-color: #0a0a0a;
+}
+
+.dark .obc-table-container tbody th {
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+.dark .obc-table-container tbody td {
+  color: #d1d5db;
+}
+
+/* Dark Mode - Table Notes */
+.dark .obc-table-container > div:last-child {
+  background-color: #292524;
+  border-left-color: #d97706;
+}
+
+.dark .obc-table-container > div:last-child p:first-child {
+  color: #fbbf24;
+}
+
+.dark .obc-table-container > div:last-child p:not(:first-child) {
+  color: #fcd34d;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  nav,
+  aside,
+  .sidebar,
+  button,
+  [role="complementary"],
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* Reset body styles */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Main content full width */
+  main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 1cm !important;
+  }
+
+  /* Article styling */
+  article {
+    max-width: 100% !important;
+  }
+
+  /* Links - show URL */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript"]:after {
+    content: "";
+  }
+
+  /* Tables */
+  .obc-table-container table {
+    page-break-inside: avoid;
+  }
+
+  .obc-table-container th,
+  .obc-table-container td {
+    border-color: #333 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .obc-table-container thead {
+    background-color: #e5e5e5 !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Table notes */
+  .obc-table-container > div:last-child {
+    background-color: #f5f5f5 !important;
+    border-left-color: #666 !important;
+  }
+
+  .obc-table-container > div:last-child p {
+    color: #333 !important;
+  }
 }

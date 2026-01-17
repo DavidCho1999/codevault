@@ -33,7 +33,7 @@ export default function RootLayout({
         <Header />
         <div className="flex pt-[56px]">
           <Sidebar toc={tocData} />
-          <main className="flex-1 ml-[280px] min-h-[calc(100vh-56px)]">
+          <main className="flex-1 ml-[280px] min-h-[calc(100vh-56px)] bg-white dark:bg-gray-900">
             {children}
           </main>
         </div>

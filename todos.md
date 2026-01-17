@@ -1,6 +1,7 @@
 # Project Todos
 
 ## Active
+- [ ] UPCODES_COMPARISON_REPORT.md 항목들 완료하기
 - [ ] pdf equation parsing
 - [ ] 테이블 동적 로딩 구현 (성능 최적화)
 

@@ -5,6 +5,7 @@ import type { Part, Section, Subsection } from "@/lib/types";
 
 interface PageProps {
   params: Promise<{ section: string[] }>;
+  searchParams: Promise<{ highlight?: string }>;
 }
 
 function findContent(sectionPath: string[]): { id: string; title: string; content: string } | null {
@@ -41,8 +42,9 @@ function findContent(sectionPath: string[]): { id: string; title: string; conten
   return null;
 }
 
-export default async function CodePage({ params }: PageProps) {
+export default async function CodePage({ params, searchParams }: PageProps) {
   const { section } = await params;
+  const { highlight } = await searchParams;
   const content = findContent(section);
 
   if (!content) {
@@ -55,6 +57,7 @@ export default async function CodePage({ params }: PageProps) {
         id={content.id}
         title={content.title}
         content={content.content}
+        highlight={highlight}
       />
     </div>
   );

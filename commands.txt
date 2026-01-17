@@ -8,8 +8,6 @@ server 열어줘
 
 튕겼어 계속 진행해줘
 
-e2e playwright 써서
-
 /context
 
 /catchup
@@ -17,8 +15,6 @@ e2e playwright 써서
 /create
 
 /all-tools
-
-/ultr
 
 /architecture-review
 

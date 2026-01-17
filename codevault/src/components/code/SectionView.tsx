@@ -1,14 +1,152 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 
 import tablesData from "../../../public/data/part9_tables.json";
 import TextRenderer from "./TextRenderer";
+import { HighlightProvider } from "./HighlightContext";
+import { useRecentSections } from "@/lib/useRecentSections";
+
+// Inline SVG icons
+const LinkIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+  </svg>
+);
+
+const CopyIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 8V5.2C8 4.08 8 3.52 8.218 3.092A2 2 0 019.092 2.218C9.52 2 10.08 2 11.2 2H18.8C19.92 2 20.48 2 20.908 2.218a2 2 0 01.874.874C22 3.52 22 4.08 22 5.2V12.8c0 1.12 0 1.68-.218 2.108a2 2 0 01-.874.874C20.48 16 19.92 16 18.8 16H16M5.2 22H12.8c1.12 0 1.68 0 2.108-.218a2 2 0 00.874-.874C16 20.48 16 19.92 16 18.8V11.2c0-1.12 0-1.68-.218-2.108a2 2 0 00-.874-.874C14.48 8 13.92 8 12.8 8H5.2C4.08 8 3.52 8 3.092 8.218a2 2 0 00-.874.874C2 9.52 2 10.08 2 11.2V18.8c0 1.12 0 1.68.218 2.108a2 2 0 00.874.874C3.52 22 4.08 22 5.2 22z" />
+  </svg>
+);
+
+const PrintIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18 8V5c0-.552-.448-1-1-1H7c-.552 0-1 .448-1 1v3M18 18h2c1.105 0 2-.895 2-2v-6c0-1.105-.895-2-2-2H4c-1.105 0-2 .895-2 2v6c0 1.105.895 2 2 2h2M7 21h10c.552 0 1-.448 1-1v-5c0-.552-.448-1-1-1H7c-.552 0-1 .448-1 1v5c0 .552.448 1 1 1z" />
+  </svg>
+);
+
+/**
+ * 복사 가능한 섹션 wrapper - hover 시 액션 버튼 그룹 표시
+ */
+function CopyableSection({
+  id,
+  children,
+  className = "",
+}: {
+  id: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedText, setCopiedText] = useState(false);
+
+  const handleCopyLink = async () => {
+    const url = `${window.location.origin}${window.location.pathname}#${id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy link:", err);
+    }
+  };
+
+  const handleCopyText = async () => {
+    const element = document.getElementById(id);
+    if (element) {
+      const text = element.innerText || element.textContent || "";
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopiedText(true);
+        setTimeout(() => setCopiedText(false), 2000);
+      } catch (err) {
+        console.error("Failed to copy text:", err);
+      }
+    }
+  };
+
+  const handlePrintSection = () => {
+    const element = document.getElementById(id);
+    if (element) {
+      const printWindow = window.open("", "_blank");
+      if (printWindow) {
+        printWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Print - ${id}</title>
+            <style>
+              body { font-family: system-ui, -apple-system, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
+              h1, h2, h3 { color: #1a1a1a; }
+              p { line-height: 1.6; color: #333; }
+            </style>
+          </head>
+          <body>${element.outerHTML}</body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+      }
+    }
+  };
+
+  return (
+    <div
+      id={id}
+      className={`group relative transition-colors duration-200 rounded-lg -mx-3 px-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 ${className}`}
+    >
+      {children}
+      {/* Floating Action Buttons - UpCodes 스타일 */}
+      <div className="absolute -right-2 top-0 flex items-center gap-0.5 p-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
+        {/* 텍스트 복사 */}
+        <button
+          onClick={handleCopyText}
+          className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          title="텍스트 복사"
+        >
+          {copiedText ? (
+            <span className="text-green-600"><CheckIcon /></span>
+          ) : (
+            <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><CopyIcon /></span>
+          )}
+        </button>
+        {/* 링크 복사 */}
+        <button
+          onClick={handleCopyLink}
+          className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          title="링크 복사"
+        >
+          {copiedLink ? (
+            <span className="text-green-600"><CheckIcon /></span>
+          ) : (
+            <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><LinkIcon /></span>
+          )}
+        </button>
+        {/* 섹션 인쇄 */}
+        <button
+          onClick={handlePrintSection}
+          className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          title="이 섹션 인쇄"
+        >
+          <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><PrintIcon /></span>
+        </button>
+      </div>
+    </div>
+  );
+}
 
 interface SectionViewProps {
   id: string;
   title: string;
   content: string;
+  highlight?: string;
 }
 
 interface TableData {
@@ -31,8 +169,8 @@ function TableHTML({ tableId, subtitle }: { tableId: string; subtitle?: string }
 
   if (!tableData) {
     return (
-      <div className="my-6 p-4 border border-yellow-300 bg-yellow-50 rounded">
-        <p className="text-yellow-800">Table not found: {tableId}</p>
+      <div className="my-6 p-4 border border-yellow-300 dark:border-yellow-600 bg-yellow-50 dark:bg-yellow-900/30 rounded">
+        <p className="text-yellow-800 dark:text-yellow-200">Table not found: {tableId}</p>
       </div>
     );
   }
@@ -40,8 +178,8 @@ function TableHTML({ tableId, subtitle }: { tableId: string; subtitle?: string }
   return (
     <div className="my-6 overflow-x-auto">
       <div className="mb-3 text-center">
-        <p className="font-bold text-gray-900">{tableData.title}</p>
-        {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
+        <p className="font-bold text-gray-900 dark:text-gray-100">{tableData.title}</p>
+        {subtitle && <p className="text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>}
       </div>
       <div
         className="obc-table-container"
@@ -51,7 +189,56 @@ function TableHTML({ tableId, subtitle }: { tableId: string; subtitle?: string }
   );
 }
 
-export default function SectionView({ id, title, content }: SectionViewProps) {
+export default function SectionView({ id, title, content, highlight }: SectionViewProps) {
+  const { addSection } = useRecentSections();
+
+  // 섹션 방문 기록
+  useEffect(() => {
+    if (id && title) {
+      addSection(id, title);
+    }
+  }, [id, title, addSection]);
+
+  // Hash 스크롤 처리
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // # 제거
+    if (hash) {
+      // DOM이 렌더링된 후 스크롤
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          // 하이라이트 효과
+          element.classList.add("bg-yellow-100");
+          setTimeout(() => element.classList.remove("bg-yellow-100"), 2000);
+        }
+      }, 100);
+    }
+  }, [content]);
+
+  // 키보드 네비게이션 (↑/↓)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // input, textarea 등에서는 무시
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return;
+      }
+
+      const scrollAmount = 150;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        window.scrollBy({ top: scrollAmount, behavior: "smooth" });
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        window.scrollBy({ top: -scrollAmount, behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const formattedContent = useMemo(() => {
     if (!content) return null;
 
@@ -63,6 +250,16 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
     while (i < lines.length) {
       const line = lines[i];
       const trimmed = line.trim();
+
+      // 현재 섹션 ID와 동일한 제목이면 스킵 (중복 방지)
+      const sectionTitleMatch = trimmed.match(/^(\d+\.\d+\.\d+\.?)\s+(.*)$/);
+      if (sectionTitleMatch) {
+        const lineId = sectionTitleMatch[1].replace(/\.$/, "");
+        if (lineId === id) {
+          i++;
+          continue;
+        }
+      }
 
       // 테이블 매칭 - trailing dot optional
       const tableStartMatch = trimmed.match(/^Table\s+(9\.\d+\.\d+\.\d+)(\.-[A-G])?\.?\s*(.*)/);
@@ -114,27 +311,116 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
 
       const articleMatch = trimmed.match(/^(\d+\.\d+\.\d+\.\d+\.)\s*(.*)$/);
       if (articleMatch) {
+        const articleId = articleMatch[1].replace(/\.$/, ""); // 마지막 . 제거
+        const articleContent: React.ReactNode[] = [];
+        const startIndex = i;
+        i++;
+
+        // Article 아래의 모든 콘텐츠 수집 (다음 Article/Subsection/Table 전까지)
+        while (i < lines.length) {
+          const nextLine = lines[i].trim();
+
+          // 다음 Article이나 Subsection이면 중단
+          if (nextLine.match(/^(\d+\.\d+\.\d+\.\d+\.)\s/) ||
+              (nextLine.match(/^(\d+\.\d+\.\d+\.)\s/) && !nextLine.includes("("))) {
+            break;
+          }
+          // 테이블이면 중단
+          if (nextLine.match(/^Table\s+\d+\.\d+\.\d+/)) {
+            break;
+          }
+
+          // (1), (2), ... 숫자 조항
+          const clauseMatch = nextLine.match(/^\((\d+)\)\s*(.*)$/);
+          if (clauseMatch) {
+            articleContent.push(
+              <div key={`clause-${i}`} className="my-4 flex gap-2 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+                <span className="shrink-0 font-medium text-blue-600 dark:text-blue-400">({clauseMatch[1]})</span>
+                <span><TextRenderer text={clauseMatch[2]} /></span>
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // (a), (b), ... 알파벳 하위조항
+          const subclauseMatch = nextLine.match(/^\(([a-z])\)\s*(.*)$/);
+          if (subclauseMatch) {
+            articleContent.push(
+              <div key={`subclause-${i}`} className="my-2 flex gap-2 text-gray-600 dark:text-gray-400 text-sm ml-8">
+                <span className="shrink-0 text-gray-500 dark:text-gray-500">({subclauseMatch[1]})</span>
+                <span><TextRenderer text={subclauseMatch[2]} /></span>
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // (i), (ii), ... 로마숫자 하위조항
+          const romanMatch = nextLine.match(/^\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
+          if (romanMatch) {
+            articleContent.push(
+              <div key={`roman-${i}`} className="my-1 flex gap-2 text-gray-600 dark:text-gray-400 text-sm ml-16">
+                <span className="shrink-0 text-gray-400 dark:text-gray-500">({romanMatch[1]})</span>
+                <span><TextRenderer text={romanMatch[2]} /></span>
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // Notes to Table
+          const notesToTableMatch = nextLine.match(/^Notes?\s+to\s+Table\s+([\d.]+[A-G]?):?\s*(.*)$/i);
+          if (notesToTableMatch) {
+            articleContent.push(
+              <div key={`notes-${i}`} className="my-4 p-3 bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-400 dark:border-amber-600 rounded-r">
+                <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+                  📝 Notes to Table {notesToTableMatch[1]}
+                </p>
+                {notesToTableMatch[2] && (
+                  <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
+                    <TextRenderer text={notesToTableMatch[2]} />
+                  </p>
+                )}
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // 일반 텍스트
+          if (nextLine) {
+            articleContent.push(
+              <p key={`text-${i}`} className="my-2 text-gray-700 dark:text-gray-300">
+                <TextRenderer text={nextLine} />
+              </p>
+            );
+          }
+          i++;
+        }
+
         result.push(
-          <div key={i} className="mt-6 first:mt-0">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              <span className="font-mono text-blue-600 mr-2">{articleMatch[1]}</span>
+          <CopyableSection key={startIndex} id={articleId} className="mt-6 first:mt-0 py-2">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{articleMatch[1]}</span>
               {articleMatch[2]}
             </h3>
-          </div>
+            {articleContent}
+          </CopyableSection>
         );
-        i++;
         continue;
       }
 
       const subsectionMatch = trimmed.match(/^(\d+\.\d+\.\d+\.)\s*(.*)$/);
       if (subsectionMatch && !trimmed.includes("(")) {
+        const subsectionId = subsectionMatch[1].replace(/\.$/, ""); // 마지막 . 제거
         result.push(
-          <div key={i} className="mt-8 first:mt-0 border-t pt-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-3">
-              <span className="font-mono text-blue-600 mr-2">{subsectionMatch[1]}</span>
+          <CopyableSection key={i} id={subsectionId} className="mt-8 first:mt-0 border-t dark:border-gray-700 pt-6">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+              <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{subsectionMatch[1]}</span>
               {subsectionMatch[2]}
             </h2>
-          </div>
+          </CopyableSection>
         );
         i++;
         continue;
@@ -143,10 +429,10 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
       const clauseMatch = trimmed.match(/^\((\d+)\)\s*(.*)$/);
       if (clauseMatch) {
         result.push(
-          <p key={i} className="my-3 pl-8 relative text-gray-700">
-            <span className="absolute left-0 font-mono text-sm text-gray-500">({clauseMatch[1]})</span>
-            <TextRenderer text={clauseMatch[2]} />
-          </p>
+          <div key={i} className="my-4 flex gap-2 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+            <span className="shrink-0 font-medium text-blue-600 dark:text-blue-400">({clauseMatch[1]})</span>
+            <span><TextRenderer text={clauseMatch[2]} /></span>
+          </div>
         );
         i++;
         continue;
@@ -155,10 +441,10 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
       const subclauseMatch = trimmed.match(/^\(([a-z])\)\s*(.*)$/);
       if (subclauseMatch) {
         result.push(
-          <p key={i} className="my-2 pl-14 relative text-gray-600 text-sm">
-            <span className="absolute left-8 font-mono text-gray-400">({subclauseMatch[1]})</span>
-            <TextRenderer text={subclauseMatch[2]} />
-          </p>
+          <div key={i} className="my-2 flex gap-2 text-gray-600 dark:text-gray-400 text-sm ml-8">
+            <span className="shrink-0 text-gray-500 dark:text-gray-500">({subclauseMatch[1]})</span>
+            <span><TextRenderer text={subclauseMatch[2]} /></span>
+          </div>
         );
         i++;
         continue;
@@ -167,10 +453,29 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
       const romanMatch = trimmed.match(/^\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
       if (romanMatch) {
         result.push(
-          <p key={i} className="my-1 pl-20 relative text-gray-600 text-sm">
-            <span className="absolute left-14 font-mono text-gray-400">({romanMatch[1]})</span>
-            <TextRenderer text={romanMatch[2]} />
-          </p>
+          <div key={i} className="my-1 flex gap-2 text-gray-600 dark:text-gray-400 text-sm ml-16">
+            <span className="shrink-0 text-gray-400 dark:text-gray-500">({romanMatch[1]})</span>
+            <span><TextRenderer text={romanMatch[2]} /></span>
+          </div>
+        );
+        i++;
+        continue;
+      }
+
+      // Notes to Table 스타일링
+      const notesToTableMatch = trimmed.match(/^Notes?\s+to\s+Table\s+([\d.]+[A-G]?):?\s*(.*)$/i);
+      if (notesToTableMatch) {
+        result.push(
+          <div key={i} className="my-4 p-3 bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-400 dark:border-amber-600 rounded-r">
+            <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+              📝 Notes to Table {notesToTableMatch[1]}
+            </p>
+            {notesToTableMatch[2] && (
+              <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
+                <TextRenderer text={notesToTableMatch[2]} />
+              </p>
+            )}
+          </div>
         );
         i++;
         continue;
@@ -178,7 +483,7 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
 
       if (trimmed) {
         result.push(
-          <p key={i} className="my-2 text-gray-700"><TextRenderer text={trimmed} /></p>
+          <p key={i} className="my-2 text-gray-700 dark:text-gray-300"><TextRenderer text={trimmed} /></p>
         );
       }
       i++;
@@ -188,19 +493,21 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
   }, [content]);
 
   return (
-    <article className="max-w-4xl">
-      <header className="mb-6 pb-4 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-900">
-          <span className="font-mono text-blue-600 mr-2">{id}</span>
-          {title}
-        </h1>
-      </header>
+    <HighlightProvider highlight={highlight || null}>
+      <article className="max-w-4xl">
+        <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{id}</span>
+            {title}
+          </h1>
+        </header>
 
-      {content ? (
-        <div className="prose prose-gray max-w-none">{formattedContent}</div>
-      ) : (
-        <p className="text-gray-500 italic">No content available for this section.</p>
-      )}
-    </article>
+        {content ? (
+          <div className="prose prose-gray dark:prose-invert max-w-none">{formattedContent}</div>
+        ) : (
+          <p className="text-gray-500 dark:text-gray-400 italic">No content available for this section.</p>
+        )}
+      </article>
+    </HighlightProvider>
   );
 }
