@@ -57,19 +57,38 @@ export default function SectionView({ id, title, content }: SectionViewProps) {
 
     const lines = content.split("\n").filter((line) => line.trim());
     const result: React.ReactNode[] = [];
+    const renderedTables = new Set<string>();
     let i = 0;
 
     while (i < lines.length) {
       const line = lines[i];
       const trimmed = line.trim();
 
-      const tableStartMatch = trimmed.match(/^Table\s+(9\.\d+\.\d+\.\d+)(\.-[A-G])?\.\s*(.*)/);
+      // 테이블 매칭 - trailing dot optional
+      const tableStartMatch = trimmed.match(/^Table\s+(9\.\d+\.\d+\.\d+)(\.-[A-G])?\.?\s*(.*)/);
       if (tableStartMatch) {
         const tableNum = tableStartMatch[1];
         const tableSuffix = tableStartMatch[2] || "";
         const tableId = "Table " + tableNum + tableSuffix;
         let subtitle = "";
         i++;
+
+        // 이미 렌더링된 테이블이면 스킵
+        if (renderedTables.has(tableId)) {
+          while (i < lines.length) {
+            const nextLine = lines[i].trim();
+            if (nextLine.startsWith("Notes to Table")) {
+              i++;
+              break;
+            }
+            if (nextLine.match(/^(\d+\.\d+\.\d+\.\d*)\s/) && !nextLine.startsWith("Table")) break;
+            if (nextLine.match(/^Table\s+\d+\.\d+\.\d+/)) break;
+            i++;
+          }
+          continue;
+        }
+
+        renderedTables.add(tableId);
 
         while (i < lines.length) {
           const nextLine = lines[i].trim();
