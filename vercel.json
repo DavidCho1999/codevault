@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd codevault && npm run build",
+  "outputDirectory": "codevault/.next",
+  "installCommand": "cd codevault && npm install",
+  "framework": "nextjs"
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import DOMPurify from "dompurify";
+
 import tablesData from "../../../public/data/part9_tables.json";
 import EquationRenderer from "./EquationRenderer";
 
@@ -45,7 +45,7 @@ function TableHTML({ tableId, subtitle }: { tableId: string; subtitle?: string }
       </div>
       <div
         className="obc-table-container"
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(tableData.html) }}
+        dangerouslySetInnerHTML={{ __html: tableData.html }}
       />
     </div>
   );

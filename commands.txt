@@ -15,3 +15,11 @@ e2e playwright 써서
 /catchup
 
 /create
+
+/all-tools
+
+/ultr
+
+/architecture-review
+
+/e2e
