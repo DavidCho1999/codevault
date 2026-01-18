@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import SectionView from "@/components/code/SectionView";
 import part9Data from "../../../../public/data/part9.json";
-import type { Part, Section, Subsection } from "@/lib/types";
+import type { Part, Section, Subsection, EquationData } from "@/lib/types";
 
 interface PageProps {
   params: Promise<{ section: string[] }>;
   searchParams: Promise<{ highlight?: string }>;
 }
 
-function findContent(sectionPath: string[]): { id: string; title: string; content: string } | null {
+function findContent(sectionPath: string[]): { id: string; title: string; content: string; equations?: Record<string, EquationData> } | null {
   const data = part9Data as Part;
   const fullId = sectionPath.join(".");
 
@@ -17,11 +17,18 @@ function findContent(sectionPath: string[]): { id: string; title: string; conten
     if (section.id === fullId) {
       // Return first subsection content if section has subsections
       if (section.subsections.length > 0) {
-        const firstSub = section.subsections[0];
+        // Merge all equations from subsections
+        const allEquations: Record<string, EquationData> = {};
+        for (const sub of section.subsections) {
+          if (sub.equations) {
+            Object.assign(allEquations, sub.equations);
+          }
+        }
         return {
           id: section.id,
           title: section.title,
           content: section.subsections.map(s => s.content).join("\n\n"),
+          equations: Object.keys(allEquations).length > 0 ? allEquations : undefined,
         };
       }
       return { id: section.id, title: section.title, content: "" };
@@ -34,6 +41,7 @@ function findContent(sectionPath: string[]): { id: string; title: string; conten
           id: subsection.id,
           title: subsection.title,
           content: subsection.content,
+          equations: subsection.equations,
         };
       }
     }
@@ -58,6 +66,7 @@ export default async function CodePage({ params, searchParams }: PageProps) {
         title={content.title}
         content={content.content}
         highlight={highlight}
+        equations={content.equations}
       />
     </div>
   );

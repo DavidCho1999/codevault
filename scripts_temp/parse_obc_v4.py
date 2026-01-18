@@ -249,6 +249,14 @@ def extract_page_text_sorted(doc, page_num: int, page_height: float = 0) -> str:
     # 4. 연속 빈 줄 정리
     text = re.sub(r'\n{3,}', '\n\n', text)
 
+    # 하위 조항 (a), (b), (i), (ii) 앞에 줄바꿈 추가
+    text = re.sub(r'\s{2,}(\([a-z]\))', r'\n\1', text)  # (a), (b), ...
+    text = re.sub(r'\s{2,}(\([ivxlc]+\))', r'\n\1', text)  # (i), (ii), ...
+
+    # 문장 중간 줄바꿈 제거 (PDF 줄넘김)
+    # 소문자 + newline + 대문자단어 (Table, Notes, Section, 9. 제외)
+    text = re.sub(r'([a-z])\n(?!Table|Notes|Section|Article|Forming|9\.)([A-Z][a-z]{2,})', r'\1 \2', text)
+
     return text.strip()
 
 
@@ -283,7 +291,8 @@ def extract_subsection_content(full_text: str, sub_id: str, next_sub_id: Optiona
     end = len(full_text)
 
     if next_sub_id:
-        end_pattern = rf'{re.escape(next_sub_id)}\.\s*'
+        # 줄 시작에서만 매칭 (본문 중간의 참조 텍스트 제외)
+        end_pattern = r"(?:\n|\s{2,})" + re.escape(next_sub_id) + r"\.\s+"
         end_match = re.search(end_pattern, full_text[start + 10:])
         if end_match:
             end = start + 10 + end_match.start()

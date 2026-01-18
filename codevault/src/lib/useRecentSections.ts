@@ -10,20 +10,30 @@ interface RecentSection {
 
 const STORAGE_KEY = "codevault-recent-sections";
 const MAX_ITEMS = 8;
+const UPDATE_EVENT = "recent-sections-updated";
 
 export function useRecentSections() {
   const [recentSections, setRecentSections] = useState<RecentSection[]>([]);
 
-  // localStorage에서 읽기
+  // localStorage에서 읽기 + 이벤트 리스닝
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setRecentSections(JSON.parse(stored));
+    const loadFromStorage = () => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          setRecentSections(JSON.parse(stored));
+        }
+      } catch (e) {
+        console.error("Failed to read recent sections:", e);
       }
-    } catch (e) {
-      console.error("Failed to read recent sections:", e);
-    }
+    };
+
+    // 초기 로드
+    loadFromStorage();
+
+    // 다른 컴포넌트에서 업데이트 시 동기화
+    window.addEventListener(UPDATE_EVENT, loadFromStorage);
+    return () => window.removeEventListener(UPDATE_EVENT, loadFromStorage);
   }, []);
 
   // 섹션 추가
@@ -41,6 +51,8 @@ export function useRecentSections() {
       // localStorage에 저장
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+        // 다른 컴포넌트에 알림
+        window.dispatchEvent(new Event(UPDATE_EVENT));
       } catch (e) {
         console.error("Failed to save recent sections:", e);
       }
