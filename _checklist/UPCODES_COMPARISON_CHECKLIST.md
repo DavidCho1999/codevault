@@ -99,8 +99,8 @@ UpCodes는 각 섹션 호버 시 **7개의 액션 버튼**이 우측 상단에 �
 | 항목 | 상태 | 설명 |
 |------|------|------|
 | 섹션별 인쇄 | ✅ | 특정 섹션만 인쇄 (새 창에서 인쇄) |
-| 키보드 네비게이션 | ❌ | 섹션 간 이동 단축키 (↑/↓, J/K) |
-| 최근 본 섹션 | ❌ | localStorage 기반 히스토리 |
+| 키보드 네비게이션 | ✅ | ↑/↓ 키로 페이지 스크롤 (150px씩) |
+| 최근 본 섹션 | ✅ | localStorage + 실시간 동기화 (사이드바 상단) |
 | Related Sections | ❌ | 관련 섹션 추천 카드 |
 
 ### 🟢 Low Priority
@@ -109,7 +109,7 @@ UpCodes는 각 섹션 호버 시 **7개의 액션 버튼**이 우측 상단에 �
 |------|------|------|
 | User Notes / About Chapter | ❌ | 챕터 소개 박스 (UpCodes 스타일) |
 | QR 코드 | ❌ | 섹션별 QR 코드 생성 |
-| 선택 시 파란색 하이라이트 | ❌ | 현재 보고 있는 섹션 강조 |
+| 클릭 선택 하이라이트 | ✅ | 섹션 클릭 시 파란색 배경 + 왼쪽 테두리 |
 
 ---
 
@@ -195,8 +195,8 @@ OBC Part 9에서 발견되는 참조 패턴:
 2. [x] 섹션 호버 배경 효과 (쉬움) ✅ 2026-01-17
 3. [ ] 모바일 반응형 (중요)
 4. [x] 섹션별 인쇄 (중간) ✅ 2026-01-17
-5. [ ] 키보드 네비게이션 (중간)
-6. [ ] 최근 본 섹션 히스토리 (중간)
+5. [x] 키보드 네비게이션 (중간) ✅ 2026-01-17
+6. [x] 최근 본 섹션 히스토리 (중간) ✅ 2026-01-17
 
 ---
 
@@ -221,6 +221,12 @@ OBC Part 9에서 발견되는 참조 패턴:
 
 **포함된 정의어 (30개):**
 loadbearing, fire separation, dwelling unit, storey, occupancy, fire-resistance rating, combustible, noncombustible, firewall, fire compartment, building height, grade, means of egress, exit, suite, secondary suite, habitable room, service room, vapour barrier, air barrier, thermal resistance, crawl space, attic, basement, joist, rafter, stud, sheathing, cladding, flashing
+
+**TODO: 정의어 확장 필요**
+- 현재: 30개 (수동 선정)
+- OBC 전체: **351개** (Division A, Section 1.4.1.2에서 확인)
+- 커버리지: 8.5%
+- 출처: `source/2024 Building Code Compendium/301880.pdf` 페이지 81~150
 
 ### 2026-01-17 Permalink + 복사 버튼 테스트
 
@@ -335,3 +341,49 @@ loadbearing, fire separation, dwelling unit, storey, occupancy, fire-resistance 
 - 정의어 목록: `codevault/src/data/definitions.ts`
 - 텍스트 렌더러: `codevault/src/components/code/TextRenderer.tsx`
 - 하이라이트 컨텍스트: `codevault/src/components/code/HighlightContext.tsx`
+- 최근 섹션 훅: `codevault/src/lib/useRecentSections.ts`
+
+---
+
+## 추가 검증 로그
+
+### 2026-01-17 키보드 네비게이션 구현
+
+**↑/↓ 키 페이지 스크롤:**
+- 상태: ✅ **완료**
+- 구현: `useEffect` + `keydown` 이벤트 리스너
+- 동작:
+  - ArrowDown: 아래로 150px 스크롤
+  - ArrowUp: 위로 150px 스크롤
+  - smooth behavior 적용
+- 예외: input, textarea 요소 포커스 시 무시
+- 파일: `SectionView.tsx`
+
+### 2026-01-17 최근 본 섹션 기능 구현
+
+**Recent Sections 히스토리:**
+- 상태: ✅ **완료**
+- 구현:
+  - `useRecentSections` 훅 생성 (localStorage 기반)
+  - 최대 8개 섹션 저장 (표시는 5개)
+  - 실시간 동기화: `recent-sections-updated` 커스텀 이벤트
+- 저장 형식: `{ id, title, visitedAt }`
+- localStorage 키: `codevault-recent-sections`
+- UI 위치: 사이드바 상단 (Recent 라벨 + 시계 아이콘)
+- 파일: `useRecentSections.ts`, `Sidebar.tsx`, `SectionView.tsx`
+- 테스트: 섹션 방문 → 사이드바에 즉시 반영 (새로고침 불필요)
+
+### 2026-01-17 클릭 선택 하이라이트 구현
+
+**섹션 클릭 시 파란색 하이라이트:**
+- 상태: ✅ **완료**
+- 구현:
+  - `selectedSection` 상태 + `handleSelectSection` 핸들러
+  - `CopyableSection`에 `isSelected`, `onSelect` props 추가
+- 스타일: `bg-blue-50 border-l-4 border-blue-400` (다크 모드 지원)
+- 동작:
+  - 섹션 클릭 → 파란색 하이라이트 적용
+  - 다른 섹션 클릭 → 선택 변경
+  - 같은 섹션 클릭 → 토글 해제
+- 파일: `SectionView.tsx`
+- E2E 테스트: Playwright로 에러 없음 확인

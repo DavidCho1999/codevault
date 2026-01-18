@@ -1,10 +1,62 @@
-# Playwright MCP test screenshots
-.playwright-mcp/
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# Python cache
+# Next.js
+.next/
+out/
+.vercel
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+*.egg-info/
 
-# Temporary files
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Debug/Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Test
+.playwright-mcp/
+coverage/
+
+# Temp files
 *.tmp
 *.bak
+*.temp
+
+# Build
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# Claude local settings
+.claude/settings.local.json
+
+# Misc
+nul

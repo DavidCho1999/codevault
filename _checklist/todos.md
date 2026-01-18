@@ -2,7 +2,7 @@
 
 ## Active
 - [ ] UPCODES_COMPARISON_REPORT.md 항목들 완료하기
-- [ ] pdf equation parsing
+- [ ] pdf equation parsing (equation이 아에 없는 부분도 있음)
 - [ ] 테이블 동적 로딩 구현 (성능 최적화)
 
 ## Completed
