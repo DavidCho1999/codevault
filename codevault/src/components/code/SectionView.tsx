@@ -142,11 +142,19 @@ function CopyableSection({
   );
 }
 
+interface EquationData {
+  formula: string;
+  description?: string;
+  page?: number;
+  insertAfter?: string;
+}
+
 interface SectionViewProps {
   id: string;
   title: string;
   content: string;
   highlight?: string;
+  equations?: Record<string, EquationData>;
 }
 
 interface TableData {
@@ -189,7 +197,7 @@ function TableHTML({ tableId, subtitle }: { tableId: string; subtitle?: string }
   );
 }
 
-export default function SectionView({ id, title, content, highlight }: SectionViewProps) {
+export default function SectionView({ id, title, content, highlight, equations }: SectionViewProps) {
   const { addSection } = useRecentSections();
 
   // 섹션 방문 기록
@@ -203,14 +211,10 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
   useEffect(() => {
     const hash = window.location.hash.slice(1); // # 제거
     if (hash) {
-      // DOM이 렌더링된 후 스크롤
       setTimeout(() => {
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
-          // 하이라이트 효과
-          element.classList.add("bg-yellow-100");
-          setTimeout(() => element.classList.remove("bg-yellow-100"), 2000);
         }
       }, 100);
     }
@@ -242,7 +246,20 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
   const formattedContent = useMemo(() => {
     if (!content) return null;
 
-    const lines = content.split("\n").filter((line) => line.trim());
+    // equations 삽입: "insertAfter" 패턴 다음에 수식 추가
+    let processedContent = content;
+    if (equations) {
+      for (const [eqId, eqData] of Object.entries(equations)) {
+        if (eqData.insertAfter && eqData.formula) {
+          const pattern = eqData.insertAfter;
+          // 패턴 다음 줄에 수식 삽입
+          const replacement = `${pattern}\n${eqData.formula}`;
+          processedContent = processedContent.replace(pattern, replacement);
+        }
+      }
+    }
+
+    const lines = processedContent.split("\n").filter((line) => line.trim());
     const result: React.ReactNode[] = [];
     const renderedTables = new Set<string>();
     let i = 0;
@@ -388,6 +405,61 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
             continue;
           }
 
+          // 수식 라인 감지 (예: S = CbSs + Sr, Do = 10(Ho – 0.8 Ss / γ))
+          const equationMatch = nextLine.match(/^([A-Za-z][a-z]?\s*=\s*[^,]+)$/);
+          if (equationMatch && nextLine.length < 80 && /[=\+\-\/\*\(\)]/.test(nextLine)) {
+            articleContent.push(
+              <div key={`eq-${i}`} className="obc-equation">
+                <TextRenderer text={nextLine} />
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // "where" 블록 시작 감지
+          if (nextLine.toLowerCase() === "where") {
+            const whereContent: React.ReactNode[] = [];
+            i++;
+
+            // where 블록 내용 수집 (변수 정의들)
+            while (i < lines.length) {
+              const varLine = lines[i].trim();
+              // 변수 정의 패턴: "Cb = ..." 또는 "  Cb = ..."
+              const varMatch = varLine.match(/^([A-Za-z][a-z0-9]*)\s*=\s*(.+)$/);
+              if (varMatch) {
+                whereContent.push(
+                  <span key={`var-${i}`} className="where-var">
+                    <span className="where-var-name">{varMatch[1]}</span> = {varMatch[2]}
+                  </span>
+                );
+                i++;
+                continue;
+              }
+              // 빈 줄이거나 다른 패턴이면 where 블록 종료
+              if (!varLine || varLine.match(/^[\(\d]/) || varLine.match(/^\d+\.\d+/)) {
+                break;
+              }
+              // 일반 설명 텍스트
+              whereContent.push(
+                <span key={`where-text-${i}`} className="block text-gray-600 dark:text-gray-400 ml-4">
+                  {varLine}
+                </span>
+              );
+              i++;
+            }
+
+            if (whereContent.length > 0) {
+              articleContent.push(
+                <div key={`where-${i}`} className="obc-where-block">
+                  <div className="where-title">where</div>
+                  {whereContent}
+                </div>
+              );
+            }
+            continue;
+          }
+
           // 일반 텍스트
           if (nextLine) {
             articleContent.push(
@@ -400,7 +472,11 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
         }
 
         result.push(
-          <CopyableSection key={startIndex} id={articleId} className="mt-6 first:mt-0 py-2">
+          <CopyableSection
+            key={startIndex}
+            id={articleId}
+            className="mt-6 first:mt-0 py-2"
+          >
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
               <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{articleMatch[1]}</span>
               {articleMatch[2]}
@@ -415,7 +491,11 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
       if (subsectionMatch && !trimmed.includes("(")) {
         const subsectionId = subsectionMatch[1].replace(/\.$/, ""); // 마지막 . 제거
         result.push(
-          <CopyableSection key={i} id={subsectionId} className="mt-8 first:mt-0 border-t dark:border-gray-700 pt-6">
+          <CopyableSection
+            key={i}
+            id={subsectionId}
+            className="mt-8 first:mt-0 border-t dark:border-gray-700 pt-6"
+          >
             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
               <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{subsectionMatch[1]}</span>
               {subsectionMatch[2]}
@@ -481,6 +561,57 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
         continue;
       }
 
+      // 수식 라인 감지 (Article 바깥)
+      const equationMatch = trimmed.match(/^([A-Za-z][a-z]?\s*=\s*[^,]+)$/);
+      if (equationMatch && trimmed.length < 80 && /[=\+\-\/\*\(\)]/.test(trimmed)) {
+        result.push(
+          <div key={i} className="obc-equation">
+            <TextRenderer text={trimmed} />
+          </div>
+        );
+        i++;
+        continue;
+      }
+
+      // "where" 블록 시작 감지 (Article 바깥)
+      if (trimmed.toLowerCase() === "where") {
+        const whereContent: React.ReactNode[] = [];
+        i++;
+
+        while (i < lines.length) {
+          const varLine = lines[i].trim();
+          const varMatch = varLine.match(/^([A-Za-z][a-z0-9]*)\s*=\s*(.+)$/);
+          if (varMatch) {
+            whereContent.push(
+              <span key={`var-${i}`} className="where-var">
+                <span className="where-var-name">{varMatch[1]}</span> = {varMatch[2]}
+              </span>
+            );
+            i++;
+            continue;
+          }
+          if (!varLine || varLine.match(/^[\(\d]/) || varLine.match(/^\d+\.\d+/)) {
+            break;
+          }
+          whereContent.push(
+            <span key={`where-text-${i}`} className="block text-gray-600 dark:text-gray-400 ml-4">
+              {varLine}
+            </span>
+          );
+          i++;
+        }
+
+        if (whereContent.length > 0) {
+          result.push(
+            <div key={`where-${i}`} className="obc-where-block">
+              <div className="where-title">where</div>
+              {whereContent}
+            </div>
+          );
+        }
+        continue;
+      }
+
       if (trimmed) {
         result.push(
           <p key={i} className="my-2 text-gray-700 dark:text-gray-300"><TextRenderer text={trimmed} /></p>
@@ -490,12 +621,12 @@ export default function SectionView({ id, title, content, highlight }: SectionVi
     }
 
     return result;
-  }, [content]);
+  }, [content, equations]);
 
   return (
     <HighlightProvider highlight={highlight || null}>
       <article className="max-w-4xl">
-        <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-l-blue-400 dark:border-l-blue-500 -mx-4 px-4 py-4 rounded-r-lg">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             <span className="font-mono text-blue-600 dark:text-blue-400 mr-2">{id}</span>
             {title}

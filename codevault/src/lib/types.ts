@@ -12,12 +12,20 @@ export interface Subsection {
   page: number;
   content: string;
   articles: Article[];
+  equations?: Record<string, EquationData>;
 }
 
 export interface Article {
   id: string;
   title: string;
   content: string;
+}
+
+export interface EquationData {
+  formula: string;
+  description?: string;
+  page?: number;
+  insertAfter?: string;
 }
 
 export interface Section {
