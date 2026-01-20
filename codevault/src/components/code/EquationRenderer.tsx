@@ -167,6 +167,17 @@ function parseAndRenderEquations(text: string): { html: string; hasEquations: bo
     }
   }
 
+  // <sup> 태그 처리: <sup>2</sup> → ² 등으로 변환
+  if (/<sup>/i.test(result)) {
+    result = result
+      .replace(/<sup>2<\/sup>/gi, '²')
+      .replace(/<sup>3<\/sup>/gi, '³')
+      .replace(/<sup>o<\/sup>/gi, '°')
+      .replace(/<sup>1<\/sup>/gi, '¹')
+      .replace(/<sup>([^<]+)<\/sup>/gi, '<sup>$1</sup>'); // 나머지는 그대로 유지
+    hasEquations = true;
+  }
+
   return { html: result, hasEquations };
 }
 

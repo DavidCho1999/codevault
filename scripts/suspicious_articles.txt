@@ -1,0 +1,964 @@
+# 수동 확인 필요 Article 목록
+# 생성일: auto_screen.py
+# 총 160개
+
+9.10.15.2
+  Title: Reserved
+  Page: 792
+  Content Length: 4244
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_2_to_13
+
+9.10.16.3
+  Title: Reserved
+  Page: 796
+  Content Length: 2491
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_3_to_8
+
+9.10.19.6
+  Title: Silencing of Smoke Alarms
+  Page: 801
+  Content Length: 1381
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_1_to_5
+
+9.10.5.1
+  Title: Reserved
+  Page: 772
+  Content Length: 1745
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, TRUNCATED_END
+
+9.20.12.2
+  Title: Reserved
+  Page: 850
+  Content Length: 693
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, TRUNCATED_END
+
+9.25.3.6
+  Title: Reserved
+  Page: 903
+  Content Length: 2436
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_2_to_5
+
+9.26.4.2
+  Title: Reserved
+  Page: 910
+  Content Length: 1364
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, TRUNCATED_END
+
+9.32.3.6
+  Title: Exhaust-Only Ventilation Systems  (See Note A-9.32.3.6.)
+  Page: 957
+  Content Length: 3598
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_2_to_12
+
+9.32.3.9A
+  Title: Reserved
+  Page: 960
+  Content Length: 2871
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, CLAUSE_GAP_2_to_8
+
+9.7.2.2
+  Title: Reserved
+  Page: 736
+  Content Length: 838
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, TRUNCATED_END
+
+9.8.7.1
+  Title: Required Handrails
+  Page: 747
+  Content Length: 1695
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1, TRUNCATED_END
+
+9.10.13.12
+  Title: Service Room Doors
+  Page: 785
+  Content Length: 614
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.10.15.4
+  Title: Glazed Openings in Exposing Building Face
+  Page: 792
+  Content Length: 901
+  Issues: CLAUSE_GAP_1_to_6, TRUNCATED_END
+
+9.10.18.2
+  Title: Fire Alarm System Required
+  Page: 798
+  Content Length: 968
+  Issues: CLAUSE_GAP_2_to_5, TRUNCATED_END
+
+9.10.2.4
+  Title: Buildings Containing More Than One Major Occupancy
+  Page: 769
+  Content Length: 787
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.11.1.3
+  Title: Compliance with Required Ratings
+  Page: 805
+  Content Length: 999
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.12.2.2
+  Title: Minimum Depth of Foundations
+  Page: 808
+  Content Length: 836
+  Issues: CLAUSE_GAP_1_to_4, TRUNCATED_END
+
+9.12.4.1
+  Title: Support of Footings
+  Page: 809
+  Content Length: 717
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.15.3.6
+  Title: Adjustments to Footing Widths for Interior Walls
+  Page: 821
+  Content Length: 1085
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.15.4.2
+  Title: Reserved
+  Page: 824
+  Content Length: 3071
+  Issues: CLAUSE_GAP_4_to_7, TRUNCATED_END
+
+9.15.4.5
+  Title: Reserved
+  Page: 826
+  Content Length: 1352
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.15.5.2
+  Title: Support of Beams
+  Page: 827
+  Content Length: 355
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.20.9.5
+  Title: Ties for Masonry Veneer
+  Page: 847
+  Content Length: 2517
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.22.9.1
+  Title: Clearance to the Fireplace Opening
+  Page: 863
+  Content Length: 657
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.23.16.4
+  Title: Reserved
+  Page: 894
+  Content Length: 856
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.27.5.4
+  Title: Reserved
+  Page: 926
+  Content Length: 1337
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.3.1.6
+  Title: Compressive Strength
+  Page: 717
+  Content Length: 1289
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.3.3.2
+  Title: Galvanized Sheet Steel
+  Page: 721
+  Content Length: 1381
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.30.4.1
+  Title: Adhesive
+  Page: 947
+  Content Length: 303
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.32.2.2
+  Title: Reserved
+  Page: 952
+  Content Length: 569
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.32.3.10
+  Title: Reserved
+  Page: 962
+  Content Length: 2417
+  Issues: CLAUSE_GAP_1_to_4, TRUNCATED_END
+
+9.37.1.1
+  Title: Reserved
+  Page: 982
+  Content Length: 411
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.4.3.1
+  Title: Reserved
+  Page: 724
+  Content Length: 1243
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.5.1.0A
+  Title: Application
+  Page: 725
+  Content Length: 479
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.5.3A.1
+  Title: Reserved
+  Page: 728
+  Content Length: 218
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.8.4.4
+  Title: Reserved
+  Page: 744
+  Content Length: 465
+  Issues: NO_CLAUSE_START, CLAUSE_NOT_START_1
+
+9.10.13.13
+  Title: Fire Dampers
+  Page: 786
+  Content Length: 1522
+  Issues: CLAUSE_GAP_2_to_5
+
+9.10.13.6
+  Title: Steel Door Frames
+  Page: 785
+  Content Length: 230
+  Issues: TRUNCATED_END
+
+9.10.14.3A
+  Title: Inadequate Firefighting Facilities
+  Page: 788
+  Content Length: 308
+  Issues: CLAUSE_GAP_2_to_5
+
+9.10.14.4
+  Title: Openings in Exposing Building Face
+  Page: 788
+  Content Length: 1036
+  Issues: CLAUSE_GAP_1_to_6
+
+9.10.14.5
+  Title: Reserved
+  Page: 790
+  Content Length: 2516
+  Issues: CLAUSE_GAP_1_to_4
+
+9.10.15.3A
+  Title: Inadequate Firefighting Facilities
+  Page: 792
+  Content Length: 314
+  Issues: CLAUSE_GAP_2_to_5
+
+9.10.15.5
+  Title: Reserved
+  Page: 794
+  Content Length: 3039
+  Issues: CLAUSE_GAP_3_to_7
+
+9.10.19.4
+  Title: Power Supply
+  Page: 801
+  Content Length: 1452
+  Issues: CLAUSE_GAP_3_to_9
+
+9.10.8.1
+  Title: None
+  Page: 774
+  Content Length: 545
+  Issues: TRUNCATED_END
+
+9.10.8.9
+  Title: Crawl Spaces
+  Page: 774
+  Content Length: 230
+  Issues: TRUNCATED_END
+
+9.10.9.17
+  Title: Separation of Public Corridors
+  Page: 779
+  Content Length: 1997
+  Issues: CLAUSE_GAP_2_to_5
+
+9.10.9.2
+  Title: Continuous Barrier
+  Page: 774
+  Content Length: 1886
+  Issues: CLAUSE_GAP_3_to_6
+
+9.10.9.7
+  Title: Reserved
+  Page: 776
+  Content Length: 1589
+  Issues: CLAUSE_GAP_2_to_5
+
+9.10.9.8
+  Title: Penetrations by Outlet Boxes or Service Equipment in Concealed Spaces
+  Page: 776
+  Content Length: 3706
+  Issues: CLAUSE_GAP_2_to_5
+
+9.13.2.1
+  Title: Required Dampproofing
+  Page: 810
+  Content Length: 661
+  Issues: CLAUSE_GAP_1_to_4
+
+9.13.2.7
+  Title: Dampproofing of Preserved Wood Foundation Walls
+  Page: 812
+  Content Length: 161
+  Issues: TRUNCATED_END
+
+9.13.3.2
+  Title: Waterproofing Materials
+  Page: 812
+  Content Length: 1029
+  Issues: TRUNCATED_END
+
+9.14.2.1
+  Title: Reserved
+  Page: 816
+  Content Length: 1884
+  Issues: CLAUSE_GAP_2_to_5
+
+9.14.3.1
+  Title: Material Standards
+  Page: 816
+  Content Length: 600
+  Issues: TRUNCATED_END
+
+9.14.5.2
+  Title: Sump Pits
+  Page: 817
+  Content Length: 478
+  Issues: CLAUSE_GAP_2_to_7
+
+9.15.1.3
+  Title: Foundations for Deformation Resistant Buildings
+  Page: 819
+  Content Length: 359
+  Issues: TRUNCATED_END
+
+9.15.2.2
+  Title: Unit Masonry Construction
+  Page: 819
+  Content Length: 653
+  Issues: TRUNCATED_END
+
+9.15.3.4
+  Title: Basic Footing Widths and Areas
+  Page: 820
+  Content Length: 401
+  Issues: TRUNCATED_END
+
+9.15.4.1
+  Title: Flat Wall Insulating Concrete Form Units
+  Page: 822
+  Content Length: 162
+  Issues: TRUNCATED_END
+
+9.16.5.1
+  Title: Wood-Frame Floors
+  Page: 830
+  Content Length: 146
+  Issues: TRUNCATED_END
+
+9.19.1.2
+  Title: Vent Requirements
+  Page: 835
+  Content Length: 949
+  Issues: TRUNCATED_END
+
+9.20.11.6
+  Title: Anchoring to Masonry Piers
+  Page: 849
+  Content Length: 221
+  Issues: CLAUSE_GAP_1_to_4
+
+9.20.15.2
+  Title: Installation Standard
+  Page: 853
+  Content Length: 214
+  Issues: TRUNCATED_END
+
+9.20.17.7
+  Title: Protection from Precipitation and Damage
+  Page: 855
+  Content Length: 145
+  Issues: TRUNCATED_END
+
+9.20.2.1
+  Title: Masonry Unit Standards
+  Page: 837
+  Content Length: 505
+  Issues: TRUNCATED_END
+
+9.20.2.6
+  Title: Concrete Units Exposed to the Weather
+  Page: 838
+  Content Length: 198
+  Issues: TRUNCATED_END
+
+9.20.2.7
+  Title: Compressive Strength
+  Page: 838
+  Content Length: 409
+  Issues: TRUNCATED_END
+
+9.20.9.4
+  Title: Tying
+  Page: 846
+  Content Length: 824
+  Issues: CLAUSE_GAP_3_to_6
+
+9.21.1.4
+  Title: Flue Pipes
+  Page: 856
+  Content Length: 172
+  Issues: TRUNCATED_END
+
+9.21.3.4
+  Title: Firebrick Liners
+  Page: 858
+  Content Length: 253
+  Issues: TRUNCATED_END
+
+9.21.3.5
+  Title: Concrete Liners
+  Page: 858
+  Content Length: 138
+  Issues: TRUNCATED_END
+
+9.22.1.4
+  Title: Combustion Air
+  Page: 861
+  Content Length: 293
+  Issues: TRUNCATED_END
+
+9.22.10.1
+  Title: Appliance Standard
+  Page: 864
+  Content Length: 149
+  Issues: TRUNCATED_END
+
+9.22.8.1
+  Title: Conformance to Standard
+  Page: 863
+  Content Length: 130
+  Issues: TRUNCATED_END
+
+9.23.1.1
+  Title: Limitations  (See Note A-9.23.1.1.)
+  Page: 864
+  Content Length: 268
+  Issues: TRUNCATED_END
+
+9.23.13.1
+  Title: Requirements for Low to Moderate Wind and Seismic Forces
+  Page: 883
+  Content Length: 845
+  Issues: TRUNCATED_END
+
+9.23.13.2
+  Title: Requirements for High Wind and Seismic Forces
+  Page: 883
+  Content Length: 739
+  Issues: TRUNCATED_END
+
+9.23.13.3
+  Title: Requirements for Extreme Wind and Seismic Forces
+  Page: 884
+  Content Length: 717
+  Issues: TRUNCATED_END
+
+9.23.13.5
+  Title: Reserved
+  Page: 886
+  Content Length: 1529
+  Issues: CLAUSE_GAP_2_to_5
+
+9.23.13.6
+  Title: Table 9.23.13.6.
+  Page: 886
+  Content Length: 426
+  Issues: TRUNCATED_END
+
+9.23.13.7
+  Title: Additional System Considerations
+  Page: 887
+  Content Length: 3469
+  Issues: CLAUSE_GAP_3_to_6
+
+9.23.14.8
+  Title: Reserved
+  Page: 890
+  Content Length: 1902
+  Issues: CLAUSE_GAP_1_to_4
+
+9.23.16.2
+  Title: Material Standards
+  Page: 893
+  Content Length: 275
+  Issues: TRUNCATED_END
+
+9.23.6.1
+  Title: Reserved
+  Page: 874
+  Content Length: 3065
+  Issues: CLAUSE_GAP_3_to_6
+
+9.23.6.3
+  Title: Anchorage of Smaller Buildings
+  Page: 874
+  Content Length: 283
+  Issues: TRUNCATED_END
+
+9.23.9.4
+  Title: Strapping, Bridging, Furring and Ceilings in Span Tables 9.23.4.2.-A and
+  Page: 876
+  Content Length: 1852
+  Issues: CLAUSE_GAP_1_to_5
+
+9.23.9.8
+  Title: Support of Walls
+  Page: 877
+  Content Length: 1263
+  Issues: CLAUSE_GAP_3_to_6
+
+9.23.9.9
+  Title: Cantilevered Floor Joists
+  Page: 877
+  Content Length: 830
+  Issues: TRUNCATED_END
+
+9.24.1.2
+  Title: Material Standards
+  Page: 896
+  Content Length: 140
+  Issues: TRUNCATED_END
+
+9.25.2.4
+  Title: Reserved
+  Page: 902
+  Content Length: 1642
+  Issues: CLAUSE_GAP_2_to_6
+
+9.25.2.5
+  Title: Installation of Spray-Applied Polyurethane
+  Page: 902
+  Content Length: 200
+  Issues: TRUNCATED_END
+
+9.25.3.2
+  Title: Air Barrier System Properties  (See Note A-9.25.5.1.(1))
+  Page: 902
+  Content Length: 418
+  Issues: TRUNCATED_END
+
+9.26.11.1
+  Title: Quantity of Materials
+  Page: 916
+  Content Length: 446
+  Issues: TRUNCATED_END
+
+9.26.11.10
+  Title: Reserved
+  Page: 918
+  Content Length: 819
+  Issues: CLAUSE_GAP_1_to_4
+
+9.26.16.1
+  Title: Installation
+  Page: 919
+  Content Length: 184
+  Issues: TRUNCATED_END
+
+9.26.4.8
+  Title: Chimney Saddles
+  Page: 911
+  Content Length: 958
+  Issues: CLAUSE_GAP_1_to_5
+
+9.27.10.1
+  Title: Material Standard
+  Page: 930
+  Content Length: 82
+  Issues: TRUNCATED_END
+
+9.27.12.1
+  Title: Material Standards
+  Page: 931
+  Content Length: 680
+  Issues: TRUNCATED_END
+
+9.27.13.1
+  Title: Material Standard
+  Page: 932
+  Content Length: 385
+  Issues: TRUNCATED_END
+
+9.27.14.3
+  Title: Design and Installation
+  Page: 932
+  Content Length: 390
+  Issues: TRUNCATED_END
+
+9.27.2.3
+  Title: First and Second Planes of Protection
+  Page: 920
+  Content Length: 138
+  Issues: TRUNCATED_END
+
+9.27.3.2
+  Title: Sheathing Membrane Material Standard
+  Page: 921
+  Content Length: 128
+  Issues: TRUNCATED_END
+
+9.27.5.1
+  Title: Attachment
+  Page: 924
+  Content Length: 1208
+  Issues: CLAUSE_GAP_2_to_5
+
+9.27.5.3
+  Title: Furring
+  Page: 924
+  Content Length: 162
+  Issues: CLAUSE_GAP_1_to_4
+
+9.27.7.5
+  Title: Fastening to Lath
+  Page: 928
+  Content Length: 793
+  Issues: CLAUSE_GAP_1_to_4
+
+9.27.7.6
+  Title: Exposure and Thickness
+  Page: 928
+  Content Length: 304
+  Issues: TRUNCATED_END
+
+9.27.8.1
+  Title: Material Standards
+  Page: 928
+  Content Length: 258
+  Issues: TRUNCATED_END
+
+9.27.8.2
+  Title: Thickness
+  Page: 929
+  Content Length: 545
+  Issues: TRUNCATED_END
+
+9.27.9.1
+  Title: Material Standards
+  Page: 929
+  Content Length: 78
+  Issues: TRUNCATED_END
+
+9.28.2.1
+  Title: Portland Cement
+  Page: 933
+  Content Length: 93
+  Issues: TRUNCATED_END
+
+9.29.10.5
+  Title: Joints Between Tiles and Bathtub
+  Page: 944
+  Content Length: 185
+  Issues: TRUNCATED_END
+
+9.29.4.1
+  Title: Application
+  Page: 938
+  Content Length: 183
+  Issues: TRUNCATED_END
+
+9.29.5.2
+  Title: Materials
+  Page: 938
+  Content Length: 459
+  Issues: TRUNCATED_END
+
+9.29.5.3
+  Title: Maximum Spacing of Supports
+  Page: 939
+  Content Length: 653
+  Issues: TRUNCATED_END
+
+9.29.5.6
+  Title: Nails
+  Page: 940
+  Content Length: 211
+  Issues: TRUNCATED_END
+
+9.29.5.7
+  Title: Screws
+  Page: 940
+  Content Length: 245
+  Issues: TRUNCATED_END
+
+9.29.7.1
+  Title: Material Standard
+  Page: 942
+  Content Length: 60
+  Issues: TRUNCATED_END
+
+9.29.8.1
+  Title: Material Standard
+  Page: 942
+  Content Length: 117
+  Issues: TRUNCATED_END
+
+9.29.9.1
+  Title: Material Standard
+  Page: 943
+  Content Length: 198
+  Issues: TRUNCATED_END
+
+9.3.1.1
+  Title: General
+  Page: 716
+  Content Length: 324
+  Issues: TRUNCATED_END
+
+9.3.1.2
+  Title: Cement
+  Page: 717
+  Content Length: 98
+  Issues: TRUNCATED_END
+
+9.3.1.3
+  Title: Concrete in Contact With Sulfate Soil
+  Page: 717
+  Content Length: 207
+  Issues: TRUNCATED_END
+
+9.3.2.5
+  Title: Table 9.3.2.1.
+  Page: 719
+  Content Length: 0
+  Issues: NO_CONTENT
+
+9.3.2.6
+  Title: Lumber Dimensions
+  Page: 720
+  Content Length: 128
+  Issues: TRUNCATED_END
+
+9.3.2.9
+  Title: Termite and Decay Protection
+  Page: 720
+  Content Length: 2302
+  Issues: TRUNCATED_END
+
+9.30.2.2
+  Title: Materials and Thickness
+  Page: 945
+  Content Length: 385
+  Issues: TRUNCATED_END
+
+9.32.3.11
+  Title: Reserved
+  Page: 964
+  Content Length: 2725
+  Issues: CLAUSE_GAP_1_to_6
+
+9.32.3.4
+  Title: Reserved
+  Page: 956
+  Content Length: 4636
+  Issues: CLAUSE_GAP_3_to_9
+
+9.32.3.8
+  Title: Protection Against Depressurization  (See Note A-9.32.3.8.)
+  Page: 958
+  Content Length: 1359
+  Issues: CLAUSE_GAP_2_to_6
+
+9.33.10.3
+  Title: Masonry or Concrete Chimneys
+  Page: 977
+  Content Length: 92
+  Issues: TRUNCATED_END
+
+9.33.5.1
+  Title: Capacity of Heating Appliances
+  Page: 968
+  Content Length: 513
+  Issues: TRUNCATED_END
+
+9.33.6.14
+  Title: Filters and Odour Removal Equipment
+  Page: 974
+  Content Length: 183
+  Issues: TRUNCATED_END
+
+9.33.6.2
+  Title: Reserved
+  Page: 970
+  Content Length: 1960
+  Issues: TRUNCATED_END
+
+9.33.6.3
+  Title: Tape
+  Page: 970
+  Content Length: 235
+  Issues: TRUNCATED_END
+
+9.33.8.2
+  Title: Reserved
+  Page: 976
+  Content Length: 1407
+  Issues: CLAUSE_GAP_3_to_6
+
+9.33.8.3
+  Title: Table 9.33.8.3.
+  Page: 976
+  Content Length: 109
+  Issues: TRUNCATED_END
+
+9.33.9.1
+  Title: Cooling Units
+  Page: 976
+  Content Length: 123
+  Issues: TRUNCATED_END
+
+9.39.2.1
+  Title: General
+  Page: 984
+  Content Length: 291
+  Issues: TRUNCATED_END
+
+9.4.4.1
+  Title: Allowable Bearing Pressures
+  Page: 724
+  Content Length: 747
+  Issues: TRUNCATED_END
+
+9.40.1.3
+  Title: Reinforcing Steel
+  Page: 985
+  Content Length: 111
+  Issues: TRUNCATED_END
+
+9.5.2.4
+  Title: Stud Wall Reinforcement
+  Page: 726
+  Content Length: 463
+  Issues: CLAUSE_GAP_2_to_7
+
+9.6.1.2
+  Title: Material Standards for Glass
+  Page: 731
+  Content Length: 871
+  Issues: TRUNCATED_END
+
+9.7.5.2
+  Title: Reserved
+  Page: 740
+  Content Length: 2615
+  Issues: CLAUSE_GAP_3_to_7
+
+9.8.5.2
+  Title: Ramp Width  (See also Article 9.9.3.2.)
+  Page: 745
+  Content Length: 223
+  Issues: TRUNCATED_END
+
+9.8.6.3
+  Title: Dimensions of Landings
+  Page: 746
+  Content Length: 998
+  Issues: CLAUSE_GAP_2_to_7
+
+9.8.7.2
+  Title: Continuity of Handrails  (See Note A-9.8.7.2.)
+  Page: 748
+  Content Length: 717
+  Issues: CLAUSE_GAP_2_to_11
+
+9.8.8.2
+  Title: Loads on Guards  (See Note A-9.8.8.2.)
+  Page: 750
+  Content Length: 2631
+  Issues: TRUNCATED_END
+
+9.8.8.7
+  Title: Glass in Guards
+  Page: 752
+  Content Length: 199
+  Issues: TRUNCATED_END
+
+9.9.11.3
+  Title: Exit Signs
+  Page: 766
+  Content Length: 1995
+  Issues: CLAUSE_GAP_1_to_7
+
+9.9.12.3
+  Title: Reserved
+  Page: 768
+  Content Length: 1048
+  Issues: TRUNCATED_END
+
+9.9.4.2
+  Title: Fire Separation for Exits
+  Page: 756
+  Content Length: 1285
+  Issues: CLAUSE_GAP_1_to_5
+
+9.9.4.5
+  Title: Openings in Exterior Walls of Exits
+  Page: 756
+  Content Length: 263
+  Issues: TRUNCATED_END
+
+9.9.6.1
+  Title: Obstructions by Doors
+  Page: 758
+  Content Length: 490
+  Issues: CLAUSE_GAP_1_to_4
+
+9.9.6.3
+  Title: Clear Opening Width at Doorways
+  Page: 759
+  Content Length: 1012
+  Issues: CLAUSE_GAP_1_to_4
+
+9.9.6.4
+  Title: Reserved
+  Page: 760
+  Content Length: 1199
+  Issues: CLAUSE_GAP_1_to_4
+
+9.9.6.7
+  Title: Door Latching, Locking and Opening Mechanisms
+  Page: 760
+  Content Length: 1148
+  Issues: CLAUSE_GAP_1_to_5
+
+9.9.6.8
+  Title: Effort Required to Open
+  Page: 761
+  Content Length: 421
+  Issues: CLAUSE_GAP_1_to_7
+
+9.9.8.5
+  Title: Exiting Through a Lobby
+  Page: 763
+  Content Length: 1362
+  Issues: CLAUSE_GAP_3_to_6
+
+9.9.9.3
+  Title: Shared Egress Facilities
+  Page: 764
+  Content Length: 335
+  Issues: TRUNCATED_END
+

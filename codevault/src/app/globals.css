@@ -73,6 +73,38 @@ body {
 }
 
 /* OBC Table Styles */
+.obc-table-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e5e7;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Part 10+ 테이블 헤딩 스타일만 (Section 헤더는 제외) */
+h4.table-title,
+.table-title {
+  text-align: center !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  color: #000000 !important;
+  margin: 0.25rem 0 !important;
+  line-height: 1.3 !important;
+}
+
+h5.table-notes-title,
+.table-notes-title {
+  text-align: center !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #000000 !important;
+  margin: 0.25rem 0 !important;
+  line-height: 1.4 !important;
+}
+
 .obc-table-container table {
   width: 100%;
   border-collapse: collapse;
@@ -80,15 +112,24 @@ body {
   margin: 0 auto;
 }
 
+.obc-table-container table caption {
+  padding: 0;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000000;
+}
+
 .obc-table-container th,
 .obc-table-container td {
-  border: 1px solid #9ca3af;
+  border: 1px solid #000000;
   padding: 0.5rem 0.75rem;
   text-align: center;
 }
 
 .obc-table-container thead {
-  background-color: #f3f4f6;
+  background-color: #f9fafb;
 }
 
 .obc-table-container thead th {
@@ -97,34 +138,64 @@ body {
 }
 
 .obc-table-container tbody tr:nth-child(even) {
-  background-color: #f9fafb;
+  background-color: #ffffff;
 }
 
 .obc-table-container tbody th {
   font-weight: 500;
-  background-color: #f9fafb;
+  background-color: #ffffff;
   text-align: left;
 }
 
 /* Table Notes Styling */
-.obc-table-container > div:last-child {
+.obc-table-container .table-notes {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
   background-color: #fffbeb;
-  border-left: 4px solid #f59e0b;
-  border-radius: 0 0.375rem 0.375rem 0;
+  border-radius: 0.375rem;
   font-size: 0.875rem;
 }
 
-.obc-table-container > div:last-child p:first-child {
+.obc-table-container .table-notes p:first-child {
   font-weight: 600;
   color: #92400e;
   margin-bottom: 0.25rem;
 }
 
-.obc-table-container > div:last-child p:not(:first-child) {
+.obc-table-container .table-notes p:not(:first-child) {
   color: #78350f;
   margin: 0.25rem 0;
+}
+
+/* Notes to Table 내부 테이블 스타일 - 심플 */
+.bg-amber-50\/50 table,
+.dark .bg-amber-900\/20 table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  margin: 0.5rem 0;
+  background: transparent !important;
+}
+
+.bg-amber-50\/50 th,
+.bg-amber-50\/50 td {
+  border: 1px solid #000;
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+  background: transparent !important;
+  color: #78350f;
+}
+
+.bg-amber-50\/50 thead,
+.bg-amber-50\/50 tbody,
+.bg-amber-50\/50 tr {
+  background: transparent !important;
+}
+
+.bg-amber-50\/50 thead th {
+  font-weight: 600;
+  color: #92400e;
 }
 
 /* Dark Mode - Scrollbar */
@@ -137,9 +208,16 @@ body {
 }
 
 /* Dark Mode - Table Styles */
+.dark .obc-table-container {
+  background-color: #141414;
+  border-color: #262626;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+
 .dark .obc-table-container th,
 .dark .obc-table-container td {
-  border-color: #404040;
+  border-color: #ffffff;
 }
 
 .dark .obc-table-container thead {
@@ -168,16 +246,16 @@ body {
 }
 
 /* Dark Mode - Table Notes */
-.dark .obc-table-container > div:last-child {
+.dark .obc-table-container .table-notes {
   background-color: #292524;
   border-left-color: #d97706;
 }
 
-.dark .obc-table-container > div:last-child p:first-child {
+.dark .obc-table-container .table-notes p:first-child {
   color: #fbbf24;
 }
 
-.dark .obc-table-container > div:last-child p:not(:first-child) {
+.dark .obc-table-container .table-notes p:not(:first-child) {
   color: #fcd34d;
 }
 
@@ -190,8 +268,8 @@ body {
   display: block;
   margin: 1rem 0;
   padding: 1rem 1.5rem;
-  background-color: #f0f9ff;
-  border-left: 4px solid #3b82f6;
+  background-color: #f5f5f5;
+  border-left: 4px solid #737373;
   border-radius: 0 0.375rem 0.375rem 0;
   font-family: 'Cambria Math', 'Times New Roman', serif;
   font-size: 1.1rem;
@@ -233,15 +311,15 @@ body {
 .obc-where-block .where-var-name {
   font-family: 'Cambria Math', 'Times New Roman', serif;
   font-style: italic;
-  font-weight: 500;
-  color: #1e40af;
+  font-weight: 600;
+  color: #374151;
 }
 
 /* Dark Mode - Equation Styles */
 .dark .obc-equation {
-  background-color: #1e3a5f;
-  border-left-color: #60a5fa;
-  color: #e0f2fe;
+  background-color: #262626;
+  border-left-color: #a3a3a3;
+  color: #e5e5e5;
 }
 
 .dark .obc-equation-inline {
@@ -259,7 +337,8 @@ body {
 }
 
 .dark .obc-where-block .where-var-name {
-  color: #93c5fd;
+  color: #d1d5db;
+  font-weight: 600;
 }
 
 /* ============================================

@@ -56,6 +56,17 @@ upcode-clone/
 - 새로운 실수/교훈 발견 시 → 가이드에 추가
 - 해결방안, 코드 스니펫, 체크리스트 등 지속적으로 보완
 
+### OBC 구조 규칙 (Building Code Specialist) ⚠️ 중요
+- **참고 문서**: `_checklist/OBC_STRUCTURE_RULES.md`
+- OBC 계층 구조 작업 시 **반드시** 이 문서 참고
+- Claude의 추측 금지 → 실제 PDF 기반 규칙만 사용
+- **핵심 포인트**:
+  - 6단계 계층 아님 → **4단계 + 변형**
+  - Alternative Subsection: 9.5.3A, 9.5.3B... (9.5.3의 형제!)
+  - Article Suffix: 9.5.1.1A (9.5.1.1의 확장)
+  - 0A Article: 9.33.6.10A (특수 케이스)
+  - "Sentence" 아님 → "Clause"가 올바른 용어
+
 ---
 
 
@@ -254,6 +265,204 @@ upcode-clone/
 |\s{2,})" + re.escape(next_sub_id) + r"\.\s+"
   ```
 - **예방책**: PDF 텍스트 추출 후 실제 형식 확인 필수
+
+### 2026-01-18: (a), (b) clause 줄바꿈 누락 + 문장 끝 분리 오류
+- **문제**: (a), (b), (c) clause가 줄바꿈 없이 한 문단으로 연결되고, 문장 끝이 별도 블록으로 분리됨
+- **증상**: 9.8.6.3.(4) 웹 렌더링에서:
+  ```
+  (4) ... shall be (a) where one or more... width, or (b) where all... not less than the lesser actual
+
+  stair or ramp width.   <- 별도 줄로 분리됨 (원래 (b)의 끝부분)
+  ```
+- **원인**: PDF 파싱 시 clause 경계 인식 실패 + 줄바꿈 처리 오류
+  - (a), (b) 등이 새 줄로 시작해야 하는데 이전 텍스트에 연결됨
+  - 문장 끝부분이 잘려서 별도 `<p>` 태그로 렌더링됨
+- **영향받는 섹션**: 9.8.6, 9.8.7, 9.8.8 등 clause가 많은 섹션
+- **해결 방향**:
+  1. 파싱 스크립트에서 `(a)`, `(b)`, `(c)` 앞에 줄바꿈 추가
+  2. 또는 렌더링 컴포넌트에서 clause 패턴 인식하여 별도 처리
+- **예방책**: 웹 렌더링 검증 시 clause 줄바꿈 필수 확인
+
+### 2026-01-18: 수식 + "where" 블록 분리 실패 (Critical)
+- **문제**: 수식과 "where" 키워드가 하나의 박스 안에 함께 렌더링됨
+- **증상**:
+  ```
+  [박스] S = CbSs + Sr where
+  ```
+  원래는:
+  ```
+  [박스] S = CbSs + Sr
+
+  where
+  S = ...
+  Cb = ...
+  ```
+- **근본 원인**: SectionView.tsx:264 전처리 로직
+  ```typescript
+  processedContent = processedContent.replace(/\n(?![(\d9A-Z])/g, ' ');
+  ```
+  이 패턴이 "where" 앞의 줄바꿈도 공백으로 변환함:
+  - `\n` 뒤가 소문자 `w`라서 `[(\d9A-Z]`에 매칭 안 됨
+  - 결과: `수식\nwhere` → `수식 where`로 합쳐짐
+
+- **해결** (최종):
+  ```typescript
+  // SectionView.tsx:264-265
+  // "where", 소문자 수식(xd=...), 그리스 문자(γ=...) 앞의 줄바꿈 유지
+  processedContent = processedContent.replace(/\n(?!where\b|[a-zγ]{1,3}\s*=|[(\d9A-Z])/g, ' ');
+  ```
+  - `where\b` - "where" 키워드
+  - `[a-zγ]{1,3}\s*=` - 소문자/그리스 문자 변수 (xd=, h=, γ=)
+  - `[(\d9A-Z]` - 괄호, 숫자, 대문자
+
+- **추가 수정 이력**:
+  1. `where\b` 추가 → 수식과 where 분리
+  2. `[a-z]{1,3}\s*=` 추가 → xd= 같은 소문자 수식 분리
+  3. `γ` 추가 → 그리스 문자 변수 분리
+
+- **영향 섹션**: 9.4.2.1.(1)(f), 9.4.2.2.(1), 9.4.2.2.(5) 등 수식 + where 조합
+- **예방책**: 수식 렌더링 검증 시 "where" 블록이 별도로 표시되는지 확인 필수
+
+### 2026-01-18: where 블록이 숫자로 시작하는 연속 텍스트에서 조기 종료
+- **문제**: where 블록 내용 중 숫자로 시작하는 줄에서 블록이 종료됨
+- **증상**: 9.4.2.2.(1)의 where 블록에서
+  ```
+  where
+    S = specified snow load,
+    Cb = basic snow load roof factor, which is 0.45 where... 4.3 m and
+  ← 여기서 종료됨!
+
+  0.55 for all other roofs,   ← where 블록 밖으로 나감
+  Ss = 1-in-50 year ground...
+  ```
+- **원인**: SectionView.tsx의 where 블록 종료 조건이 너무 광범위
+  ```typescript
+  // 변경 전: 숫자나 괄호로 시작하면 모두 종료
+  if (varLine.match(/^[\(\d]/) || varLine.match(/^\d+\.\d+/)) {
+    break;
+  }
+  ```
+  - `0.55 for all other roofs`가 숫자로 시작해서 종료됨
+  - 실제로는 Cb 변수 설명의 연속인데 잘못 끊김
+
+- **해결**: 종료 조건을 clause/섹션 번호로만 한정
+  ```typescript
+  // 변경 후: 실제 clause나 섹션 번호만 종료
+  if (varLine.match(/^\(\d+\)/) ||      // (1), (2) clause
+      varLine.match(/^\([a-z]\)/) ||    // (a), (b) sub-clause
+      varLine.match(/^9\.\d+\.\d+/)) {  // 9.x.x 섹션 번호
+    break;
+  }
+  ```
+
+- **수정 위치**: SectionView.tsx 471-474번 줄, 634-637번 줄 (2곳)
+- **예방책**: where 블록 검증 시 모든 변수 정의가 블록 안에 포함되는지 확인
+
+### 2026-01-18: OBC 계층 구조 잘못 이해 (Critical)
+- **문제**: Claude가 OBC 구조를 추측하여 틀린 6단계 계층을 문서화함
+- **증상**:
+  - 문서에 "6단계: Part → Section → Subsection → Article → Sentence → Clause → Subclause"라고 씀
+  - 실제 PDF에는 9.5.3A, 9.5.1.1A, 9.33.6.10A 같은 변형 패턴 존재
+  - "Sentence"는 OBC 용어가 아님 (실제는 "Clause")
+- **원인**:
+  - 실제 PDF를 확인하지 않고 추측으로 문서 작성
+  - 일부 예시만 보고 전체 구조를 일반화
+- **실제 구조**:
+  ```
+  4단계 + 변형:
+  - Section: 9.X
+  - Subsection: 9.X.X 또는 9.X.X[A-Z] (Alternative)
+  - Article: 9.X.X.X 또는 9.X.X.X[A-Z] 또는 9.X.X[A-Z].X (Sub-Article)
+  - Clause: (1), (2)... → Sub-clause: (a), (b)...
+  ```
+- **해결**: `_checklist/OBC_STRUCTURE_RULES.md` 생성 (PDF 분석 기반)
+- **예방책**:
+  1. OBC 구조 관련 작업 시 반드시 `OBC_STRUCTURE_RULES.md` 참고
+  2. Claude의 추측 금지 → 실제 PDF 기반 규칙만 사용
+  3. 새로운 패턴 발견 시 → 규칙 문서에 추가
+
+### 2026-01-18: 테이블 MERGE 구조 검증 누락 (Critical)
+- **문제**: 테이블의 rowspan/colspan 병합 구조를 확인하지 않고 "완료"로 판단
+- **증상**: Table 9.4.3.1에서 첫 번째 열이 빈 셀로 처리됨
+  - PDF: "Roof rafters..." 셀이 3행 병합 (rowspan=3)
+  - HTML: `<th>Roof rafters...</th>` + `<th></th>` + `<th></th>` (빈 셀!)
+  - 웹에서 구조가 깨져 보임
+- **원인**:
+  - 자동 변환(Camelot)이 복잡한 병합 인식 못함
+  - 품질 체크리스트에서 "caption 존재", "source 필드"만 확인
+  - **MERGE 구조 확인을 건너뜀!**
+- **해결**:
+  1. PDF 이미지 추출하여 원본 구조 파악
+  2. HTML의 rowspan/colspan 개수 확인
+  3. 빈 `<th></th>` 셀 없는지 확인
+  4. 불일치 시 완전한 data + spans 오버라이드
+- **예방책**:
+  - 테이블 검증 시 **항상** PDF 이미지 먼저 추출
+  - rowspan/colspan 개수가 PDF와 일치하는지 확인
+  - 품질 체크리스트에 🔴 MERGE 항목 추가됨
+
+### 2026-01-18: clean_text() 패턴이 콘텐츠를 삭제함 (Critical)
+- **문제**: `clean_text()` 함수의 헤더/푸터 제거 패턴이 너무 광범위하여 실제 콘텐츠까지 삭제
+- **증상**: 9.1.1.1, 9.2.1.1 등의 Article에 content가 없음
+  - 9.2 Definitions 섹션 전체가 웹에서 비어있음
+- **원인**:
+  ```python
+  # 문제의 패턴
+  text = re.sub(r'^.*Division [ABC].*$', '', text, flags=re.MULTILINE)
+  ```
+  이 패턴이 "Division A", "Division B", "Division C"를 **언급**하는 모든 줄을 삭제
+  - 예: `(1) The application of this Part shall be as described in Subsection 1.3.3. of Division A.`
+  - 이 줄이 "Division A"를 포함하여 삭제됨
+- **해결**:
+  ```python
+  # 수정된 패턴 - 헤더/푸터만 정확히 매칭
+  text = re.sub(r'^\d{4}\s+Building Code.*$', '', text, flags=re.MULTILINE)
+  text = re.sub(r'^Division [ABC]\s*-\s*Part\s*\d+.*$', '', text, flags=re.MULTILINE)
+  ```
+- **예방책**:
+  1. 정규식 패턴은 **가능한 한 구체적으로** 작성
+  2. `.*` 같은 광범위한 패턴 사용 시 주의
+  3. 패턴 변경 후 **샘플 콘텐츠로 테스트** 필수
+  4. 특정 키워드로 필터링 시 **콘텐츠에서도 해당 키워드가 사용되는지** 확인
+
+### 2026-01-20: 한 줄짜리 HTML 테이블 처리 버그 (Critical)
+- **문제**: `<table>...</table>`이 한 줄에 있어도 `</table>`을 찾을 때까지 다음 줄들을 계속 읽음
+- **증상**: Table 11.2.1.1.-F 헤딩이 렌더링되지 않고 마크다운 텍스트로 표시됨
+  - `#### Table 11.2.1.1.-F **(1) Hazard Index**...` 가 plain text로 나타남
+- **원인**: SectionView.tsx의 HTML 테이블 처리 로직
+  ```typescript
+  if (trimmed.startsWith('<table')) {
+    const tableLines = [trimmed];
+    i++;
+    while (i < lines.length) {
+      tableLines.push(lines[i]);
+      i++;
+      if (lines[i].includes('</table>')) break;  // 첫 줄 체크 안 함!
+    }
+  }
+  ```
+  - 첫 줄에 `</table>`이 있어도 다음 줄을 계속 읽어 `i` 과도하게 증가
+  - 결과: 다음 테이블 헤딩(`#### Table 11.2.1.1.-F`)을 건너뜀
+- **해결**:
+  ```typescript
+  if (!trimmed.includes('</table>')) {
+    // 여러 줄 테이블만 다음 줄 읽기
+  } else {
+    i++;  // 한 줄 테이블은 바로 다음으로
+  }
+  ```
+- **예방책**: HTML 태그 처리 시 **한 줄 완결 케이스** 항상 먼저 확인
+
+### 2026-01-20: PDF 테이블 페이지 분리로 인한 구조 손실 (Critical)
+- **문제**: 긴 테이블이 페이지 경계에서 분리될 때 두 번째 부분이 flat text로 저장됨
+- **증상**: C161~C174가 테이블이 아닌 연속 텍스트로 표시됨
+  - `C.A. Number Division B Requirements Compliance Alternative C161 9.10.13.2.(1) In a building...`
+- **원인**: PDF 파싱 시 페이지 나눔 후 테이블 컨텍스트 손실
+- **해결**: flat text를 정규식으로 파싱 후 HTML `<table>` 변환
+- **예방책**:
+  1. 파싱 후 flat text 테이블 패턴 감지 스크립트 실행
+  2. Part 11 Table 11.5.1.1 시리즈 수동 검토
+  3. `<table>` 태그 없이 "C.A. Number", "H.I." 등 헤더가 있으면 경고
 
 ---
 

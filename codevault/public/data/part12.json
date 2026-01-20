@@ -1,0 +1,65 @@
+{
+  "id": "12",
+  "title": "Resource Conservation and Environmental Integrity",
+  "sections": [
+    {
+      "id": "12.1",
+      "title": "General",
+      "subsections": [
+        {
+          "id": "12.1.1",
+          "title": "Application",
+          "content": "[ARTICLE:12.1.1.1:Scope]\n\n(1) The scope of this Part shall be as described in Subsection 1.3.3. of Division A.\n\n[ARTICLE:12.1.1.2:Application]\n\n(1) This Part applies to resource conservation and environmental integrity in the design and construction of buildings."
+        }
+      ]
+    },
+    {
+      "id": "12.2",
+      "title": "Energy Efficiency, Carbon Dioxide Equivalents and Peak Electric Demand",
+      "subsections": [
+        {
+          "id": "12.2.1",
+          "title": "Energy Efficiency Design",
+          "content": "[ARTICLE:12.2.1.1:Reserved]\n\n[ARTICLE:12.2.1.2:Energy Efficiency Design]\n\n(1) Reserved.\n(2) Except as provided in Sentences (3) and (4), the energy efficiency of all buildings shall\n(a) be designed to exceed by not less than 13% the energy efficiency levels required by Sentence 12.2.1.1.(2) of O. Reg. 332/12 (Building Code) as it read on December 31, 2024, or\n(b) conform to Division 1 and Division 3 or 5 of MMA Supplementary Standard SB-10, \"Energy Efficiency Requirements.\"\n(3) Except as provided in Sentence (4), the energy efficiency of a building or part of a building of residential occupancy that is within the scope of Part 9 and is intended for occupancy on a continuing basis during the winter months shall\n(a) be designed to exceed by not less than 15% the energy efficiency levels required by Sentence 12.2.1.1.(3) of O. Reg. 332/12 (Building Code) as it read on December 31, 2024, or\n(b) conform to Chapters 1 and 3 of MMA Supplementary Standard SB-12, \"Energy Efficiency for Housing.\"\n\n(4) This Article does not apply to\n(a) a farm building,\n(b) a building that does not use electrical power or fossil fuel, or\n(c) a seasonal recreational building described in Section 9.37. or 9.39."
+        },
+        {
+          "id": "12.2.2",
+          "title": "Carbon Dioxide Equivalents",
+          "content": "[ARTICLE:12.2.2.1:Carbon Dioxide Equivalents]\n\n(1) Except as provided in Sentence (2), all buildings shall be designed to conform to the CO2e emission requirements set out in MMA Supplementary Standard SB-10, \"Energy Efficiency Requirements.\"\n(2) This Article does not apply to\n(a) a building or part of a building of residential occupancy that is within the scope of Part 9 and is intended for occupancy on a continuing basis during the winter months,\n(b) a farm building,\n(c) a building that does not use electrical power or fossil fuel, or\n(d) a seasonal recreational building described in Section 9.37. or 9.39."
+        },
+        {
+          "id": "12.2.3",
+          "title": "Peak Electric Demand",
+          "content": "[ARTICLE:12.2.3.1:Peak Electric Demand]\n\n(1) Except as provided in Sentence (2), all buildings shall be designed to conform to the peak electric demand requirements set out in MMA Supplementary Standard SB-10, \"Energy Efficiency Requirements.\"\n(2) This Article does not apply to\n(a) a building or part of a building of residential occupancy that is within the scope of Part 9 and is intended for occupancy on a continuing basis during the winter months,\n(b) a farm building,\n(c) a building that does not use electrical power or fossil fuel, or\n(d) a seasonal recreational building described in Section 9.37. or 9.39."
+        },
+        {
+          "id": "12.2.4",
+          "title": "Motion Sensors",
+          "content": "[ARTICLE:12.2.4.1:Motion Sensors]\n\n(1) Lighting installed to provide the minimum illumination levels required by this Code may be controlled by motion sensors except where the lighting\n(a) is installed in an exit,\n(b) is installed in a corridor serving patients or residents in a Group B, Division 2 or Division 3 occupancy, or\n(c) is required to conform to Sentence 3.2.7.1.(10).\n(2) Where motion sensors are used to control minimum lighting in a public corridor or corridor providing access to exit for the public, the motion sensors shall be installed with switch controllers equipped for fail-safe operation and illumination timers set for a minimum 15-minute duration.\n(3) A motion sensor shall not be used to control emergency lighting."
+        }
+      ]
+    },
+    {
+      "id": "12.3",
+      "title": "Energy Efficiency for Buildings of Residential Occupancy Within the Scope of Part 9",
+      "subsections": [
+        {
+          "id": "12.3.1",
+          "title": "General",
+          "content": "[ARTICLE:12.3.1.1:Application]\n\n(1) This Section applies to the energy efficiency of a building or part of a building of residential occupancy that is within the scope of Part 9 and is intended for occupancy on a continuing basis during the winter months.\n\n[ARTICLE:12.3.1.2:Windows and Sliding Glass Doors]\n\n(1) The energy rating and the overall coefficient of heat transfer required for windows and sliding glass doors shall be determined in conformance with\n(a) CSA A440.2, \"Fenestration Energy Performance,\" or\n(b) NFRC 100, \"Procedure for Determining Fenestration Product U-factors\" and NFRC 200, \"Procedure for Determining Fenestration Product Solar Heat Gain Coefficient and Visible Transmittance at Normal Incidence.\"\n\n[ARTICLE:12.3.1.3:Temperature Control in Houses and Dwelling Units]\n\n(1) Except as provided in Sentence (3) and except where space heating energy is provided by a solid fuel-burning appliance or a ground source heat pump,\n(a) heating system in an individual dwelling unit shall be controlled by at least one programmable thermostatic control device located in the dwelling unit, and\n(b) where a house contains a secondary suite, each dwelling unit shall be controlled by at least one programmable thermostatic control device located in the dwelling unit.\n(2) The programmable thermostatic control device required in Sentence (1) shall\n(a) allow the setting of different air temperatures for at least\n  (i) four time periods per day, and\n  (ii) two different day-types per week,\n(b) include a manual override, and\n(c) allow the setting of the air temperature to\n  (i) 13°C or lower in heating mode, and\n  (ii) 29°C or higher in cooling mode, where air-conditioning is provided.\n(3) A manual thermostatic control device is permitted if it\n(a) controls a heating or cooling system where the heating or cooling capacity is not more than 2 kW, or\n(b) serves an individual room or space.\n\n[ARTICLE:12.3.1.4:Hot Water Piping Insulation]\n\n(1) Hot water pipes that are vertically connected to a hot water storage tank shall have heat traps on both inlet and outlet piping as close as practical to the tank, except where the tank\n(a) has an integral heat trap, or\n(b) serves a recirculating system.\n(2) The first 2.5 m of hot water outlet piping of a hot water storage tank serving a non-recirculating system shall be insulated to provide a thermal resistance of not less than RSI 0.62.\n\n(3) The inlet pipe of a hot water storage tank between the heat trap and the tank serving a non-recirculating system shall be insulated to provide a thermal resistance of not less than RSI 0.62.\n\n[ARTICLE:12.3.1.5:Residential Furnaces]\n\n(1) A furnace serving an individual dwelling unit in a house shall be equipped with a brushless direct current motor. (See Note A-12.3.1.5.(1))\n\n[ARTICLE:12.3.1.6:Energy Supply for Kitchen and Laundry Facilities]\n\n(1) In order to supply energy to cooking appliances and clothes dryers, every kitchen and laundry space shall be provided with\n(a) an electrical outlet,\n(b) a natural gas line, or\n(c) a propane line."
+        }
+      ]
+    },
+    {
+      "id": "12.4",
+      "title": "Water Efficiency",
+      "subsections": [
+        {
+          "id": "12.4.1",
+          "title": "General",
+          "content": "[ARTICLE:12.4.1.1:Plumbing Systems]\n\n(1) All buildings shall conform to the water efficiency requirements of Subsection 7.6.4."
+        }
+      ]
+    }
+  ]
+}

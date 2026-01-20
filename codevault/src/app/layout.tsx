@@ -3,7 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
-import tocData from "../../public/data/toc.json";
+import MainContent from "@/components/layout/MainContent";
+import ScrollRestoration from "@/components/layout/ScrollRestoration";
+import { ActiveSectionProvider } from "@/lib/ActiveSectionContext";
+import { SidebarProvider } from "@/lib/SidebarContext";
+import { getToc } from "@/lib/db";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,18 +29,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // DB에서 TOC 조회
+  const toc = getToc();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <div className="flex pt-[56px]">
-          <Sidebar toc={tocData} />
-          <main className="flex-1 ml-[280px] min-h-[calc(100vh-56px)] bg-white dark:bg-gray-900">
-            {children}
-          </main>
-        </div>
+        <SidebarProvider>
+          <ActiveSectionProvider>
+            <ScrollRestoration />
+            <Header />
+            <div className="flex pt-[56px]">
+              <Sidebar toc={toc} />
+              <MainContent>{children}</MainContent>
+            </div>
+          </ActiveSectionProvider>
+        </SidebarProvider>
       </body>
     </html>
   );
