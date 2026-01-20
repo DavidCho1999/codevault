@@ -1,9 +1,20 @@
 "use client";
 
 import { useMemo } from "react";
-import DOMPurify from "dompurify";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+
+// DOMPurify는 클라이언트에서만 사용
+let sanitize: (html: string) => string = (html) => html;
+if (typeof window !== "undefined") {
+  // 클라이언트에서만 동적 import
+  import("dompurify").then((DOMPurifyModule) => {
+    const DOMPurify = DOMPurifyModule.default || DOMPurifyModule;
+    if (typeof DOMPurify.sanitize === "function") {
+      sanitize = (html: string) => DOMPurify.sanitize(html);
+    }
+  });
+}
 
 interface EquationRendererProps {
   text: string;
@@ -197,7 +208,7 @@ export default function EquationRenderer({ text, displayMode = false }: Equation
     return (
       <span
         className="equation-rendered"
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(rendered.html) }}
+        dangerouslySetInnerHTML={{ __html: sanitize(rendered.html) }}
       />
     );
   }
@@ -208,7 +219,7 @@ export default function EquationRenderer({ text, displayMode = false }: Equation
 
 // 텍스트 전체를 수식으로 렌더링 (직접 LaTeX 입력)
 export function MathBlock({ latex, display = true }: { latex: string; display?: boolean }) {
-  const html = useMemo(() => DOMPurify.sanitize(renderKatex(latex, display)), [latex, display]);
+  const html = useMemo(() => sanitize(renderKatex(latex, display)), [latex, display]);
 
   return (
     <div
