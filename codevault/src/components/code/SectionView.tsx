@@ -908,7 +908,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
       if (isContinuationText && result.length > 0) {
         // 이전 렌더링 결과 확인 (sub-clause ml-18 또는 roman ml-20)
         const lastResult = result[result.length - 1];
-        const lastClassName = (lastResult as React.ReactElement)?.props?.className || '';
+        const lastClassName = (lastResult as React.ReactElement<{ className?: string }>)?.props?.className || '';
         if (lastClassName.includes('ml-18') || lastClassName.includes('ml-20')) {
           result.push(
             <div key={i} className="my-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200 ml-18">
