@@ -1,0 +1,1360 @@
+{
+  "9.3.1.7": {
+    "title": "Table 9.3.1.7",
+    "page": 718,
+    "cols": 7,
+    "rows": 7,
+    "header_rows": 3,
+    "caption_html": "<strong>Site-Batched Concrete Mixes</strong><br/>Forming Part of Sentence 9.3.1.7.(1)",
+    "data": [
+      [
+        "Maximum Size of Coarse Aggregate, mm",
+        "Materials, volume",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Cementing Material",
+        null,
+        "Fine Aggregate (damp average coarse sand)",
+        null,
+        "Coarse Aggregate (gravel or crushed stone)",
+        null
+      ],
+      [
+        null,
+        "Parts⁽¹⁾",
+        "L",
+        "Parts",
+        "L",
+        "Parts",
+        "L"
+      ],
+      [
+        "14",
+        "1",
+        "28",
+        "1.75",
+        "49",
+        "2",
+        "56"
+      ],
+      [
+        "20",
+        "1",
+        "28",
+        "1.75",
+        "49",
+        "2.5",
+        "70"
+      ],
+      [
+        "28",
+        "1",
+        "28",
+        "2",
+        "56",
+        "3",
+        "84"
+      ],
+      [
+        "40",
+        "1",
+        "28",
+        "2",
+        "56",
+        "3.5",
+        "98"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 6
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "span": 2
+        },
+        {
+          "row": 1,
+          "col": 5,
+          "span": 2
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.3.1.7.:</p><p>(1) 1 part cementing material = 1 × 40 kg bag</p></div>",
+    "notes": "Manually corrected - header colspan/rowspan structure + notes"
+  },
+  "9.8.7.1": {
+    "title": "Number of Sides of Stair or Ramp Required to Have a Handrail",
+    "page": 747,
+    "cols": 6,
+    "rows": 6,
+    "header_rows": 4,
+    "data": [
+      [
+        "Location of Stair or Ramp",
+        "Handrails Serving Stairs",
+        null,
+        null,
+        "Handrails Serving Ramps",
+        null
+      ],
+      [
+        null,
+        "Stairs >= 1 100 mm Wide",
+        null,
+        "Stairs < 1 100 mm Wide",
+        "Ramps < 1 100 mm Wide",
+        "Ramps >= 1 100 mm Wide"
+      ],
+      [
+        null,
+        "Straight",
+        "Curved",
+        "All",
+        "Straight or Curved",
+        "All"
+      ],
+      [
+        null,
+        "Number of Sides Required to have a Handrail",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Within a dwelling unit or a house with a secondary suite",
+        "1",
+        "1",
+        "1",
+        "1",
+        "2"
+      ],
+      [
+        "All other locations",
+        "1",
+        "2",
+        "2",
+        "2",
+        "2"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 4
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 3
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "span": 2
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 2
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "span": 5
+        }
+      ]
+    },
+    "notes": "Manually corrected - PDF extraction failed to separate column headers"
+  },
+  "9.3.2.1": {
+    "title": "Table 9.3.2.1",
+    "page": 719,
+    "cols": 5,
+    "rows": 14,
+    "header_rows": 4,
+    "caption_html": "<strong>Minimum Lumber Grades for Specific End Uses</strong><br/>Forming Part of Sentences 9.3.2.1.(1) and 9.3.2.2.(1)",
+    "data": [
+      [
+        "Use",
+        "Boards⁽¹⁾",
+        null,
+        null,
+        "Framing"
+      ],
+      [
+        null,
+        "Paragraph in the NLGA Grading Rules Under Which Boards are Graded",
+        null,
+        null,
+        "All Species"
+      ],
+      [
+        null,
+        "All Species",
+        null,
+        "Eastern White Pine & Red Pine",
+        null
+      ],
+      [
+        null,
+        "Para 113",
+        "Para 114",
+        "Para 118",
+        null
+      ],
+      [
+        "Stud wall framing (<i>loadbearing</i> members)",
+        "—",
+        "—",
+        "—",
+        "Stud, Standard, No. 2"
+      ],
+      [
+        "Stud wall framing (non-<i>loadbearing</i> members)",
+        "—",
+        "—",
+        "—",
+        "Stud, Utility, No. 3"
+      ],
+      [
+        "Plank frame construction (<i>loadbearing</i> members)",
+        "No. 3 Common",
+        "—",
+        "No. 3 Common",
+        "No. 2"
+      ],
+      [
+        "Plank frame construction (non-<i>loadbearing</i> members)",
+        "No. 5 Common",
+        "—",
+        "No. 5 Common",
+        "Economy, No. 3"
+      ],
+      [
+        "Post and beams less than 114 mm in thickness",
+        "—",
+        "—",
+        "—",
+        "Standard, No.2"
+      ],
+      [
+        "Post and beams not less than 114 mm in thickness",
+        "—",
+        "—",
+        "—",
+        "Standard"
+      ],
+      [
+        "Roof sheathing",
+        "No. 3 Common",
+        "Standard",
+        "No. 4 Common",
+        "—"
+      ],
+      [
+        "Subflooring",
+        "No. 3 Common",
+        "Standard",
+        "No. 3 Common",
+        "—"
+      ],
+      [
+        "Wall sheathing when required as a nailing base",
+        "No. 4 Common",
+        "Utility",
+        "No. 4 Common",
+        "—"
+      ],
+      [
+        "Wall sheathing not required as a nailing base",
+        "No. 5 Common",
+        "Economy",
+        "No. 5 Common",
+        "—"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 4
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 3
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 3
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "span": 2
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.3.2.1.:</p><p>(1) See Note A-Table 9.3.2.1.</p></div>",
+    "notes": "Manually corrected - complete data with proper colspan/rowspan structure"
+  },
+  "9.4.3.1": {
+    "title": "Table 9.4.3.1",
+    "page": 724,
+    "cols": 3,
+    "rows": 9,
+    "header_rows": 1,
+    "caption_html": "<strong>Maximum Deflections</strong><br/>Forming Part of Sentence 9.4.3.1.(1)",
+    "data": [
+      [
+        "Structural Members",
+        "Type of Ceiling Supported",
+        "Max. Allowable Deflection as an Expressed Ratio of the Clear Span"
+      ],
+      [
+        "Roof rafters, roof joists and roof beams",
+        "No ceiling",
+        "1/180"
+      ],
+      [
+        null,
+        "Other than plaster or gypsum board",
+        "1/240"
+      ],
+      [
+        null,
+        "Plaster or gypsum board",
+        "1/360"
+      ],
+      [
+        "Ceiling joists",
+        "Other than plaster or gypsum board",
+        "1/240"
+      ],
+      [
+        null,
+        "Plaster or gypsum board",
+        "1/360"
+      ],
+      [
+        "Floor beams, floor joists and floor decking",
+        "All cases",
+        "1/360"
+      ],
+      [
+        "Beams, joists and decking for balconies, decks and other accessible exterior platforms",
+        "Serving a single <i>dwelling unit</i>",
+        "1/240"
+      ],
+      [
+        null,
+        "Other",
+        "1/360"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 1,
+          "col": 0,
+          "span": 3
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "span": 2
+        },
+        {
+          "row": 7,
+          "col": 0,
+          "span": 2
+        }
+      ],
+      "colspans": []
+    },
+    "notes": "Complete data with rowspan structure (Structural Members column)"
+  },
+  "9.4.4.1": {
+    "title": "Table 9.4.4.1",
+    "page": 724,
+    "caption_html": "<strong>Allowable Bearing Pressure for Soil or Rock</strong><br/>Forming Part of Sentence 9.4.4.1.(1)",
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.4.4.1.:</p><p>(1) See Note A-Table 9.4.1.1.</p></div>",
+    "html_override": true,
+    "notes": "Added caption and Notes + unicode superscript for footnote"
+  },
+  "9.5.3.1": {
+    "title": "Table 9.5.3.1",
+    "page": 727,
+    "caption_html": "<strong>Room Ceiling Heights</strong>",
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.5.3.1.:</p><p>(1) Area of the space shall be measured at floor level.</p></div>",
+    "header_fix": {
+      "Minimum Heights(1)": "Minimum Heights⁽¹⁾"
+    },
+    "italic_fix": {
+      "Basement space": "<i>Basement</i> space",
+      "above grade": "above <i>grade</i>",
+      "basement area": "<i>basement</i> area"
+    },
+    "html_override": true,
+    "notes": "Caption (no Forming Part of), Notes, unicode superscript, italic fixes"
+  },
+  "9.5.5.1": {
+    "title": "Table 9.5.5.1",
+    "page": 730,
+    "caption_html": "<strong>Minimum Door Sizes</strong>",
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.5.5.1.:</p><p>(1) See Article 9.5.5.3.</p></div>",
+    "header_fix": {},
+    "italic_fix": {
+      "Dwelling unit": "<i>Dwelling unit</i>",
+      "secondary suite": "<i>secondary suite</i>",
+      "basement": "<i>basement</i>"
+    },
+    "data_fix": {
+      "shower room(1)": "shower room⁽¹⁾"
+    },
+    "html_override": true,
+    "notes": "Caption (no Forming Part of), Notes, unicode superscript, italic fixes"
+  },
+  "9.6.1.3.-A": {
+    "title": "Table 9.6.1.3.-A",
+    "page": 730,
+    "cols": 9,
+    "rows": 7,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 0.55 kPa⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(a)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.58",
+        "0.96",
+        "1.47",
+        "2.04",
+        "2.84",
+        "4.74",
+        "6.65",
+        "9.74"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "1.02",
+        "1.71",
+        "2.68",
+        "3.74",
+        "5.24",
+        "7.93",
+        "9.92",
+        "13.92"
+      ],
+      [
+        "Heat-strengthened or tempered",
+        "1.24",
+        "1.93",
+        "2.60",
+        "3.18",
+        "3.99",
+        "5.55",
+        "6.99",
+        "9.74"
+      ],
+      [
+        "Wired",
+        "0.27",
+        "0.45",
+        "0.68",
+        "0.93",
+        "1.31",
+        "2.15",
+        "3.07",
+        "5.03"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-A:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-B": {
+    "title": "Table 9.6.1.3.-B",
+    "page": 731,
+    "cols": 9,
+    "rows": 8,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 0.75 kPa⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(a)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.42",
+        "0.68",
+        "1.02",
+        "1.42",
+        "2.04",
+        "3.34",
+        "4.70",
+        "7.65"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "0.72",
+        "1.19",
+        "1.85",
+        "2.56",
+        "3.64",
+        "6.01",
+        "8.35",
+        "11.83"
+      ],
+      [
+        "Heat-strengthened",
+        "0.88",
+        "1.46",
+        "2.21",
+        "2.71",
+        "3.39",
+        "4.73",
+        "5.92",
+        "8.29"
+      ],
+      [
+        "Tempered",
+        "1.18",
+        "1.64",
+        "2.21",
+        "2.71",
+        "3.39",
+        "4.73",
+        "5.92",
+        "8.29"
+      ],
+      [
+        "Wired",
+        "0.20",
+        "0.32",
+        "0.50",
+        "0.68",
+        "0.94",
+        "1.55",
+        "2.19",
+        "3.60"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-B:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-C": {
+    "title": "Table 9.6.1.3.-C",
+    "page": 731,
+    "cols": 9,
+    "rows": 8,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 1.00 kPa⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(a)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.30",
+        "0.50",
+        "0.77",
+        "1.05",
+        "1.45",
+        "2.40",
+        "3.40",
+        "5.62"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "0.52",
+        "0.86",
+        "1.31",
+        "1.86",
+        "2.57",
+        "4.30",
+        "6.10",
+        "9.89"
+      ],
+      [
+        "Heat-strengthened",
+        "0.65",
+        "1.04",
+        "1.63",
+        "2.26",
+        "2.92",
+        "4.07",
+        "5.10",
+        "7.14"
+      ],
+      [
+        "Tempered",
+        "1.01",
+        "1.42",
+        "1.90",
+        "2.33",
+        "2.92",
+        "4.07",
+        "5.10",
+        "7.14"
+      ],
+      [
+        "Wired",
+        "0.16",
+        "0.26",
+        "0.38",
+        "0.52",
+        "0.71",
+        "1.15",
+        "1.63",
+        "2.69"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-C:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-D": {
+    "title": "Table 9.6.1.3.-D",
+    "page": 732,
+    "cols": 9,
+    "rows": 8,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 0.55 kPa – Open Terrain⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(b)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.46",
+        "0.75",
+        "1.16",
+        "1.60",
+        "2.25",
+        "3.76",
+        "5.32",
+        "8.70"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "0.80",
+        "1.34",
+        "2.11",
+        "2.93",
+        "4.10",
+        "6.90",
+        "9.66",
+        "12.53"
+      ],
+      [
+        "Heat-strengthened",
+        "0.98",
+        "1.74",
+        "2.33",
+        "2.86",
+        "3.59",
+        "5.00",
+        "6.26",
+        "8.78"
+      ],
+      [
+        "Tempered",
+        "1.25",
+        "1.74",
+        "2.33",
+        "2.86",
+        "3.59",
+        "5.00",
+        "6.26",
+        "8.78"
+      ],
+      [
+        "Wired",
+        "0.22",
+        "0.36",
+        "0.55",
+        "0.76",
+        "1.05",
+        "1.75",
+        "2.47",
+        "4.09"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-D:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-E": {
+    "title": "Table 9.6.1.3.-E",
+    "page": 732,
+    "cols": 9,
+    "rows": 8,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 0.75 kPa – Open Terrain⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(b)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.33",
+        "0.54",
+        "0.83",
+        "1.14",
+        "1.61",
+        "2.67",
+        "3.75",
+        "6.14"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "0.57",
+        "0.94",
+        "1.47",
+        "2.04",
+        "2.85",
+        "4.75",
+        "6.72",
+        "10.97"
+      ],
+      [
+        "Heat-strengthened",
+        "0.70",
+        "1.15",
+        "1.79",
+        "2.44",
+        "3.06",
+        "4.36",
+        "5.34",
+        "7.47"
+      ],
+      [
+        "Tempered",
+        "1.06",
+        "1.48",
+        "1.99",
+        "2.44",
+        "3.06",
+        "4.36",
+        "5.34",
+        "7.47"
+      ],
+      [
+        "Wired",
+        "0.16",
+        "0.26",
+        "0.40",
+        "0.55",
+        "0.76",
+        "1.24",
+        "1.77",
+        "2.93"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-E:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-F": {
+    "title": "Table 9.6.1.3.-F",
+    "page": 732,
+    "cols": 9,
+    "rows": 8,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum Glass Area for Windows in Areas for which the 1-in-50 Hourly Wind Pressure (HWP) is Less than 1.00 kPa – Open Terrain⁽¹⁾</strong><br/>Forming Part of Clause 9.6.1.3.(2)(b)",
+    "data": [
+      [
+        "Type of Glass",
+        "Maximum Glass Area, m²",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Glass Thickness, mm",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "2.5",
+        "3",
+        "4",
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      [
+        "Annealed",
+        "0.25",
+        "0.40",
+        "0.62",
+        "0.84",
+        "1.17",
+        "1.94",
+        "2.75",
+        "4.50"
+      ],
+      [
+        "Factory-sealed insulated glass (IG) units⁽²⁾",
+        "0.42",
+        "0.68",
+        "1.04",
+        "1.46",
+        "2.05",
+        "3.41",
+        "4.87",
+        "7.92"
+      ],
+      [
+        "Heat-strengthened",
+        "0.51",
+        "0.84",
+        "1.30",
+        "1.79",
+        "2.52",
+        "3.69",
+        "4.60",
+        "6.44"
+      ],
+      [
+        "Tempered",
+        "0.92",
+        "1.28",
+        "1.72",
+        "2.10",
+        "2.63",
+        "3.69",
+        "4.60",
+        "6.44"
+      ],
+      [
+        "Wired",
+        "0.12",
+        "0.20",
+        "0.30",
+        "0.41",
+        "0.57",
+        "0.94",
+        "1.31",
+        "2.18"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 8
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 8
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-F:</p><p>(1) The maximum hourly wind pressure with one chance in fifty of being exceeded in any one year, as provided in MMAH Supplementary Standard SB-1, \"Climatic and Seismic Data.\"</p><p>(2) Maximum glass area values apply to IG units of two identical lites (annealed, heat-strengthened or tempered) spaced at 12.7 mm.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - fixed MERGE errors"
+  },
+  "9.6.1.3.-G": {
+    "title": "Table 9.6.1.3.-G",
+    "page": 734,
+    "cols": 8,
+    "rows": 7,
+    "header_rows": 3,
+    "caption_html": "<strong>Glass Area for Doors</strong><br/>Forming Part of Sentence 9.6.1.3.(3)",
+    "data": [
+      [
+        "Glass Thickness, mm",
+        "Maximum Glass Area, m²⁽¹⁾",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Type of Glass",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Annealed",
+        "Annealed, Multiple-Glazed, Factory-Sealed Units",
+        "Laminated",
+        "Wired",
+        "Heat-Strengthened",
+        "Fully Tempered",
+        "Fully Tempered, Multiple-Glazed, Factory-Sealed"
+      ],
+      [
+        "3",
+        "0.50",
+        "0.70",
+        "⁽²⁾",
+        "⁽²⁾",
+        "1.00",
+        "1.00",
+        "2.00"
+      ],
+      [
+        "4",
+        "1.00",
+        "1.50",
+        "⁽²⁾",
+        "⁽²⁾",
+        "1.50",
+        "4.00",
+        "4.00"
+      ],
+      [
+        "5",
+        "1.50",
+        "1.50",
+        "⁽²⁾",
+        "⁽²⁾",
+        "1.50",
+        "No limit",
+        "No limit"
+      ],
+      [
+        "6",
+        "1.50",
+        "1.50",
+        "1.20",
+        "1.00",
+        "1.50",
+        "No limit",
+        "No limit"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 7
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 7
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.6.1.3.-G:</p><p>(1) See Note A-Table 9.6.1.3.-G.</p><p>(2) Not generally available.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - Door glass table"
+  },
+  "9.7.2.3": {
+    "title": "Table 9.7.2.3",
+    "page": 736,
+    "caption_html": "<strong>Glass Areas for Rooms of Residential Occupancy</strong>",
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.7.2.3.:</p><p>(1) See Subsection 9.9.10.</p></div>",
+    "italic_fix": {
+      "basement": "<i>basement</i>"
+    },
+    "data_fix": {
+      "served(1)": "served⁽¹⁾"
+    },
+    "html_override": true,
+    "notes": "Added caption, Notes, italic (basement), unicode superscript"
+  },
+  "9.7.3.3": {
+    "title": "Table 9.7.3.3",
+    "page": 738,
+    "cols": 5,
+    "rows": 5,
+    "header_rows": 3,
+    "caption_html": "<strong>Maximum U-value or Minimum Temperature Index (I) for Windows, Doors and Skylights⁽¹⁾⁽²⁾⁽³⁾</strong>",
+    "data": [
+      [
+        "Component",
+        "2.5% January Design Temperature",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Between -15°C and -30°C",
+        null,
+        "Colder than -30°C",
+        null
+      ],
+      [
+        null,
+        "max. U-value, W/m²K",
+        "min. I",
+        "max. U-value, W/m²K",
+        "min. I"
+      ],
+      [
+        "Windows and Doors",
+        "2.0",
+        "68",
+        "1.7",
+        "77"
+      ],
+      [
+        "Skylights",
+        "3.0",
+        "⁽²⁾",
+        "2.7",
+        "⁽²⁾"
+      ]
+    ],
+    "spans": {
+      "rowspans": [
+        {
+          "row": 0,
+          "col": 0,
+          "span": 3
+        }
+      ],
+      "colspans": [
+        {
+          "row": 0,
+          "col": 1,
+          "span": 4
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "span": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "span": 2
+        }
+      ]
+    },
+    "notes_html": "<div class=\"table-notes mt-2 text-sm text-gray-600\"><p class=\"font-semibold\">Notes to Table 9.7.3.3.:</p><p>(1) U-values for specific products can be determined according to measures referenced in AAMA/WDMA/CSA 101/I.S.2/A440, \"NAFS - North American Fenestration Standard/Specification for windows, doors, and skylights.\" Temperature index (I) is determined according to the physical test procedure given in CSA A440.2/A440.3, \"Fenestration energy performance/User guide to CSA A440.2-19, Fenestration energy performance.\"</p><p>(2) There is no appropriate test procedure available for testing the condensation resistance of sloped glazing.</p><p>(3) Where the U-value in this Table differs from the U-value provided in MMA Supplementary Standard SB-10, \"Energy Efficiency Requirements\" or MMA Supplementary Standard SB-12, \"Energy Efficiency for Housing\", the most restrictive U-value shall apply.</p></div>",
+    "notes": "Complete data with rowspan/colspan structure - MERGE fixed"
+  }
+}

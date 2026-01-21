@@ -129,6 +129,7 @@ export default function Sidebar({ toc }: SidebarProps) {
   const { isCollapsed, toggleSidebar } = useSidebar();
 
   // Part별로 TOC 분리
+  const part2Toc = toc.filter((item) => item.id.startsWith("2."));
   const part8Toc = toc.filter((item) => item.id.startsWith("8."));
   const part9Toc = toc.filter((item) => item.id.startsWith("9."));
   const part10Toc = toc.filter((item) => item.id.startsWith("10."));
@@ -136,6 +137,7 @@ export default function Sidebar({ toc }: SidebarProps) {
   const part12Toc = toc.filter((item) => item.id.startsWith("12."));
 
   // Part collapse 상태 (현재 보고 있는 Part는 열림)
+  const [part2Open, setPart2Open] = useState(pathname?.startsWith("/code/2.") ?? false);
   const [part8Open, setPart8Open] = useState(pathname?.startsWith("/code/8.") ?? false);
   const [part9Open, setPart9Open] = useState(pathname?.startsWith("/code/9.") ?? true);
   const [part10Open, setPart10Open] = useState(pathname?.startsWith("/code/10.") ?? false);
@@ -173,191 +175,239 @@ export default function Sidebar({ toc }: SidebarProps) {
         <div className="p-3 w-[280px]">
           <RecentSections />
 
-        {/* Part 8 */}
-        {part8Toc.length > 0 && (
-          <>
-            <div className="flex items-center gap-1 mb-2 px-2">
-              <button
-                onClick={() => setPart8Open(!part8Open)}
-                className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                <svg
-                  className={`w-3 h-3 transition-transform ${part8Open ? "rotate-90" : ""}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              <Link
-                href="/code/8"
-                onClick={() => setPart8Open(true)}
-                className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                Part 8 - Sewage Systems
-              </Link>
-            </div>
-            {part8Open && (
-              <nav className="mb-4">
-                {part8Toc.map((section) => (
-                  <TocNode key={section.id} item={section} />
-                ))}
-              </nav>
-            )}
-          </>
-        )}
+          {/* Division A Header */}
+          <div className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1 px-2 mt-2">
+            Division A - Compliance, Objectives and Functional Statements
+          </div>
 
-        {/* Part 9 */}
-        <div className="flex items-center gap-1 mb-2 px-2">
-          <button
-            onClick={() => setPart9Open(!part9Open)}
-            className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-          >
-            <svg
-              className={`w-3 h-3 transition-transform ${part9Open ? "rotate-90" : ""}`}
-              fill="currentColor"
-              viewBox="0 0 20 20"
+          {/* Part 2 */}
+          {part2Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart2Open(!part2Open)}
+                  className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part2Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/2.1"
+                  onClick={() => setPart2Open(true)}
+                  className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Part 2 - Objectives
+                </Link>
+              </div>
+              {part2Open && (
+                <nav className="mb-4">
+                  {part2Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
+
+          {/* Division B Header */}
+          <div className="text-[10px] font-bold text-green-600 dark:text-green-400 uppercase tracking-wider mb-1 px-2 mt-4">
+            Division B - Acceptable Solutions
+          </div>
+
+          {/* Part 8 */}
+          {part8Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart8Open(!part8Open)}
+                  className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part8Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/8"
+                  onClick={() => setPart8Open(true)}
+                  className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Part 8 - Sewage Systems
+                </Link>
+              </div>
+              {part8Open && (
+                <nav className="mb-4">
+                  {part8Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
+
+          {/* Part 9 */}
+          <div className="flex items-center gap-1 mb-2 px-2">
+            <button
+              onClick={() => setPart9Open(!part9Open)}
+              className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
             >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-          <Link
-            href="/code/9"
-            onClick={() => setPart9Open(true)}
-            className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-          >
-            Part 9 - Housing and Small Buildings
-          </Link>
-        </div>
-        {part9Open && (
-          <nav>
-            {part9Toc.map((section) => (
-              <TocNode key={section.id} item={section} />
-            ))}
-          </nav>
-        )}
+              <svg
+                className={`w-3 h-3 transition-transform ${part9Open ? "rotate-90" : ""}`}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <Link
+              href="/code/9"
+              onClick={() => setPart9Open(true)}
+              className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            >
+              Part 9 - Housing and Small Buildings
+            </Link>
+          </div>
+          {part9Open && (
+            <nav className="mb-4">
+              {part9Toc.map((section) => (
+                <TocNode key={section.id} item={section} />
+              ))}
+            </nav>
+          )}
 
-        {/* Part 10 */}
-        {part10Toc.length > 0 && (
-          <>
-            <div className="flex items-center gap-1 mt-6 mb-2 px-2">
-              <button
-                onClick={() => setPart10Open(!part10Open)}
-                className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                <svg
-                  className={`w-3 h-3 transition-transform ${part10Open ? "rotate-90" : ""}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+          {/* Part 10 */}
+          {part10Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart10Open(!part10Open)}
+                  className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              <Link
-                href="/code/10"
-                onClick={() => setPart10Open(true)}
-                className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                Part 10 - Change of Use
-              </Link>
-            </div>
-            {part10Open && (
-              <nav>
-                {part10Toc.map((section) => (
-                  <TocNode key={section.id} item={section} />
-                ))}
-              </nav>
-            )}
-          </>
-        )}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part10Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/10"
+                  onClick={() => setPart10Open(true)}
+                  className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Part 10 - Change of Use
+                </Link>
+              </div>
+              {part10Open && (
+                <nav className="mb-4">
+                  {part10Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
 
-        {/* Part 11 */}
-        {part11Toc.length > 0 && (
-          <>
-            <div className="flex items-center gap-1 mt-6 mb-2 px-2">
-              <button
-                onClick={() => setPart11Open(!part11Open)}
-                className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                <svg
-                  className={`w-3 h-3 transition-transform ${part11Open ? "rotate-90" : ""}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+          {/* Part 11 */}
+          {part11Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart11Open(!part11Open)}
+                  className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              <Link
-                href="/code/11"
-                onClick={() => setPart11Open(true)}
-                className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                Part 11 - Renovation
-              </Link>
-            </div>
-            {part11Open && (
-              <nav>
-                {part11Toc.map((section) => (
-                  <TocNode key={section.id} item={section} />
-                ))}
-              </nav>
-            )}
-          </>
-        )}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part11Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/11"
+                  onClick={() => setPart11Open(true)}
+                  className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Part 11 - Renovation
+                </Link>
+              </div>
+              {part11Open && (
+                <nav className="mb-4">
+                  {part11Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
 
-        {/* Part 12 */}
-        {part12Toc.length > 0 && (
-          <>
-            <div className="flex items-center gap-1 mt-6 mb-2 px-2">
-              <button
-                onClick={() => setPart12Open(!part12Open)}
-                className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                <svg
-                  className={`w-3 h-3 transition-transform ${part12Open ? "rotate-90" : ""}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+          {/* Part 12 */}
+          {part12Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart12Open(!part12Open)}
+                  className="shrink-0 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              <Link
-                href="/code/12"
-                onClick={() => setPart12Open(true)}
-                className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-              >
-                Part 12 - Resource Conservation
-              </Link>
-            </div>
-            {part12Open && (
-              <nav>
-                {part12Toc.map((section) => (
-                  <TocNode key={section.id} item={section} />
-                ))}
-              </nav>
-            )}
-          </>
-        )}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part12Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/12"
+                  onClick={() => setPart12Open(true)}
+                  className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Part 12 - Resource Conservation
+                </Link>
+              </div>
+              {part12Open && (
+                <nav className="mb-4">
+                  {part12Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
         </div>
       </aside>
     </>

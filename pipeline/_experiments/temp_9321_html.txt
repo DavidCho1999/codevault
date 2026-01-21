@@ -1,0 +1,97 @@
+<table class="obc-table" data-table-id="Table 9.3.2.1">
+<caption class="text-center mb-2"><strong>Minimum Lumber Grades for Specific End Uses</strong><br/>Forming Part of Sentences 9.3.2.1.(1) and 9.3.2.2.(1)</caption>
+<thead>
+<tr>
+<th rowspan="4">Use</th>
+<th colspan="3">Boards⁽¹⁾</th>
+<th>Framing</th>
+</tr>
+<tr>
+<th colspan="3">Paragraph in the NLGA Grading Rules Under Which Boards are Graded</th>
+<th rowspan="3">All Species</th>
+</tr>
+<tr>
+<th>All Species</th>
+<th></th>
+<th>Eastern White Pine & Red Pine</th>
+</tr>
+<tr>
+<th>Para 113</th>
+<th>Para 114</th>
+<th>Para 118</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Stud wall framing (<i>loadbearing</i> members)</th>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Stud, Standard, No. 2</td>
+</tr>
+<tr>
+<th>Stud wall framing (non-<i>loadbearing</i> members)</th>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Stud, Utility, No. 3</td>
+</tr>
+<tr>
+<th>Plank frame construction (<i>loadbearing</i> members)</th>
+<td>No. 3 Common</td>
+<td>—</td>
+<td>No. 3 Common</td>
+<td>No. 2</td>
+</tr>
+<tr>
+<th>Plank frame construction (non-<i>loadbearing</i> members)</th>
+<td>No. 5 Common</td>
+<td>—</td>
+<td>No. 5 Common</td>
+<td>Economy, No. 3</td>
+</tr>
+<tr>
+<th>Post and beams less than 114 mm in thickness</th>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Standard, No.2</td>
+</tr>
+<tr>
+<th>Post and beams not less than 114 mm in thickness</th>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Standard</td>
+</tr>
+<tr>
+<th>Roof sheathing</th>
+<td>No. 3 Common</td>
+<td>Standard</td>
+<td>No. 4 Common</td>
+<td>—</td>
+</tr>
+<tr>
+<th>Subflooring</th>
+<td>No. 3 Common</td>
+<td>Standard</td>
+<td>No. 3 Common</td>
+<td>—</td>
+</tr>
+<tr>
+<th>Wall sheathing when required as a nailing base</th>
+<td>No. 4 Common</td>
+<td>Utility</td>
+<td>No. 4 Common</td>
+<td>—</td>
+</tr>
+<tr>
+<th>Wall sheathing not required as a nailing base</th>
+<td>No. 5 Common</td>
+<td>Economy</td>
+<td>No. 5 Common</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="table-notes mt-2 text-sm text-gray-600"><p class="font-semibold">Notes to Table 9.3.2.1.:</p><p>(1) See Note A-Table 9.3.2.1.</p></div>

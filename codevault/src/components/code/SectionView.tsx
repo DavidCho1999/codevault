@@ -288,7 +288,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
     // 단, "where" 키워드, 수식 패턴(xd = ..., γ = ...), [SECTION:...], [ARTICLE:...], [SUBSECTION:...] 마커, 모든 HTML 태그, 마크다운 헤딩/볼드/이탤릭, 마크다운 리스트(-) 앞의 줄바꿈은 유지
     // 추가: **(N) 또는 *(N) 형식의 볼드/이탤릭 캡션도 유지
     // 추가: 연속된 줄바꿈(\n\n - 빈 줄)도 유지하여 마크다운 헤딩 앞의 빈 줄 보존
-    processedContent = processedContent.replace(/\n(?!where\b|[a-zγ]{1,3}\s*=|\[SECTION:|\[ARTICLE:|\[SUBSECTION:|[(\d9A-Z]|<\/?[a-z]|#{2,4}\s|\*{1,2}[A-Z(]|-\s|\n)/g, ' ');
+    // 추가: 들여쓰기된 bullet (  - (i) 같은 패턴)도 유지 (\s*-\s)
+    processedContent = processedContent.replace(/\n(?!where\b|[a-zγ]{1,3}\s*=|\[SECTION:|\[ARTICLE:|\[SUBSECTION:|[(\d9A-Z]|<\/?[a-z]|#{2,4}\s|\*{1,2}[A-Z(]|\s*-\s|\n)/g, ' ');
 
     const lines = processedContent.split("\n").filter((line) => line.trim());
 
@@ -357,7 +358,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
       // - Part 10+: "## Table 10.3.2.2.-A", "### Table 11.2.1.1.-B(1)(4)", "#### Table 11.2.1.1.-F"
       // 캡션: **볼드** 또는 평문 (같은 줄 또는 다음 줄)
       // Forming Part: *이탤릭* 또는 평문
-      const unifiedTableMatch = trimmed.match(/^(?:#{2,4}\s+)?Table\s+([\d.]+-[A-Z](?:\/[A-Z])?(?:\(\d+\))*(?:\s*\(Cont'd\))?)\s*(.*)$/);
+      // 테이블 ID 형식: 8.2.1.3.-A (대시+문자 있음) 또는 8.2.1.5. (대시 없음)
+      const unifiedTableMatch = trimmed.match(/^(?:#{2,4}\s+)?Table\s+([\d.]+(?:-[A-Z](?:\/[A-Z])?)?)(?:\(\d+\))*(?:\s*\(Cont'd\))?\s*(.*)$/);
       if (unifiedTableMatch) {
         const startIdx = i;
         const tableId = unifiedTableMatch[1];
@@ -457,12 +459,12 @@ export default function SectionView({ id, title, content, highlight, equations, 
         // 테이블 헤더 + 본체 + Notes를 하나의 컨테이너로 묶기
         const tableElements: React.ReactNode[] = [];
 
-        // 1. 헤더 추가
+        // 1. 헤더 추가 - 3줄 형식 (Table번호 / Caption / Forming Part)
         tableElements.push(
           <div key="header" className="text-center mb-4">
-            <p className="text-sm font-bold text-black">Table {tableId}</p>
-            {caption && <p className="text-sm font-bold text-black">{caption}</p>}
-            {formingPart && <p className="text-xs text-black">{formingPart}</p>}
+            <p className="text-sm font-bold text-black dark:text-gray-200">Table {tableId}</p>
+            {caption && <p className="text-sm font-bold text-black dark:text-gray-200">{caption}</p>}
+            {formingPart && <p className="text-xs text-gray-600 dark:text-gray-400">{formingPart}</p>}
           </div>
         );
 
@@ -500,9 +502,9 @@ export default function SectionView({ id, title, content, highlight, equations, 
               i++;
               while (i < lines.length) {
                 const nl = lines[i].trim();
-                // 종료 조건: 새 테이블 헤딩, 섹션 번호
+                // 종료 조건: 새 테이블 헤딩, 섹션 번호, 마커
                 if (!nl && i + 1 < lines.length && !lines[i + 1].trim()) break;
-                if (nl.match(/^#{2,4}\s+Table/) || nl.match(/^Table\s+\d/) || nl.match(/^\d+\.\d+\.\d+\.\d+/) || nl.match(/^<h[1-4]/)) break;
+                if (nl.match(/^#{2,4}\s+Table/) || nl.match(/^Table\s+\d/) || nl.match(/^\d+\.\d+\.\d+\.\d+/) || nl.match(/^<h[1-4]/) || nl.match(/^\[(?:SECTION|SUBSECTION|ARTICLE):/)) break;
                 // 종료 조건: 대시 없이 (숫자)로 시작하면 일반 clause → Notes 종료
                 if (nl.match(/^\(\d+\)/) && !nl.startsWith('-')) break;
                 if (!nl) { i++; continue; }
@@ -542,8 +544,11 @@ export default function SectionView({ id, title, content, highlight, equations, 
               break;
             }
 
-            // 다른 테이블이나 섹션 시작하면 종료
-            if (tableLine.match(/^#{2,4}\s+Table/) || tableLine.match(/^Table\s+\d/) || tableLine.match(/^\d+\.\d+\.\d+\.\d+/)) {
+            // 다른 테이블이나 섹션/마커 시작하면 종료
+            if (tableLine.match(/^#{2,4}\s+Table/) ||
+                tableLine.match(/^Table\s+\d/) ||
+                tableLine.match(/^\d+\.\d+\.\d+\.\d+/) ||
+                tableLine.match(/^\[(?:SECTION|SUBSECTION|ARTICLE):/)) {
               break;
             }
 
@@ -661,7 +666,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
                 // 다음 clause, subclause, article이 나오면 종료
                 if (peekLine.match(/^\(\d+(?:\.\d+)?\)/) ||  // (1), (2)
                     peekLine.match(/^\([a-z]\)/) ||           // (a), (b)
-                    peekLine.match(/^\((i{1,3}|iv|v|vi{0,3})\)/) || // (i), (ii)
+                    peekLine.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)/) || // (i), (ii), - (i)
+                    peekLine.match(/^\([A-Z]\)/) ||           // (A), (B), (C)
                     peekLine.match(/^\d+\.\d+\.\d+\.\d+/) ||  // article
                     peekLine.match(/^\[ARTICLE:/)) {
                   break;
@@ -687,7 +693,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
           const subclauseMatch = nextLine.match(/^\(([a-z])\)\s*(.*)$/);
           if (subclauseMatch) {
             articleContent.push(
-              <div key={`subclause-${i}`} className="my-0.5 flex gap-2 text-gray-900 dark:text-gray-100 text-sm ml-14">
+              <div key={`subclause-${i}`} className="my-2 ml-6 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
                 <span className="shrink-0 text-black dark:text-white">({subclauseMatch[1]})</span>
                 <span><TextRenderer text={subclauseMatch[2]} /></span>
               </div>
@@ -696,13 +702,26 @@ export default function SectionView({ id, title, content, highlight, equations, 
             continue;
           }
 
-          // (i), (ii), ... 로마숫자 하위조항
-          const romanMatch = nextLine.match(/^\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
+          // (i), (ii), ... 로마숫자 하위조항 - 앞에 "- " 붙어있을 수도 있음
+          const romanMatch = nextLine.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
           if (romanMatch) {
             articleContent.push(
-              <div key={`roman-${i}`} className="my-1 flex gap-2 text-gray-900 dark:text-gray-100 text-sm ml-18">
+              <div key={`roman-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
                 <span className="shrink-0 text-black dark:text-white">({romanMatch[1]})</span>
                 <span><TextRenderer text={romanMatch[2]} /></span>
+              </div>
+            );
+            i++;
+            continue;
+          }
+
+          // (A), (B), (C) 대문자 하위조항 (로마숫자 아래 4단계) - 앞에 "- " 붙어있을 수도 있음
+          const capitalMatch = nextLine.match(/^(?:-\s*)?\(([A-Z])\)\s*(.*)$/);
+          if (capitalMatch) {
+            articleContent.push(
+              <div key={`capital-${i}`} className="my-1 ml-18 flex gap-1 text-xs leading-relaxed text-gray-800 dark:text-gray-200">
+                <span className="shrink-0 text-black dark:text-white">({capitalMatch[1]})</span>
+                <span><TextRenderer text={capitalMatch[2]} /></span>
               </div>
             );
             i++;
@@ -728,42 +747,124 @@ export default function SectionView({ id, title, content, highlight, equations, 
             continue;
           }
 
-          // 수식 라인 감지 (예: S = CbSs + Sr, Do = 10(Ho – 0.8 Ss / γ))
-          // "where"로 끝나는 라인은 제외
+          // 수식 라인 감지 (예: S = CbSs + Sr, $$A = QT/850$$)
+          // LaTeX ($$...$$) 또는 일반 수식 (A = ...) 인식
+          // 다음 줄에 "where" 있으면 수식 + where를 하나의 블록으로 묶음
+          const isLatexEquation = nextLine.startsWith('$$') && nextLine.endsWith('$$');
           const equationMatch = nextLine.match(/^([A-Za-z][a-z]?\s*=\s*[^,]+)$/);
-          if (equationMatch && nextLine.length < 80 && /[=\+\-\/\*\(\)]/.test(nextLine) && !/\bwhere\s*$/i.test(nextLine)) {
-            articleContent.push(
-              <div key={`eq-${i}`} className="obc-equation">
-                <TextRenderer text={nextLine} />
-              </div>
-            );
+          if ((isLatexEquation || (equationMatch && nextLine.length < 80 && /[=\+\-\/\*\(\)]/.test(nextLine))) && !/\bwhere\s*$/i.test(nextLine)) {
+            const equationText = nextLine;
             i++;
+
+            // 다음 줄이 "where" 또는 "where,"인지 확인
+            const nextTrimmed = i < lines.length ? lines[i].trim().toLowerCase() : '';
+            if (nextTrimmed === "where" || nextTrimmed === "where,") {
+              // 수식 + where 블록을 하나의 "수식 영역"으로 묶음
+              const whereContent: React.ReactNode[] = [];
+              let seeNoteContent: React.ReactNode | null = null;
+              i++; // "where" 줄 건너뛰기
+
+              while (i < lines.length) {
+                const varLine = lines[i].trim();
+
+                // where 블록 종료 조건
+                if (!varLine ||
+                    (varLine.match(/^\(\d+\)/) && !varLine.match(/^\(See\s+Note/i)) ||
+                    varLine.match(/^\([a-z]\)/) ||
+                    varLine.match(/^\d+\.\d+\.\d+/)) {
+                  break;
+                }
+
+                // (See Note...) 패턴 - 블록 끝에 별도 표시
+                // 복잡한 패턴 지원: (See Note A-8.7.5.3.(6) and (7))
+                const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
+                if (seeNoteMatch) {
+                  seeNoteContent = (
+                    <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                      (See Note {seeNoteMatch[1]})
+                    </span>
+                  );
+                  i++;
+                  continue;
+                }
+
+                // 변수 정의 패턴: "- A = ...", "A = ..." (대시 옵션)
+                const varMatch = varLine.match(/^(?:-\s*)?([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
+                if (varMatch) {
+                  whereContent.push(
+                    <span key={`var-${i}`} className="where-var">
+                      <span className="where-var-name">{varMatch[1]}</span> = {varMatch[2]}
+                    </span>
+                  );
+                  i++;
+                  continue;
+                }
+
+                // 연속 텍스트
+                whereContent.push(
+                  <span key={`where-text-${i}`} className="where-var">
+                    {varLine}
+                  </span>
+                );
+                i++;
+              }
+
+              // 수식 + where를 하나의 박스로 렌더링
+              articleContent.push(
+                <div key={`formula-block-${i}`} className="obc-formula-block">
+                  <div className="obc-equation">
+                    <TextRenderer text={equationText} />
+                  </div>
+                  {whereContent.length > 0 && (
+                    <div className="obc-where-section">
+                      <div className="where-title">where</div>
+                      {whereContent}
+                      {seeNoteContent}
+                    </div>
+                  )}
+                </div>
+              );
+            } else {
+              // where 없이 수식만 렌더링
+              articleContent.push(
+                <div key={`eq-${i}`} className="obc-equation">
+                  <TextRenderer text={equationText} />
+                </div>
+              );
+            }
             continue;
           }
 
-          // "where" 블록 시작 감지
-          if (nextLine.toLowerCase() === "where") {
+          // "where" 또는 "where," 블록 (수식 없이 단독 시작)
+          if (nextLine.toLowerCase() === "where" || nextLine.toLowerCase() === "where,") {
             const whereContent: React.ReactNode[] = [];
+            let seeNoteContent: React.ReactNode | null = null;
             i++;
 
-            // where 블록 내용 수집 (변수 정의들)
             while (i < lines.length) {
               const varLine = lines[i].trim();
 
-              // where 블록 종료 조건:
-              // - 빈 줄
-              // - (1), (2) 같은 clause 시작
-              // - (a), (b) 같은 sub-clause 시작
-              // - 9.4.2 같은 섹션 번호
               if (!varLine ||
-                  varLine.match(/^\(\d+\)/) ||      // (1), (2), ...
-                  varLine.match(/^\([a-z]\)/) ||    // (a), (b), ...
-                  varLine.match(/^9\.\d+\.\d+/)) {  // 9.x.x 섹션 번호
+                  (varLine.match(/^\(\d+\)/) && !varLine.match(/^\(See\s+Note/i)) ||
+                  varLine.match(/^\([a-z]\)/) ||
+                  varLine.match(/^\d+\.\d+\.\d+/)) {
                 break;
               }
 
-              // 변수 정의 패턴: "Cb = ...", "Ss = ...", "γ = ..."
-              const varMatch = varLine.match(/^([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
+              // (See Note...) 패턴
+              const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
+              if (seeNoteMatch) {
+                seeNoteContent = (
+                  <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                    (See Note {seeNoteMatch[1]})
+                  </span>
+                );
+                i++;
+                continue;
+              }
+
+              // 변수 정의 패턴 (대시 옵션)
+              const varMatch = varLine.match(/^(?:-\s*)?([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
               if (varMatch) {
                 whereContent.push(
                   <span key={`var-${i}`} className="where-var">
@@ -774,9 +875,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
                 continue;
               }
 
-              // 연속 텍스트 (0.55 for all other roofs, 등)
               whereContent.push(
-                <span key={`where-text-${i}`} className="block text-gray-600 dark:text-gray-400 ml-4">
+                <span key={`where-text-${i}`} className="where-var">
                   {varLine}
                 </span>
               );
@@ -788,6 +888,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
                 <div key={`where-${i}`} className="obc-where-block">
                   <div className="where-title">where</div>
                   {whereContent}
+                  {seeNoteContent}
                 </div>
               );
             }
@@ -807,7 +908,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
 
         result.push(
           <CopyableSection
-            key={startIndex}
+            key={`article-block-${startIndex}`}
             id={articleId}
             className="mt-6 first:mt-0 py-2 ml-6"
           >
@@ -826,7 +927,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         const subsectionId = subsectionMatch[1].replace(/\.$/, ""); // 마지막 . 제거
         result.push(
           <CopyableSection
-            key={i}
+            key={`subsection-block-${i}`}
             id={subsectionId}
             className="mt-8 first:mt-0 border-t dark:border-gray-700 pt-6"
           >
@@ -855,7 +956,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
             // 다음 clause, subclause, article, 마커가 나오면 종료
             if (peekLine.match(/^\(\d+(?:\.\d+)?\)/) ||  // (1), (2)
                 peekLine.match(/^\([a-z]\)/) ||           // (a), (b)
-                peekLine.match(/^\((i{1,3}|iv|v|vi{0,3})\)/) || // (i), (ii)
+                peekLine.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)/) || // (i), (ii), - (i)
+                peekLine.match(/^\([A-Z]\)/) ||           // (A), (B), (C)
                 peekLine.match(/^\d+\.\d+\.\d+\.\d+/) ||  // article
                 peekLine.match(/^\[(?:SECTION|SUBSECTION|ARTICLE):/)) { // 마커
               break;
@@ -869,7 +971,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         }
 
         result.push(
-          <div key={i} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
+          <div key={`clause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
             <span className="shrink-0 text-black dark:text-white">({clauseNum})</span>
             <span><TextRenderer text={clauseText} /></span>
           </div>
@@ -880,7 +982,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
       const subclauseMatch = trimmed.match(/^\(([a-z])\)\s*(.*)$/);
       if (subclauseMatch) {
         result.push(
-          <div key={i} className="my-0.5 flex gap-2 text-gray-900 dark:text-gray-100 text-sm ml-18">
+          <div key={`subclause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
             <span className="shrink-0 text-black dark:text-white">({subclauseMatch[1]})</span>
             <span><TextRenderer text={subclauseMatch[2]} /></span>
           </div>
@@ -889,12 +991,26 @@ export default function SectionView({ id, title, content, highlight, equations, 
         continue;
       }
 
-      const romanMatch = trimmed.match(/^\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
+      // 로마숫자 (i), (ii) 등 - 앞에 "- " 붙어있을 수도 있음
+      const romanMatch = trimmed.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
       if (romanMatch) {
         result.push(
-          <div key={i} className="my-1 flex gap-2 text-gray-900 dark:text-gray-100 text-sm ml-20">
+          <div key={`roman-block-${i}`} className="my-2 ml-18 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
             <span className="shrink-0 text-black dark:text-white">({romanMatch[1]})</span>
             <span><TextRenderer text={romanMatch[2]} /></span>
+          </div>
+        );
+        i++;
+        continue;
+      }
+
+      // 대문자 (A), (B), (C) 등 - 로마숫자 하위 (4단계) - 앞에 "- " 붙어있을 수도 있음
+      const capitalMatch = trimmed.match(/^(?:-\s*)?\(([A-Z])\)\s*(.*)$/);
+      if (capitalMatch) {
+        result.push(
+          <div key={`capital-block-${i}`} className="my-1 ml-24 flex gap-1 text-xs leading-relaxed text-gray-800 dark:text-gray-200">
+            <span className="shrink-0 text-black dark:text-white">({capitalMatch[1]})</span>
+            <span><TextRenderer text={capitalMatch[2]} /></span>
           </div>
         );
         i++;
@@ -906,12 +1022,12 @@ export default function SectionView({ id, title, content, highlight, equations, 
       // 예: "(b) the portion of the floor..." 뒤에 "(See Note A-11.4.3.2.(1))"
       const isContinuationText = trimmed.match(/^[a-z]/) || trimmed.match(/^\(See\s+Note/i);
       if (isContinuationText && result.length > 0) {
-        // 이전 렌더링 결과 확인 (sub-clause ml-18 또는 roman ml-20)
+        // 이전 렌더링 결과 확인 (sub-clause ml-12, roman ml-16, capital ml-20)
         const lastResult = result[result.length - 1];
         const lastClassName = (lastResult as React.ReactElement<{ className?: string }>)?.props?.className || '';
-        if (lastClassName.includes('ml-18') || lastClassName.includes('ml-20')) {
+        if (lastClassName.includes('ml-12') || lastClassName.includes('ml-16') || lastClassName.includes('ml-20')) {
           result.push(
-            <div key={i} className="my-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200 ml-18">
+            <div key={`continuation-${i}`} className="my-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200 ml-12">
               <TextRenderer text={trimmed} />
             </div>
           );
@@ -992,37 +1108,119 @@ export default function SectionView({ id, title, content, highlight, equations, 
         continue;
       }
 
-      // 수식 라인 감지 (Article 바깥)
-      // "where"로 끝나는 라인은 제외
-      const equationMatch = trimmed.match(/^([A-Za-z][a-z]?\s*=\s*[^,]+)$/);
-      if (equationMatch && trimmed.length < 80 && /[=\+\-\/\*\(\)]/.test(trimmed) && !/\bwhere\s*$/i.test(trimmed)) {
-        result.push(
-          <div key={i} className="obc-equation">
-            <TextRenderer text={trimmed} />
-          </div>
-        );
+      // 수식 라인 감지 (Article 바깥) - LaTeX 또는 일반 수식
+      // 다음 줄에 "where" 있으면 수식 + where를 하나의 블록으로 묶음
+      const isLatexEq = trimmed.startsWith('$$') && trimmed.endsWith('$$');
+      const eqMatch = trimmed.match(/^([A-Za-z][a-z]?\s*=\s*[^,]+)$/);
+      if ((isLatexEq || (eqMatch && trimmed.length < 80 && /[=\+\-\/\*\(\)]/.test(trimmed))) && !/\bwhere\s*$/i.test(trimmed)) {
+        const equationText = trimmed;
         i++;
+
+        // 다음 줄이 "where" 또는 "where,"인지 확인
+        const nextTrimmed = i < lines.length ? lines[i].trim().toLowerCase() : '';
+        if (nextTrimmed === "where" || nextTrimmed === "where,") {
+          const whereContent: React.ReactNode[] = [];
+          let seeNoteContent: React.ReactNode | null = null;
+          i++; // "where" 줄 건너뛰기
+
+          while (i < lines.length) {
+            const varLine = lines[i].trim();
+
+            if (!varLine ||
+                (varLine.match(/^\(\d+\)/) && !varLine.match(/^\(See\s+Note/i)) ||
+                varLine.match(/^\([a-z]\)/) ||
+                varLine.match(/^\d+\.\d+\.\d+/)) {
+              break;
+            }
+
+            // (See Note...) 패턴
+            const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
+            if (seeNoteMatch) {
+              seeNoteContent = (
+                <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                  (See Note {seeNoteMatch[1]})
+                </span>
+              );
+              i++;
+              continue;
+            }
+
+            // 변수 정의 패턴 (대시 옵션)
+            const varMatch = varLine.match(/^(?:-\s*)?([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
+            if (varMatch) {
+              whereContent.push(
+                <span key={`var-${i}`} className="where-var">
+                  <span className="where-var-name">{varMatch[1]}</span> = {varMatch[2]}
+                </span>
+              );
+              i++;
+              continue;
+            }
+
+            whereContent.push(
+              <span key={`where-text-${i}`} className="where-var">
+                {varLine}
+              </span>
+            );
+            i++;
+          }
+
+          // 수식 + where를 하나의 박스로 렌더링
+          result.push(
+            <div key={`formula-block-${i}`} className="obc-formula-block">
+              <div className="obc-equation">
+                <TextRenderer text={equationText} />
+              </div>
+              {whereContent.length > 0 && (
+                <div className="obc-where-section">
+                  <div className="where-title">where</div>
+                  {whereContent}
+                  {seeNoteContent}
+                </div>
+              )}
+            </div>
+          );
+        } else {
+          // where 없이 수식만 렌더링
+          result.push(
+            <div key={`equation-${i}`} className="obc-equation">
+              <TextRenderer text={equationText} />
+            </div>
+          );
+        }
         continue;
       }
 
-      // "where" 블록 시작 감지 (Article 바깥)
-      if (trimmed.toLowerCase() === "where") {
+      // "where" 또는 "where," 블록 (수식 없이 단독 시작, Article 바깥)
+      if (trimmed.toLowerCase() === "where" || trimmed.toLowerCase() === "where,") {
         const whereContent: React.ReactNode[] = [];
+        let seeNoteContent: React.ReactNode | null = null;
         i++;
 
         while (i < lines.length) {
           const varLine = lines[i].trim();
 
-          // where 블록 종료 조건
           if (!varLine ||
-              varLine.match(/^\(\d+\)/) ||      // (1), (2), ...
-              varLine.match(/^\([a-z]\)/) ||    // (a), (b), ...
-              varLine.match(/^9\.\d+\.\d+/)) {  // 9.x.x 섹션 번호
+              (varLine.match(/^\(\d+\)/) && !varLine.match(/^\(See\s+Note/i)) ||
+              varLine.match(/^\([a-z]\)/) ||
+              varLine.match(/^\d+\.\d+\.\d+/)) {
             break;
           }
 
-          // 변수 정의 패턴
-          const varMatch = varLine.match(/^([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
+          // (See Note...) 패턴
+          const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
+          if (seeNoteMatch) {
+            seeNoteContent = (
+              <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                (See Note {seeNoteMatch[1]})
+              </span>
+            );
+            i++;
+            continue;
+          }
+
+          // 변수 정의 패턴 (대시 옵션)
+          const varMatch = varLine.match(/^(?:-\s*)?([A-Za-zγ][a-z0-9]*)\s*=\s*(.+)$/);
           if (varMatch) {
             whereContent.push(
               <span key={`var-${i}`} className="where-var">
@@ -1033,9 +1231,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
             continue;
           }
 
-          // 연속 텍스트
           whereContent.push(
-            <span key={`where-text-${i}`} className="block text-gray-600 dark:text-gray-400 ml-4">
+            <span key={`where-text-${i}`} className="where-var">
               {varLine}
             </span>
           );
@@ -1047,6 +1244,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
             <div key={`where-${i}`} className="obc-where-block">
               <div className="where-title">where</div>
               {whereContent}
+              {seeNoteContent}
             </div>
           );
         }
@@ -1150,7 +1348,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
 
         // 일반 h4/h5 처리
         result.push(
-          <div key={i} className="my-4" dangerouslySetInnerHTML={{ __html: trimmed }} />
+          <div key={`heading-${i}`} className="my-4" dangerouslySetInnerHTML={{ __html: trimmed }} />
         );
         i++;
         continue;
@@ -1158,7 +1356,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
 
       if (trimmed) {
         result.push(
-          <p key={i} className="my-2 text-gray-700 dark:text-gray-300"><TextRenderer text={trimmed} /></p>
+          <p key={`text-${i}`} className="my-2 text-gray-700 dark:text-gray-300"><TextRenderer text={trimmed} /></p>
         );
       }
       i++;
@@ -1183,6 +1381,15 @@ export default function SectionView({ id, title, content, highlight, equations, 
     }
     if (/^\*[A-Z].*\*$/m.test(content) && !/^\*\*/.test(content)) {
       issues.push('RAW_ITALIC: *이탤릭* 마크다운이 렌더링 안됨');
+    }
+
+    // 2-1. 인라인 마크다운 잔류 ((**4)**, *sewage system* 등)
+    if (/\(\*\*\d+\)\*\*/.test(content)) {
+      issues.push('INLINE_BOLD: (**숫자)** 인라인 볼드 마크다운 잔류');
+    }
+    const inlineItalicMatch = content.match(/(?<!\*)\*[a-zA-Z][^*\n]{1,30}\*(?!\*)/);
+    if (inlineItalicMatch) {
+      issues.push(`INLINE_ITALIC: 인라인 이탤릭 잔류 - "${inlineItalicMatch[0]}"`);
     }
 
     // 3. Flat table 패턴 감지 (C.A. Number가 있는데 <table> 없음)

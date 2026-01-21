@@ -1,0 +1,44 @@
+ 
+10.2.1.3. 
+2024 Building Code Compendium 
+ 
+ 
+4 
+Division B – Part 10 
+ 
+10.2.1.3. Building Size and Construction 
+ (1) The requirements of Articles 2.2.2.3. to 2.2.2.8. and 3.2.2.20. to 3.2.2.93. do not apply to this Part. 
+Section 10.3.  Requirements 
+10.3.1. General 
+10.3.1.1. General 
+(1) Except as provided in Section 10.4., a building or part of a building subject to a change of major occupancy shall 
+conform to the requirements of Subsection 3.2.6., Sections 3.7., 3.11. and 3.12., Sentences 6.3.1.1.(2) and 6.3.2.7.(1), 
+Subsections 9.5.1. and 9.5.3., 9.5.3A. to 9.5.3F. and 9.5.4., Sentences 9.6.1.4.(3), (4), Article 9.7.2.3., Sentences 
+9.8.8.1.(4) to (8) and 9.9.10.1.(1) to (7), Subsection 9.10.17., Sections 9.31. and 9.32., Sentence 9.33.6.13.(7.1), and 
+Subsections 9.34.1. to 9.34.3. as they apply to the new major occupancy that the building or part of a building is to 
+support. 
+(2) Where a major occupancy is changed to a Group B, Division 2 major occupancy, heating, ventilating, and air 
+conditioning systems shall conform to the requirements of Sentence 6.2.1.1.(1). 
+(3) Where a major occupancy is changed to a Group B, Division 3 major occupancy, ventilation, air circulation, and 
+filtration systems, shall conform to the requirements of Sentence 6.2.1.1.(1). 
+10.3.2. Performance Level 
+10.3.2.1. General 
+(1) The performance level of a building after the change of major occupancy shall not be less than the performance 
+level prior to the change of major occupancy. 
+(2) For the purposes of Sentence (1), reduction of performance level shall be determined in accordance with 
+Article 10.3.2.2. 
+(3) For the purpose of this Subsection, where a permit to construct a farm building has been applied for before 
+January 1, 2025, the performance level of the farm building is permitted to be evaluated based on the applicable 
+requirements of Ontario Regulation 332/12 (Building Code) made under the Act, as it read on December 31, 2024. 
+10.3.2.2. Reduction in Performance Level
+(1) Except as provided in Sentence (2), the performance level of a building or part of a building is reduced where the 
+existing structural floor and roof framing systems and their supporting members are not adequate to support the proposed 
+dead loads and live loads of the new major occupancy that the building is to support. 
+(2) The inadequacy of the existing structural floor or roof framing system and its supporting members to support the 
+proposed dead loads and live loads does not reduce the performance level of the building if the portion of the floor 
+affected by the proposed loads is restricted to the loading it will support and signs stating the restrictions are posted. 
+(3) Except as provided in Section 10.4., the performance level of a building or part of a building is reduced where the 
+early warning and evacuation systems requirements of the building do not meet the early warning and evacuation systems 
+requirements set out in Table 10.3.2.2.-A for the new major occupancy that the building is to support. 
+r1 
+e2 

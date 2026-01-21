@@ -1,0 +1,168 @@
+--- Page 737 ---
+ 
+ 
+2024 Building Code Compendium 
+9.7.3.3. 
+ 
+ 
+ 
+Division B - Part 9 
+27 
+ 
+9.7.3. 
+Performance of Windows, Doors and Skylights 
+9.7.3.1. 
+General Performance Criteria 
+(1) Except as provided in Sentences (2) to (4), windows, doors and skylights and their components separating 
+conditioned space from unconditioned space or the exterior shall be designed, constructed and installed so that, when in 
+the closed position, they 
+ 
+(a) 
+resist the ingress of precipitation into interior space, (See Note A-9.7.4.2.(1)) 
+ 
+(b) resist wind loads, 
+ 
+(c) 
+control air leakage, 
+ 
+(d) resist the ingress of insects and vermin, 
+ 
+(e) 
+where required, resist forced entry, and 
+ 
+(f) 
+are easily operable when not intended to be fixed. 
+(2) Skylights and their components shall be designed, constructed and installed so that, when in the closed position, they 
+resist snow loads. 
+(3) Main entrance doors and their components shall be designed, constructed and installed so that, when in the closed 
+position, they 
+ 
+(a) 
+control air leakage, 
+ 
+(b) resist the ingress of insects and vermin, 
+ 
+(c) 
+resist forced entry, and 
+ 
+(d) are easily operable. 
+(4) Storm doors, sliding doors and their components shall be designed, constructed and installed so that, when in the 
+closed position, they 
+ 
+(a) 
+resist wind loads, 
+ 
+(b) control air leakage to a minimum allowable 5 m3h/m and a maximum allowable 8.35 m3h/m, 
+ 
+(c) 
+resist the ingress of insects and vermin, and 
+ 
+(d) are easily operable. 
+(5) Compliance with the performance requirements described in Sentences (1) to (4) shall be demonstrated by 
+ 
+(a) 
+complying with the requirements in 
+ 
+(i) Subsection 9.7.4. or 9.7.5., and 
+ 
+(ii) Subsection 9.7.6., or 
+ 
+(b) design and construction conforming to Part 5. 
+9.7.3.2. 
+Heat Transfer Performance
+(1) Windows, doors and skylights described in Clause 9.7.1.1.(1)(a) and their components shall be designed, 
+constructed and installed to 
+ 
+(a) 
+minimize surface condensation on the warm side of the component, and  (See Note A-9.7.3.2.(1)(a)) 
+ 
+(b) ensure comfortable conditions for occupants. 
+(2) Compliance with the heat transfer performance requirements described in Sentence (1) shall be demonstrated by 
+ 
+(a) 
+complying with the requirements in Article 9.7.3.3., or 
+ 
+(b) design and construction conforming to Part 5. 
+ 
+9.7.3.3. 
+Thermal Characteristics of Windows, Doors and Skylights 
+(1) Metal frames and sash of windows, doors and skylights shall incorporate a thermal break. 
+
+--- Page 738 ---
+ 
+9.7.3.3. 
+2024 Building Code Compendium 
+ 
+ 
+28 
+Division B - Part 9 
+ 
+(2) Windows and doors described in Sentence (1) do not require a thermal break where they are installed as 
+ 
+(a) 
+vehicular access doors, 
+ 
+(b) storm windows and doors, or 
+ 
+(c) 
+windows and doors that are required to have a fire-resistance rating. 
+(3) Windows, doors and skylights with or without storm doors or sash that are installed in buildings where the intended 
+use of the interior space will not result in high moisture generation shall have a maximum thermal transmittance (U-
+value) or minimum temperature index (I) in accordance with Table 9.7.3.3. 
+(4) Windows, doors and skylights, with or without storm doors or sash that are installed in portions of buildings where 
+the intended use of the interior space will result in high moisture generation shall be designed in conformance with 
+Subsection 5.3.  (See Note A-9.25.5.2.) 
+Table 9.7.3.3. 
+Maximum U-value or Minimum Temperature Index (I) for Windows, Doors and Skylights(1)(2)(3) 
+Forming Part of Sentence 9.7.3.3.(3) 
+Component 
+2.5% January Design Temperature 
+Between -15°C and -30°C 
+Colder than -30°C 
+max. U-value, W/m2K 
+min. I 
+max. U-value, W/m2K 
+min. I 
+Windows and Doors 
+2.0 
+68 
+1.7 
+77 
+Skylights 
+3.0 
+(2) 
+2.7 
+(2) 
+Notes to Table 9.7.3.3.: 
+(1) U-values for specific products can be determined according to measures referenced in AAMA/WDMA/CSA 101/I.S.2/A440,  
+"NAFS - North American Fenestration Standard/Specification for windows, doors, and skylights."  Temperature index (I) is determined 
+according to the physical test procedure given in CSA A440.2/A440.3, "Fenestration energy performance/User guide to CSA A440.2-
+19, Fenestration energy performance." 
+(2) There is no appropriate test procedure available for testing the condensation resistance of sloped glazing. 
+(3) Where the U-value in this Table differs from the U-value provided in MMA Supplementary Standard SB-10, "Energy Efficiency 
+Requirements" or MMA Supplementary Standard SB-12, "Energy Efficiency for Housing", the most restrictive U-value shall apply. 
+ 
+9.7.4. 
+Manufactured Windows, Doors and Skylights 
+9.7.4.1. 
+Application
+(1) This Subsection applies to windows, doors and skylights covered in the scope of AAMA/WDMA/CSA 
+101/I.S.2/A440, "North American Fenestration Standard/Specification for windows, doors, and skylights" (Harmonized 
+Standard). 
+9.7.4.2. 
+General 
+(1) Manufactured and pre-assembled windows, doors and skylights and their installation shall conform to 
+ 
+(a) 
+AAMA/WDMA/CSA 101/I.S.2/A440, "North American Fenestration Standard/Specification for windows, doors, 
+and skylights" (Harmonized Standard), 
+ 
+(b) CSA A440S1, "Canadian Supplement to AAMA/WDMA/CSA 101/I.S.2/A440-17, North American Fenestration 
+Standard/Specification for windows, doors, and skylights," 
+ 
+(c) 
+the remainder of this Subsection, and 
+ 
+(d) the applicable requirements in Subsection 9.7.6. 
+ 
+(See Note A-9.7.4.2.(1)) 

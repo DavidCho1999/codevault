@@ -1,0 +1,110 @@
+
+=== Page 719 - Notes Check ===
+75: — 
+76: Notes to Table 9.3.2.1.: 
+77: (1) See Note A-Table 9.3.2.1. 
+78: 9.3.2.2. 
+79: Lumber Grades 
+---
+76: Notes to Table 9.3.2.1.: 
+77: (1) See Note A-Table 9.3.2.1. 
+78: 9.3.2.2. 
+79: Lumber Grades 
+80: (1) Except for joists, rafters, trusses and beams, visually graded lumber shall conform to the grades in Table 9.3.2.1. 
+---
+79: Lumber Grades 
+80: (1) Except for joists, rafters, trusses and beams, visually graded lumber shall conform to the grades in Table 9.3.2.1. 
+81: (See Article 9.23.4.2. for joists, rafters and beams and Article 9.23.14.11. for trusses.) 
+82: 9.3.2.3. 
+83: Machine Stress Rated Lumber 
+---
+83: Machine Stress Rated Lumber 
+84: (1) Machine stress rated lumber shall conform to the requirements of Subsection 4.3.1. 
+85: 9.3.2.4. 
+86: OSB, Waferboard and Plywood Marking
+87: (1) OSB, waferboard and plywood used for roof sheathing, wall sheathing and subflooring shall be legibly identified on 
+---
+86: OSB, Waferboard and Plywood Marking
+87: (1) OSB, waferboard and plywood used for roof sheathing, wall sheathing and subflooring shall be legibly identified on 
+88: the face of the material indicating, 
+89:  
+90: (a) 
+---
+98: Moisture Content 
+99: (1) Moisture content of lumber shall be not more than 19% at the time of installation. 
+100: 
+---
+
+=== Page 720 - Notes Check ===
+9: Lumber Dimensions 
+10: (1) Lumber dimensions referred to in this Part are actual dimensions determined in conformance with CSA O141, 
+11: “Softwood Lumber.” 
+12: 9.3.2.7. 
+13: Panel Thickness Tolerances 
+---
+13: Panel Thickness Tolerances 
+14: (1) The thicknesses specified in this Part for plywood, hardboard, particleboard, OSB and waferboard shall be subject to 
+15: the tolerances permitted in the standards referenced for these products unless specifically indicated herein.  
+16: 9.3.2.8. 
+17: Undersized Lumber 
+---
+17: Undersized Lumber 
+18: (1) Joist, rafter, lintel and beam members up to 5% less than the actual Canadian standard sizes are permitted to be used 
+19: provided the allowable spans for the grade and species of lumber under consideration are reduced 5% from those shown 
+20: in the Span Tables for full size members.  (See Note A-9.3.2.8.(1)) 
+21: 9.3.2.9. 
+---
+22: Termite and Decay Protection
+23: (1) In localities where termites are known to occur, 
+24:  
+25: (a) 
+26: clearance between structural wood elements and the finished ground level directly below them shall be not less than 
+---
+
+=== Page 724 - Notes Check ===
+39: Allowable Bearing Pressures
+40: (1) Footing sizes for shallow foundations shall be 
+41:  
+42: (a) 
+43: determined in accordance with Section 9.15., or 
+---
+74: 500 
+75: Notes to Table 9.4.4.1.: 
+76: (1) See Note A-Table 9.4.1.1. 
+77: 
+---
+75: Notes to Table 9.4.4.1.: 
+76: (1) See Note A-Table 9.4.1.1. 
+77: 
+---
+
+=== Page 725 - Notes Check ===
+20: Foundation Capacity in Weaker Soil and Rock 
+21: (1) Where a soil or rock within a distance equal to twice the footing width below the bearing surface has a lower 
+22: allowable bearing pressure than that at the bearing surface as shown in Article 9.4.4.1., the design capacity of the 
+23: foundation shall not be greater than would cause the weakest soil or rock to be stressed beyond its allowable bearing 
+24: pressure. 
+---
+29: High Water Table 
+30: (1) Where a foundation bears on gravel, sand or silt, and the water table is within a distance below the bearing surface 
+31: equal to the width of the foundation, the allowable bearing pressure shall be 50% of that determined in Article 9.4.4.1. 
+32: 9.4.4.4. 
+33: Soil Movement 
+---
+33: Soil Movement 
+34: (1) Where a foundation is located in an area where soil movement caused by changes in soil moisture content, freezing, 
+35: or chemical-microbiological oxidation is known to occur to the extent that it will damage a building, measures shall be 
+36: taken to preclude such movement or to reduce the effects on the building so that the building’s stability and the 
+37: performance of assemblies will not be adversely affected.  (See Note A-9.4.4.4.(1)) 
+---
+41: Walls Supporting Drained Earth  (See Note A-9.4.4.6. and 9.15.1.1.)) 
+42: (1) Except where constructed in accordance with Section 9.15., walls supporting drained earth shall be designed 
+43:  
+44: (a) 
+45: for a pressure equivalent to that exerted by a fluid with a density of not less than 480 kg/m3 and a depth equal to that 
+---
+58: 9.5.1.0A. Application 
+59: (1) Except as otherwise specified in this Part, this Section applies only to dwelling units that are intended for use on a 
+60: continuing or year-round basis as the principal residence of the occupant. 
+61: 
+---

@@ -3,7 +3,7 @@ import path from "path";
 import type { TocItem } from "./types";
 
 // DB 경로 (프로젝트 루트의 obc.db)
-const DB_PATH = path.join(process.cwd(), "..", "obc.db");
+const DB_PATH = path.join(process.cwd(), "..", "data", "obc.db");
 
 // 싱글톤 DB 인스턴스
 let db: Database.Database | null = null;
@@ -143,18 +143,23 @@ export function getPartFullContent(partNum: string): { sections: DbNode[]; allCo
     for (const child of children) {
       if (child.type === "subsection" || child.type === "alt_subsection") {
         contentParts.push(`[SUBSECTION:${child.id}:${child.title || ""}]`);
-      }
 
-      if (child.content) {
-        contentParts.push(`[ARTICLE:${child.id}:${child.title || ""}]\n${child.content}`);
-      } else {
-        // 손자 노드 조회
-        const grandChildren = getChildNodes(child.id);
-        for (const gc of grandChildren) {
-          if (gc.content) {
-            contentParts.push(`[ARTICLE:${gc.id}:${gc.title || ""}]\n${gc.content}`);
+        // Subsection에 content가 있으면 (Part 8 스타일) - ARTICLE 마커 없이 content만 추가
+        // content 안에 이미 [ARTICLE:...] 마커가 포함되어 있을 수 있음
+        if (child.content) {
+          contentParts.push(child.content);
+        } else {
+          // Subsection에 content가 없으면 (Part 9 스타일) - 손자 노드 조회
+          const grandChildren = getChildNodes(child.id);
+          for (const gc of grandChildren) {
+            if (gc.content) {
+              contentParts.push(`[ARTICLE:${gc.id}:${gc.title || ""}]\n${gc.content}`);
+            }
           }
         }
+      } else if (child.content) {
+        // Subsection이 아닌 다른 타입 (Article 등)의 content
+        contentParts.push(`[ARTICLE:${child.id}:${child.title || ""}]\n${child.content}`);
       }
     }
   }

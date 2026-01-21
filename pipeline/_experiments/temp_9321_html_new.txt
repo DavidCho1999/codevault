@@ -1,0 +1,96 @@
+<table class="obc-table" data-table-id="Table 9.3.2.1">
+<caption class="text-center mb-2"><strong>Minimum Lumber Grades for Specific End Uses</strong><br/>Forming Part of Sentences 9.3.2.1.(1) and 9.3.2.2.(1)</caption>
+<thead>
+<tr>
+<th rowspan="4">Use</th>
+<th colspan="3">Boards⁽¹⁾</th>
+<th>Framing</th>
+</tr>
+<tr>
+<th colspan="3">Paragraph in the NLGA Grading Rules Under Which Boards are Graded</th>
+<th rowspan="3">All Species</th>
+</tr>
+<tr>
+<th colspan="2">All Species</th>
+<th>Eastern White Pine &amp; Red Pine</th>
+</tr>
+<tr>
+<th>Para 113</th>
+<th>Para 114</th>
+<th>Para 118</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white">
+<th style="text-align: center;">Stud wall framing (&lt;i&gt;loadbearing&lt;/i&gt; members)</th>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Stud, Standard, No. 2</td>
+</tr>
+<tr class="bg-gray-50">
+<th style="text-align: center;">Stud wall framing (non-&lt;i&gt;loadbearing&lt;/i&gt; members)</th>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Stud, Utility, No. 3</td>
+</tr>
+<tr class="bg-white">
+<th style="text-align: center;">Plank frame construction (&lt;i&gt;loadbearing&lt;/i&gt; members)</th>
+<td style="text-align: center;">No. 3 Common</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">No. 3 Common</td>
+<td style="text-align: center;">No. 2</td>
+</tr>
+<tr class="bg-gray-50">
+<th style="text-align: center;">Plank frame construction (non-&lt;i&gt;loadbearing&lt;/i&gt; members)</th>
+<td style="text-align: center;">No. 5 Common</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">No. 5 Common</td>
+<td style="text-align: center;">Economy, No. 3</td>
+</tr>
+<tr class="bg-white">
+<th style="text-align: center;">Post and beams less than 114 mm in thickness</th>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Standard, No.2</td>
+</tr>
+<tr class="bg-gray-50">
+<th style="text-align: center;">Post and beams not less than 114 mm in thickness</th>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Standard</td>
+</tr>
+<tr class="bg-white">
+<th style="text-align: center;">Roof sheathing</th>
+<td style="text-align: center;">No. 3 Common</td>
+<td style="text-align: center;">Standard</td>
+<td style="text-align: center;">No. 4 Common</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="bg-gray-50">
+<th style="text-align: center;">Subflooring</th>
+<td style="text-align: center;">No. 3 Common</td>
+<td style="text-align: center;">Standard</td>
+<td style="text-align: center;">No. 3 Common</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="bg-white">
+<th style="text-align: center;">Wall sheathing when required as a nailing base</th>
+<td style="text-align: center;">No. 4 Common</td>
+<td style="text-align: center;">Utility</td>
+<td style="text-align: center;">No. 4 Common</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="bg-gray-50">
+<th style="text-align: center;">Wall sheathing not required as a nailing base</th>
+<td style="text-align: center;">No. 5 Common</td>
+<td style="text-align: center;">Economy</td>
+<td style="text-align: center;">No. 5 Common</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+<div class="table-notes mt-2 text-sm text-gray-600"><p class="font-semibold">Notes to Table 9.3.2.1.:</p><p>(1) See Note A-Table 9.3.2.1.</p></div>

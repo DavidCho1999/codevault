@@ -1,0 +1,68 @@
+{
+  "part": 8,
+  "tables": [
+    {
+      "id": "Table 8.2.1.3.-A",
+      "subsection_id": "8.2.1",
+      "title": "Residential Occupancy",
+      "forming_part": "8.2.1.3.(1)",
+      "html": "<h4 class=\"table-title\">Table 8.2.1.3.-A Residential Occupancy</h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.2.1.3.(1)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Residential Occupancy</th><th>Volume, litres</th></tr></thead><tbody><tr><td>Apartments, Condominiums, Other Multi-family Dwellings - per person(1)</td><td>275</td></tr><tr><td>Boarding Houses</td><td></td></tr><tr><td>(a) Per person,</td><td></td></tr><tr><td>(i) with meals and laundry facilities, or,</td><td>200</td></tr><tr><td>(ii) without meal or laundry facilities, and</td><td>150</td></tr><tr><td>(b) Per non-resident staff per 8 hour shift</td><td>40</td></tr><tr><td>Boarding School - per person</td><td>300</td></tr><tr><td>Dwellings</td><td></td></tr><tr><td>(a) 1 bedroom dwelling</td><td>750</td></tr><tr><td>(b) 2 bedroom dwelling</td><td>1 100</td></tr><tr><td>(c) 3 bedroom dwelling</td><td>1 600</td></tr><tr><td>(d) 4 bedroom dwelling</td><td>2 000</td></tr><tr><td>(e) 5 bedroom dwelling</td><td>2 500</td></tr><tr><td>(f) Additional flow for(2)</td><td></td></tr><tr><td>(i) each bedroom over 5,</td><td>500</td></tr><tr><td>(ii) (A) each 10 m2 (or part of it) over 200 m2 up to 400 m2 (3) ,</td><td>100</td></tr><tr><td>(B) each 10 m2 (or part of it) over 400 m2 up to 600 m2 (3) , and</td><td>75</td></tr><tr><td>(C) each 10 m2 (or part of it) over 600 m2 (3) , or</td><td>50</td></tr><tr><td>(iii) each fixture unit over 20 fixture units</td><td>50</td></tr><tr><td>Hotels and Motels (excluding bars and restaurants)</td><td></td></tr><tr><td>(a) Regular, per room</td><td>250</td></tr><tr><td>(b) Resort hotel, cottage, per person</td><td>500</td></tr><tr><td>(c) Self service laundry, add per machine</td><td>2 500</td></tr><tr><td>Work Camp/Construction Camp, semi-permanent per worker</td><td>250</td></tr></tbody></table>\n\n<h5 class=\"table-notes-title\">Notes to Table 8.2.1.3.-A:</h5>\n\n(1) The *occupant load* shall be calculated using Subsection 3.1.17.\n\n(2) Where multiple calculations of *sanitary sewage* volume is permitted, the calculation resulting in the highest flow shall be used in determining the design daily *sanitary sewage* flow.\n\n(3) Total finished area, excluding the area of the finished *basement*.",
+      "notes_count": 3,
+      "extraction_method": "pdfplumber"
+    },
+    {
+      "id": "Table 8.2.1.3.-B",
+      "subsection_id": "8.2.1",
+      "title": "Other Occupancies",
+      "forming_part": "8.2.1.3.(2)",
+      "html": "<h4 class=\"table-title\">Table 8.2.1.3.-B Other Occupancies</h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.2.1.3.(2)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Establishments(1)</th><th>Volume, litres</th></tr></thead><tbody><tr><td>Airports, Bus Terminals, Train Stations, Dock/Port Facilities (Food Services excluded)</td><td></td></tr><tr><td>(a)<br>Per passenger, and</td><td>20</td></tr><tr><td>(b)<br>Per employee per 8 hour shift</td><td>40</td></tr><tr><td>Assembly Hall -<br>per seat</td><td></td></tr><tr><td>(a)<br>No food service, or</td><td>8</td></tr><tr><td>(b)<br>Food service provided</td><td>36</td></tr><tr><td>Barber Shop/Beauty Salon -<br>per service chair</td><td>650</td></tr><tr><td>Bowling Alleys (Food Service not included) -<br>per lane</td><td>400</td></tr><tr><td>Churches and Similar Places of Worship -<br>per seat</td><td></td></tr><tr><td>(a)<br>No kitchen facilities, or</td><td>8</td></tr><tr><td>(b)<br>Kitchen facilities provided</td><td>36</td></tr><tr><td>Country Club (excluding Food Service)</td><td></td></tr><tr><td>(a)<br>Per resident,</td><td>375</td></tr><tr><td>(b)<br>Per employee per 8 hour shift, and</td><td>50</td></tr><tr><td>(c)<br>Per member or patron</td><td>40</td></tr><tr><td>Day Care Facility per person (staff and children)</td><td>75</td></tr><tr><td>Dentist Office</td><td></td></tr><tr><td>(a)<br>Per wet service chair, and</td><td>275</td></tr><tr><td>(b)<br>Per dry service chair</td><td>190</td></tr><tr><td>Doctors Office</td><td></td></tr><tr><td>(a)<br>Per practitioner, and</td><td>275</td></tr><tr><td>(b)<br>Per employee per 8 hour shift</td><td>75</td></tr><tr><td>Factory (excluding process or cleaning waters) -<br>per employee per 8 hour shift</td><td></td></tr><tr><td>(a)<br>No showers, or</td><td>75</td></tr><tr><td>(b)<br>Including showers</td><td>125</td></tr><tr><td>Flea Markets(2) (open not more than 3 days per week)</td><td></td></tr><tr><td>(a)<br>Per non-food service vendor space,</td><td>60</td></tr><tr><td>(b)<br>Per food service establishment / 9.25 m2 of floor space, and</td><td>190</td></tr><tr><td>(c)<br>Per limited food service outlet</td><td>95</td></tr><tr><td>Food Service Operations</td><td></td></tr><tr><td>(a)<br>Restaurant (not 24 hour), per seat</td><td>125</td></tr><tr><td>(b)<br>Restaurant (24 hour), per seat</td><td>200</td></tr><tr><td>(c)<br>Restaurant on controlled-access highway, per seat</td><td>400</td></tr><tr><td>(d)<br>Paper service restaurant, per seat</td><td>60</td></tr><tr><td>(e)<br>Donut shop, per seat</td><td>400</td></tr><tr><td>(f)<br>Bar and cocktail lounge, per seat</td><td>125</td></tr><tr><td>(g)<br>Drive-in restaurant per parking space</td><td>60</td></tr><tr><td>(h)<br>Take-out restaurant (no seating area)</td><td></td></tr><tr><td>(i)<br>per 9.25 m2 of floor area, and</td><td>190</td></tr><tr><td>(ii)<br>per employee per 8 hour shift</td><td>75</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    },
+    {
+      "id": "Table 8.2.1.5.",
+      "subsection_id": "8.2.1",
+      "title": "",
+      "forming_part": "8.2.1.5.(1)",
+      "html": "<h4 class=\"table-title\">Table 8.2.1.5. </h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.2.1.5.(1)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Sewage System</th><th>Minimum horizontal<br>distance in metres<br>from a well with<br>watertight casing to a<br>depth of at least 6 m</th><th>Minimum horizontal distance in<br>metres from a spring used as a<br>source of potable<br>water or well<br>other than a well with a<br>watertight casing to a depth of at<br>least 6<br>m</th><th>Minimum horizontal distance in<br>metres from a lake, river, pond,<br>stream, reservoir, or a spring not<br>used as a source of<br>potable<br>water</th><th>Minimum horizontal<br>distance in metres<br>from a property line</th></tr></thead><tbody><tr><td>Earth Pit Privy</td><td>15</td><td>30</td><td>15</td><td>3</td></tr><tr><td>Privy Vault<br>Pail Privy</td><td>10</td><td>15</td><td>10</td><td>3</td></tr><tr><td>Greywater System</td><td>10</td><td>15</td><td>15</td><td>3</td></tr><tr><td>Cesspool</td><td>30</td><td>60</td><td>15</td><td>3</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    },
+    {
+      "id": "Table 8.7.2.3.",
+      "subsection_id": "8.7.2",
+      "title": "Leaching Chamber Dimensions",
+      "forming_part": "8.7.2.3.(2)",
+      "html": "<h4 class=\"table-title\">Table 8.7.2.3. Leaching Chamber Dimensions</h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.7.2.3.(2)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Type of Leaching Chamber</th><th>Width, mm</th><th>Height, mm</th></tr></thead><tbody><tr><td>Type I</td><td>380 to 410</td><td>280 to 305</td></tr><tr><td>Type II</td><td>555 to 575</td><td>300 to 320</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    },
+    {
+      "id": "Table 8.7.3.1.",
+      "subsection_id": "8.7.3",
+      "title": "Length of Distribution Pipe in Shallow Buried Trench",
+      "forming_part": "8.7.3.1.(4)",
+      "html": "<h4 class=\"table-title\">Table 8.7.3.1. Length of Distribution Pipe in Shallow Buried Trench</h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.7.3.1.(4)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Percolation Time, (T) of Soil, min</th><th>Length of Distribution Pipe, m</th></tr></thead><tbody><tr><td>1 < T ≤ 20</td><td>Q/75</td></tr><tr><td>20 < T ≤ 50</td><td>Q/50</td></tr><tr><td>50 < T < 125</td><td>Q/30</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    },
+    {
+      "id": "Table 8.7.3.2.",
+      "subsection_id": "8.7.3",
+      "title": "Length of Leaching Chamber in Shallow Buried Trench",
+      "forming_part": "8.7.3.2.(4)",
+      "html": "<h4 class=\"table-title\">Table 8.7.3.2. Length of Leaching Chamber in Shallow Buried Trench</h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.7.3.2.(4)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Percolation Time, (T) of Soil, min</th><th>Length of Leaching Chamber, m</th></tr></thead><tbody><tr><td>1 < T ≤ 20</td><td>Q/75</td></tr><tr><td>20 <<br>T ≤ 50</td><td>Q/50</td></tr><tr><td>50 < T < 125</td><td>Q/30</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    },
+    {
+      "id": "Table 8.7.3.4.",
+      "subsection_id": "8.7.3",
+      "title": "",
+      "forming_part": "8.7.3.4.(5)",
+      "html": "<h4 class=\"table-title\">Table 8.7.3.4. </h4>\n\n<p class=\"table-forming-part\"><em>Forming Part of Sentence 8.7.3.4.(5)</em></p>\n\n<table class=\"obc-table\"><thead><tr><th>Particle Size</th><th>Percent Passing</th></tr></thead><tbody><tr><td>53 mm</td><td>100</td></tr><tr><td>19 mm</td><td>0 -<br>5</td></tr><tr><td>75 µm</td><td>0 -<br>1</td></tr></tbody></table>",
+      "notes_count": 0,
+      "extraction_method": "markdown"
+    }
+  ]
+}

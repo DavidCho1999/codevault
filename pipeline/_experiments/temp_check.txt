@@ -1,0 +1,34 @@
+=== PDF 9.7.3 (page 737) ===
+9.7.3.3. 
+ 
+ 
+ 
+Division B - Part 9 
+27 
+ 
+9.7.3. 
+Performance of Windows, Doors and Skylights 
+9.7.3.1. 
+General Performance Criteria 
+(1) Except as provided in Sentences (2) to (4), windows, doors and skylights and their components separating 
+conditioned space from unconditioned space or the exterior shall be designed, constructed and installed so that, when in 
+the closed position, they 
+ 
+(a) 
+resist the ingress of precipitation into interior space, (See Note A-9.7.4.2.(1)) 
+ 
+(b) resist wi
+
+=== PDF 9.7.6 (page 740) ===
+9.7.6. 
+Installation
+9.7.6.1. 
+Installation of Windows, Doors and Skylights 
+(1) The installation of windows, doors and skylights shall conform to CSA A440.4, "Window, door, and skylight 
+installation," except that 
+ 
+(a) 
+shims used to support windows, doors and skylights are permitted to be made of treated plywood, and 
+ 
+(b) protection from precipitation for walls incorporating windows or doors and for roofs incorporating skylights, and the 
+interfaces of these walls with windows or doors and

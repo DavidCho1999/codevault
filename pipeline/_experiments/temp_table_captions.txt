@@ -1,0 +1,16 @@
+=== Page 719 - Table 9.3.2.1 ===
+10: Table 9.3.2.1. 
+11: Minimum Lumber Grades for Specific End Uses 
+12: Forming Part of Sentences 9.3.2.1.(1) and 9.3.2.2.(1) 
+
+=== Page 724 - Tables 9.4.3.1 and 9.4.4.1 ===
+8: Table 9.4.3.1. 
+9: Maximum Deflections 
+10: Forming Part of Sentence 9.4.3.1.(1) 
+13: Max. Allowable Deflection as an 
+39: Allowable Bearing Pressures
+47: (i) the maximum allowable bearing pressures in Table 9.4.4.1., or 
+52: Table 9.4.4.1. 
+53: Allowable Bearing Pressure for Soil or Rock 
+54: Forming Part of Sentence 9.4.4.1.(1) 
+56: Maximum Allowable Bearing Pressure, kPa 
