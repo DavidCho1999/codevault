@@ -11,7 +11,7 @@ export default function MainContent({ children }: MainContentProps) {
 
   return (
     <main
-      className={`flex-1 min-h-[calc(100vh-56px)] bg-white dark:bg-gray-900 transition-all duration-300 ${
+      className={`flex-1 min-h-[calc(100vh-56px)] bg-white transition-all duration-300 ${
         isCollapsed ? "ml-0" : "ml-[280px]"
       }`}
     >

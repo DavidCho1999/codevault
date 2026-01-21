@@ -193,22 +193,20 @@ const response = await fetch('/api/sections/9.4')
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  1. URL 변경: /part9/9.4.2                                  │
+│  1. URL 변경: /code/9.4.2                                   │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  2. Next.js 라우터가 [part]/[section]/page.tsx 로드         │
+│  2. Next.js 라우터가 code/[...section]/page.tsx 로드        │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  3. part9.json에서 9.4.2 데이터 찾기                        │
-│     {                                                       │
-│       id: "9.4.2",                                          │
-│       title: "Specified Loads",                             │
-│       content: "..."                                        │
-│     }                                                       │
+│  3. ⚠️ SQLite DB에서 9.4.2 데이터 로드 (JSON 아님!)         │
+│     import { getNodeById } from '@/lib/db';                 │
+│     const node = getNodeById("9.4.2");                      │
+│     // → { id, title, content, ... }                        │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
@@ -320,17 +318,29 @@ CREATE TABLE tables (
 │                              데이터 흐름                                 │
 └─────────────────────────────────────────────────────────────────────────┘
 
-[PDF] ──► [Python 파싱] ──► [JSON 파일] ──► [Next.js] ──► [브라우저]
-                │                              │
-                ▼                              │
-           [SQLite DB] ◄───────────────────────┘
-                                          (향후 API용)
+[PDF] ──► [Python 파싱] ──► [JSON 파일] ──► [migrate_json.py] ──► [SQLite DB]
+                                                                      │
+                                                                      ▼
+                                               [Next.js] ◄───── [DB 로드]
+                                                   │
+                                                   ▼
+                                              [브라우저]
 
-현재 상태:
-- Part 9: JSON 직접 사용 (완전)
-- Part 10-12: JSON 직접 사용 (Article 마커 방식)
-- DB: 검색/검증용 (웹앱은 JSON 우선 사용)
+⚠️ 현재 상태 (2026-01-20 업데이트):
+- 웹앱은 **SQLite DB (data/obc.db)**에서 데이터 로드
+- JSON 파일은 파싱 결과 저장 / DB 마이그레이션 원본 용도
+- 데이터 수정 시 **반드시 DB 수정** (JSON만 수정하면 반영 안 됨!)
 ```
+
+### ⚠️ 흔한 실수: JSON vs DB
+
+| 작업 | 잘못된 방법 | 올바른 방법 |
+|------|------------|------------|
+| 데이터 수정 | `part8.json` 편집 | `obc.db` UPDATE |
+| 변경 확인 | JSON 파일 열기 | 브라우저 콘솔 로그 확인 |
+| 디버깅 | JSON diff | DB 쿼리 + Playwright |
+
+**참고**: `docs/checklist/MISTAKES_LOG.md` #16
 
 ---
 
@@ -382,8 +392,21 @@ Part 10-12는 분량이 적어서 (4-5 sections씩) 마커 방식으로 충분�
 
 ### Q: JSON과 DB 둘 다 왜 필요한가요?
 
-- **JSON**: 웹앱에서 직접 로드 (빠름, 단순)
-- **DB**: 복잡한 검색, 통계, 검증용 (향후 API 확장)
+⚠️ **중요**: 현재 웹앱은 **DB에서 데이터를 로드**합니다! (JSON 아님)
+
+- **DB (obc.db)**: 웹앱의 **실제 데이터 소스** - `@/lib/db`의 `getNodeById()` 사용
+- **JSON**: 초기 파싱 결과 저장용, DB 마이그레이션 원본
+
+**데이터 수정 시 반드시 DB 수정!**
+```python
+import sqlite3
+conn = sqlite3.connect('data/obc.db')
+cur = conn.cursor()
+cur.execute("UPDATE nodes SET content = ? WHERE id = '8.6.2'", (fixed_content,))
+conn.commit()
+```
+
+JSON만 수정하면 웹에 반영 안 됨! (실수 기록 #16 참고)
 
 ### Q: 새 Part를 추가하려면?
 

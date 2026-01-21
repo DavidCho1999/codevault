@@ -2,6 +2,30 @@
 
 새로운 Part(예: Part 7, 8, 10, 12)를 OBC 데이터베이스에 추가하는 워크플로우
 
+## 🚨 CRITICAL: 데이터 소스 = SQLite DB (JSON 아님!)
+
+**웹앱은 `data/obc.db`에서 데이터를 로드합니다.**
+- JSON 파일 (`codevault/public/data/*.json`) = 파싱 결과 저장용
+- SQLite DB (`data/obc.db`) = **웹앱의 실제 데이터 소스**
+
+```
+[JSON 파일] → [migrate_json.py] → [SQLite DB] → [웹앱]
+```
+
+⚠️ **JSON만 수정하면 웹에 반영 안 됨!**
+데이터 수정 시 반드시 DB 수정:
+```python
+import sqlite3
+conn = sqlite3.connect('data/obc.db')
+cur = conn.cursor()
+cur.execute("UPDATE nodes SET content = ? WHERE id = 'X.X.X'", (fixed_content,))
+conn.commit()
+```
+
+**참고**: `docs/checklist/MISTAKES_LOG.md` #16
+
+---
+
 ## ⚠️ Division 규칙
 
 **Division B만 파싱** (Division A 무시)
@@ -281,6 +305,29 @@ python scripts/validate_part.py obc.db --db --part $ARGUMENTS
 
 ## 문제 발생 시
 
+### 🚨 JSON 수정했는데 반영 안 됨 - 가장 흔한 실수!
+
+**증상**: JSON 파일 수정했는데 웹에서 변경 안 됨
+**원인**: 웹앱은 SQLite DB에서 데이터 로드 (JSON 아님!)
+
+**해결**:
+```python
+import sqlite3
+conn = sqlite3.connect('data/obc.db')
+cur = conn.cursor()
+cur.execute("UPDATE nodes SET content = ? WHERE id = 'X.X.X'", (fixed_content,))
+conn.commit()
+```
+
+**디버깅 팁**:
+```typescript
+// SectionView.tsx에 임시 로그 추가
+console.log('[DEBUG] 실제 데이터:', lines[i].substring(0, 50));
+```
+Playwright로 브라우저 콘솔 확인 → 실제 로드된 데이터 형식 파악
+
+---
+
 ### 정규화 누락 (RAW_MARKDOWN_CONTENT) ⚠️ 흔한 실수
 - 증상: 웹에서 `**bold**`, `*italic*`, `- list` 마커가 그대로 보임
 - 원인: Step 3 정규화 단계 건너뜀
@@ -300,6 +347,39 @@ python scripts/validate_part.py obc.db --db --part $ARGUMENTS
   1. 변환 스크립트에서 마크다운 테이블 → HTML 변환
   2. 또는 `part{N}_tables.json`에 테이블 데이터 추가
 - 예방: Part 9 테이블 형식 참고 (flat text 또는 HTML)
+
+### ⚠️ Multi-Page Table 데이터 손실 (Critical)
+- **증상**: 긴 테이블이 여러 페이지에 걸쳐 있을 때, 첫 페이지 내용만 중복 추출됨
+- **예시**: Table 8.2.1.3.-B
+  - PDF: 4페이지에 걸쳐 Airports → Warehouse
+  - JSON: 첫 페이지(Airports → Take-out)만 3번 중복
+  - **Cafeteria, Theatres, Veterinary 등 데이터 완전 누락!**
+- **원인**:
+  1. PDF에서 긴 테이블은 각 페이지마다 헤더가 반복됨
+  2. Marker/파서가 각 페이지를 별도 테이블로 인식
+  3. 하지만 실제 테이블 내용 대신 첫 페이지 내용만 반복 추출
+- **해결 (TODO)**:
+  1. **Vision API 재파싱 시**: multi-page table merge 로직 필수
+  2. 같은 테이블 ID가 연속 페이지에 있으면 → 데이터 병합
+  3. 수동 검증: PDF 원본과 JSON row 개수 비교
+- **검증 방법**:
+  ```bash
+  # PDF에서 테이블이 몇 페이지에 있는지 확인
+  python3 -c "
+  import fitz
+  doc = fitz.open('source/.../301880.pdf')
+  for i, page in enumerate(doc):
+      if 'Table X.X.X.X' in page.get_text():
+          print(f'Page {i+1}')
+  "
+
+  # JSON에서 테이블 row 개수 확인
+  # PDF row 개수와 비교!
+  ```
+- **영향받는 테이블 특징**:
+  - 3페이지 이상에 걸친 긴 테이블
+  - "Establishments", "Requirements" 같은 긴 목록
+  - Part 8, 9, 11에 많음
 
 ### [SUBSECTION:...] 마커 표시 ✅ 해결됨
 - 증상: `[SUBSECTION:8.1.2:Application]`이 텍스트로 표시됨
@@ -517,3 +597,53 @@ where,
 - `where,` (쉼표 포함) 형태도 인식됨
 - 변수 정의는 `- A = ...` 또는 `A = ...` 둘 다 OK
 - `(See Note...)` 패턴은 where 블록 안에서 인식
+
+### ⚠️ Marker 출력 Part별 차이 - 수식 변환 필수!
+
+**문제:** Marker PDF 파서는 Part마다 다른 형식으로 수식을 출력함
+
+| Part | Marker 출력 (원본) | 표준 형식 (변환 후) |
+|------|-------------------|-------------------|
+| Part 7 | `where:` + `Q is the flow rate...` | `where,` + `- Q = the flow rate...` |
+| Part 8 | `where,` + `- A = the area...` | 그대로 사용 |
+| Part 9 | `where` + `S = the specified...` | `where,` + `- S = the specified...` |
+
+**파싱 스크립트에 필수 변환 함수:**
+```python
+def convert_where_block_format(content: str) -> str:
+    """수식 where 블록을 표준 형식으로 변환"""
+    # 1. "where:" 또는 "where" → "where,"
+    content = re.sub(r'^where\s*:?\s*$', 'where,', content, flags=re.MULTILINE)
+
+    # 2. 변수 정의 변환: "X is the..." → "- X = the..."
+    # where, 블록 내에서만 적용
+    def convert_variable_definitions(m):
+        where_marker = m.group(1)
+        definitions = m.group(2)
+        lines = definitions.split('\n')
+        converted = []
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith('- '):
+                converted.append(line)  # 이미 변환됨
+            elif not stripped:
+                converted.append(line)  # 빈 줄
+            else:
+                # "Q is the..." → "- Q = the..."
+                var_match = re.match(r'^([A-Za-zγ]{1,3})\s+(?:is|=)\s+(.+)$', stripped)
+                if var_match:
+                    converted.append(f'- {var_match.group(1)} = {var_match.group(2)}')
+                else:
+                    converted.append(line)
+        return where_marker + '\n' + '\n'.join(converted)
+
+    pattern = r'(where,)\n((?:(?!\n\n\n|\(\d+\)|\[ARTICLE:).)*)'
+    content = re.sub(pattern, convert_variable_definitions, content, flags=re.DOTALL)
+    return content
+```
+
+**체크리스트 (새 Part 파싱 시):**
+- [ ] Marker 출력에서 `where` 형식 확인
+- [ ] `where:` → `where,` 변환 적용
+- [ ] 변수 정의 `X is the...` → `- X = the...` 변환 적용
+- [ ] Part 8 수식 렌더링과 동일한지 비교 검증

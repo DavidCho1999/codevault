@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode in Tailwind v4 */
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
   --sidebar-width: 280px;
   --header-height: 56px;
@@ -16,20 +13,6 @@
   --accent: #f0f9ff;
   --card: #ffffff;
   --card-foreground: #1a1a1a;
-}
-
-/* Dark Mode */
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --muted: #1a1a1a;
-  --muted-foreground: #a3a3a3;
-  --border: #262626;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --accent: #1e3a5f;
-  --card: #141414;
-  --card-foreground: #ededed;
 }
 
 @theme inline {
@@ -168,8 +151,7 @@ h5.table-notes-title,
 }
 
 /* Notes to Table 내부 테이블 스타일 - 심플 */
-.bg-amber-50\/50 table,
-.dark .bg-amber-900\/20 table {
+.bg-amber-50\/50 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.7rem;
@@ -196,67 +178,6 @@ h5.table-notes-title,
 .bg-amber-50\/50 thead th {
   font-weight: 600;
   color: #92400e;
-}
-
-/* Dark Mode - Scrollbar */
-.dark ::-webkit-scrollbar-thumb {
-  background: #404040;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #525252;
-}
-
-/* Dark Mode - Table Styles */
-.dark .obc-table-container {
-  background-color: #141414;
-  border-color: #262626;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-
-.dark .obc-table-container th,
-.dark .obc-table-container td {
-  border-color: #ffffff;
-}
-
-.dark .obc-table-container thead {
-  background-color: #1f2937;
-}
-
-.dark .obc-table-container thead th {
-  color: #e5e7eb;
-}
-
-.dark .obc-table-container tbody tr:nth-child(even) {
-  background-color: #111827;
-}
-
-.dark .obc-table-container tbody tr:nth-child(odd) {
-  background-color: #0a0a0a;
-}
-
-.dark .obc-table-container tbody th {
-  background-color: #111827;
-  color: #e5e7eb;
-}
-
-.dark .obc-table-container tbody td {
-  color: #d1d5db;
-}
-
-/* Dark Mode - Table Notes */
-.dark .obc-table-container .table-notes {
-  background-color: #292524;
-  border-left-color: #d97706;
-}
-
-.dark .obc-table-container .table-notes p:first-child {
-  color: #fbbf24;
-}
-
-.dark .obc-table-container .table-notes p:not(:first-child) {
-  color: #fcd34d;
 }
 
 /* ============================================
@@ -315,32 +236,6 @@ h5.table-notes-title,
   color: #374151;
 }
 
-/* Dark Mode - Equation Styles */
-.dark .obc-equation {
-  background-color: #262626;
-  border-left-color: #a3a3a3;
-  color: #e5e5e5;
-}
-
-.dark .obc-equation-inline {
-  background-color: #1e293b;
-  color: #e2e8f0;
-}
-
-.dark .obc-where-block {
-  background-color: #1e293b;
-  border-left-color: #64748b;
-}
-
-.dark .obc-where-block .where-title {
-  color: #94a3b8;
-}
-
-.dark .obc-where-block .where-var-name {
-  color: #d1d5db;
-  font-weight: 600;
-}
-
 /* Formula Block - 수식 + where를 하나로 묶는 컨테이너 (컴팩트) */
 .obc-formula-block {
   margin: 0.75rem 0;
@@ -385,24 +280,6 @@ h5.table-notes-title,
   font-style: italic;
   font-weight: 600;
   color: #4f46e5;
-}
-
-/* Dark Mode - Formula Block */
-.dark .obc-formula-block {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-color: #334155;
-}
-
-.dark .obc-formula-block .obc-equation {
-  color: #e5e5e5;
-}
-
-.dark .obc-formula-block .obc-where-section .where-title {
-  color: #94a3b8;
-}
-
-.dark .obc-formula-block .obc-where-section .where-var-name {
-  color: #a5b4fc;
 }
 
 /* ============================================

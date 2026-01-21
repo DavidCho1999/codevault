@@ -619,6 +619,90 @@ python pipeline/update_partN_db.py
   2. "and", "or" 같은 연결어가 포함된 복잡한 참조 고려
   3. 엣지 케이스: `(See Note A-9.1.2.3.(1), (2) and (3))`
 
+### 2026-01-20: Multi-Page Table 파싱 시 데이터 손실 (Critical)
+- **문제**: 여러 페이지에 걸친 긴 테이블 파싱 시, 첫 페이지 내용만 반복 추출되고 나머지 페이지 데이터 누락
+- **증상**: Table 8.2.1.3.-B
+  - PDF: 4페이지 (683-686)에 걸쳐 Airports → Warehouse (약 80+ rows)
+  - JSON: 첫 페이지 내용(Airports → Take-out)만 **3번 중복**
+  - Cafeteria, Swimming, Theatres, Veterinary, Warehouse 등 **완전 누락**
+- **원인**:
+  1. PDF에서 긴 테이블은 각 페이지마다 헤더("Table X.X.X.X")가 반복됨
+  2. Marker/파서가 각 페이지를 별도 테이블로 인식
+  3. 하지만 각 페이지의 실제 테이블 데이터 대신 **첫 페이지 데이터만 반복 추출**
+- **영향**: 데이터 무결성 심각하게 손상 (절반 이상 누락)
+- **해결 방향**:
+  1. Vision API 재파싱 시 multi-page table merge 로직 필수
+  2. 같은 테이블 ID가 연속 페이지에 있으면 → 데이터 병합
+  3. 파싱 후 검증: PDF row 개수 vs JSON row 개수 비교
+- **예방책**:
+  1. 3페이지 이상에 걸친 테이블은 수동 검토 필수
+  2. Part 8, 9, 11의 긴 목록 테이블 주의
+  3. `add-part.md`의 "Multi-Page Table 데이터 손실" 섹션 참고
+
+### 2026-01-20: JSON 파일 수정했는데 변경이 반영 안 됨 (Critical)
+- **문제**: `codevault/public/data/part8.json` 수정했는데 웹에서 변경 안 됨
+- **증상**: JSON에서 대시(`-`) 제거했는데, 브라우저 콘솔에는 여전히 대시 있는 데이터 출력
+- **원인**: **앱이 JSON 파일이 아닌 SQLite DB(`data/obc.db`)에서 데이터 로드!**
+  ```typescript
+  // codevault/src/app/code/[...section]/page.tsx
+  import { getNodeById, getChildNodes } from '@/lib/db';
+  const node = getNodeById(sectionId);  // ← DB에서 로드
+  ```
+- **해결**: DB 직접 수정
+  ```python
+  import sqlite3
+  conn = sqlite3.connect('data/obc.db')
+  cur = conn.cursor()
+  cur.execute("UPDATE nodes SET content = ? WHERE id = '8.6.2'", (fixed_content,))
+  conn.commit()
+  ```
+- **예방책**:
+  1. 데이터 수정 전 **실제 데이터 소스 확인** 필수
+  2. `@/lib/db`가 import되어 있으면 → DB가 데이터 소스
+  3. JSON 수정 후 변경 안 되면 → DB 확인
+  4. 디버그 콘솔 로그로 **실제 로드되는 데이터** 확인
+
+### 2026-01-21: Part별 수식 where 블록 형식 불일치 (Critical)
+- **문제**: Part 7 파싱 시 수식의 `where` 블록이 표준 형식(Part 8)과 다르게 출력됨
+- **증상**: Part 7의 수식 렌더링이 Part 8과 다름
+  ```
+  Part 7 (잘못된 형식):
+  $Q = ...$
+  where:
+  Q is the flow rate to a grease interceptor in L/s.
+  V is the volume of the fixture in L.
+
+  Part 8 (표준 형식 - add-part.md 참조):
+  $A = QT/850$
+  where,
+  - A = the area of contact in square metres...
+  - Q = the total daily design flow in litres, and
+  ```
+- **원인**:
+  1. Marker PDF 파서가 Part마다 **다른 형식**으로 출력함
+  2. Part 7: `where:` + `Q is the flow rate...` (콜론 + "is" 형식)
+  3. Part 8: `where,` + `- Q = the flow rate...` (쉼표 + 대시 + "=" 형식)
+  4. `add-part.md`에 Part 8 형식이 표준으로 명시되어 있었지만, **Part 7 파싱 스크립트에서 변환 로직 누락**
+- **해결**: `parse_marker_part7.py`에 `convert_where_block_format()` 함수 추가
+  ```python
+  def convert_where_block_format(content: str) -> str:
+      # 1. "where:" → "where,"
+      content = re.sub(r'^where\s*:\s*$', 'where,', content, flags=re.MULTILINE)
+
+      # 2. 변수 정의 변환: "Q is the..." → "- Q = the..."
+      var_match = re.match(r'^([A-Za-zγ]{1,3})\s+(?:is|=)\s+(.+)$', stripped)
+      if var_match:
+          converted = f'- {var_name} = {description}'
+  ```
+- **예방책**:
+  1. 새 Part 파싱 시 **`add-part.md`의 표준 형식** 반드시 확인
+  2. 수식이 포함된 섹션은 **Part 8 형식과 비교** 검증
+  3. Marker 출력이 Part마다 다를 수 있음 인지 → **Part별 변환 로직** 필요
+  4. 파싱 스크립트 작성 시 체크리스트:
+     - [ ] `where:` → `where,` 변환
+     - [ ] 변수 정의 `X is the...` → `- X = the...` 변환
+     - [ ] Notes 항목 대시 추가 `(1)` → `- (1)`
+
 ---
 
 ## 참고

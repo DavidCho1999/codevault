@@ -67,31 +67,31 @@ export default function Part10TestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <header className="mb-8 pb-4 border-b-2 border-gray-300 dark:border-gray-600">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <header className="mb-8 pb-4 border-b-2 border-gray-300">
+          <h1 className="text-3xl font-bold text-gray-900">
             Part {data.id}: {data.title}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
+          <p className="text-gray-600 mt-2">
             Marker PDF 추출 결과 - 마크다운 렌더링 테스트
           </p>
         </header>
 
         {/* Table of Contents */}
-        <nav className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <h2 className="font-bold mb-2 text-gray-900 dark:text-gray-100">목차</h2>
+        <nav className="mb-8 p-4 bg-gray-50 rounded-lg">
+          <h2 className="font-bold mb-2 text-gray-900">목차</h2>
           <ul className="space-y-1 text-sm">
             {data.sections.map((section) => (
               <li key={section.id}>
-                <a href={`#section-${section.id}`} className="text-gray-900 dark:text-gray-100 font-medium underline decoration-2 hover:text-gray-700 dark:hover:text-gray-200">
+                <a href={`#section-${section.id}`} className="text-gray-900 font-medium underline decoration-2 hover:text-gray-700">
                   Section {section.id}: {section.title}
                 </a>
                 <ul className="ml-4 mt-1 space-y-1">
                   {section.subsections.map((sub) => (
                     <li key={sub.id}>
-                      <a href={`#sub-${sub.id}`} className="text-gray-600 dark:text-gray-400 hover:underline">
+                      <a href={`#sub-${sub.id}`} className="text-gray-600 hover:underline">
                         {sub.id} {sub.title}
                       </a>
                     </li>
@@ -105,18 +105,18 @@ export default function Part10TestPage() {
         {/* Content */}
         {data.sections.map((section) => (
           <section key={section.id} id={`section-${section.id}`} className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b-2 border-gray-300 dark:border-gray-600">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300">
               Section {section.id}. {section.title}
             </h2>
 
             {section.subsections.map((sub) => (
               <div key={sub.id} id={`sub-${sub.id}`} className="mb-8 ml-4">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">
                   {sub.id}. {sub.title}
                 </h3>
 
                 {sub.content && (
-                  <div className="prose prose-gray dark:prose-invert max-w-none mb-4">
+                  <div className="prose prose-gray max-w-none mb-4">
                     <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeRaw, rehypeKatex]}>
                       {sub.content}
                     </ReactMarkdown>
@@ -124,11 +124,11 @@ export default function Part10TestPage() {
                 )}
 
                 {sub.articles.map((article) => (
-                  <div key={article.id} id={`art-${article.id}`} className="mb-6 ml-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      <span className="font-mono text-gray-900 dark:text-gray-100 font-semibold">{article.id}.</span> {article.title}
+                  <div key={article.id} id={`art-${article.id}`} className="mb-6 ml-4 p-4 bg-gray-50 rounded-lg">
+                    <h4 className="text-lg font-medium text-gray-700 mb-2">
+                      <span className="font-mono text-gray-900 font-semibold">{article.id}.</span> {article.title}
                     </h4>
-                    <div className="prose prose-sm prose-gray dark:prose-invert max-w-none prose-p:my-2 prose-li:my-1">
+                    <div className="prose prose-sm prose-gray max-w-none prose-p:my-2 prose-li:my-1">
                       <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeRaw, rehypeKatex]}>
                         {article.content}
                       </ReactMarkdown>

@@ -2,7 +2,7 @@
 
 > PDF 파싱 및 검증 작업 중 발생한 실수와 해결 방법
 >
-> 마지막 업데이트: 2026-01-18
+> 마지막 업데이트: 2026-01-20
 
 ---
 
@@ -22,6 +22,7 @@
 | 10 | 테이블 | HTML 태그 이스케이프 | 유니코드 사용 |
 | 14 | 렌더링 | 수식/변수 줄바꿈 합쳐짐 | `[a-zγ]{1,3}\s*=` 패턴 추가 |
 | 15 | 렌더링 | where 블록 조기 종료 | 종료 조건 구체화 |
+| 16 | 데이터 | **JSON 수정이 반영 안 됨** | **DB가 실제 소스!** |
 
 ---
 
@@ -253,6 +254,41 @@ if (varLine.match(/^\(\d+\)/) ||      // (1), (2)
 
 ---
 
+### #16: JSON 수정했는데 웹에 반영 안 됨 - Critical (2026-01-20)
+
+**문제**: `codevault/public/data/part8.json` 수정했는데 웹에서 변경 안 됨
+**증상**: JSON에서 대시(`-`) 제거했는데, 브라우저 콘솔에는 여전히 대시 있는 데이터 출력
+**원인**: **앱이 JSON 파일이 아닌 SQLite DB(`data/obc.db`)에서 데이터 로드!**
+```typescript
+// codevault/src/app/code/[...section]/page.tsx
+import { getNodeById, getChildNodes } from '@/lib/db';
+const node = getNodeById(sectionId);  // ← DB에서 로드
+```
+
+**해결**: DB 직접 수정
+```python
+import sqlite3
+conn = sqlite3.connect('data/obc.db')
+cur = conn.cursor()
+cur.execute("UPDATE nodes SET content = ? WHERE id = '8.6.2'", (fixed_content,))
+conn.commit()
+```
+
+**예방**:
+1. 데이터 수정 전 **실제 데이터 소스 확인** 필수
+2. `@/lib/db`가 import되어 있으면 → DB가 데이터 소스
+3. JSON 수정 후 변경 안 되면 → DB 확인
+4. 디버그 콘솔 로그로 **실제 로드되는 데이터** 확인
+
+**디버깅 팁**:
+```typescript
+// SectionView.tsx에 임시 로그 추가
+console.log('[DEBUG] 데이터:', lines[i].substring(0, 50));
+```
+Playwright로 브라우저 콘솔 확인 → 실제 로드된 데이터 형식 파악
+
+---
+
 ## 예방 체크리스트
 
 ```
@@ -263,4 +299,6 @@ if (varLine.match(/^\(\d+\)/) ||      // (1), (2)
 [ ] 병합 구조 (rowspan/colspan) PDF와 비교
 [ ] 수식 렌더링 시 "where" 블록이 별도로 표시되는지 확인
 [ ] where 블록 검증 시 모든 변수 정의가 블록 안에 포함되는지 확인
+[ ] ⚠️ 데이터 수정 전 실제 소스 확인 (JSON vs DB)
+[ ] ⚠️ 변경 후 브라우저 콘솔로 실제 데이터 확인
 ```

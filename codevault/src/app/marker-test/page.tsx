@@ -33,18 +33,18 @@ export default function MarkerTestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="max-w-4xl mx-auto">
-        <header className="mb-8 pb-4 border-b border-gray-200 dark:border-gray-700">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <header className="mb-8 pb-4 border-b border-gray-200">
+          <h1 className="text-3xl font-bold text-gray-900">
             Marker PDF Test - Section 9.4
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
+          <p className="text-gray-600 mt-2">
             Marker로 추출한 9.4 Structural Requirements 섹션
           </p>
         </header>
 
-        <article className="prose prose-gray dark:prose-invert max-w-none prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-100 dark:prose-th:bg-gray-800 prose-td:border prose-td:border-gray-300 prose-td:p-2">
+        <article className="prose prose-gray max-w-none prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-100 prose-td:border prose-td:border-gray-300 prose-td:p-2">
           <ReactMarkdown
             remarkPlugins={[remarkMath]}
             rehypePlugins={[rehypeKatex]}

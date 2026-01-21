@@ -76,33 +76,33 @@ function CopyableSection({
   return (
     <div
       id={id}
-      className={`group relative transition-colors duration-200 rounded-lg -mx-3 px-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 ${className}`}
+      className={`group relative transition-colors duration-200 rounded-lg -mx-3 px-3 hover:bg-gray-50 ${className}`}
     >
       {children}
       {/* Floating Action Buttons - 섹션 위에 표시 */}
-      <div className="absolute right-0 -top-8 flex items-center gap-0.5 p-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
+      <div className="absolute right-0 -top-8 flex items-center gap-0.5 p-1 rounded-lg border border-gray-200 bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
         {/* 텍스트 복사 */}
         <button
           onClick={handleCopyText}
-          className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          className="p-1.5 hover:bg-gray-100 rounded-md transition-colors"
           title="텍스트 복사"
         >
           {copiedText ? (
             <span className="text-green-600"><CheckIcon /></span>
           ) : (
-            <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><CopyIcon /></span>
+            <span className="text-gray-500 hover:text-gray-700"><CopyIcon /></span>
           )}
         </button>
         {/* 링크 복사 */}
         <button
           onClick={handleCopyLink}
-          className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          className="p-1.5 hover:bg-gray-100 rounded-md transition-colors"
           title="링크 복사"
         >
           {copiedLink ? (
             <span className="text-green-600"><CheckIcon /></span>
           ) : (
-            <span className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"><LinkIcon /></span>
+            <span className="text-gray-500 hover:text-gray-700"><LinkIcon /></span>
           )}
         </button>
       </div>
@@ -152,8 +152,8 @@ function TableHTML({ tableId, subtitle, dbTables }: { tableId: string; subtitle?
 
   if (!html) {
     return (
-      <div className="my-6 p-4 border border-yellow-300 dark:border-yellow-600 bg-yellow-50 dark:bg-yellow-900/30 rounded">
-        <p className="text-yellow-800 dark:text-yellow-200">Table not found: {tableId}</p>
+      <div className="my-6 p-4 border border-yellow-300 bg-yellow-50 rounded">
+        <p className="text-yellow-800">Table not found: {tableId}</p>
       </div>
     );
   }
@@ -161,8 +161,8 @@ function TableHTML({ tableId, subtitle, dbTables }: { tableId: string; subtitle?
   return (
     <div className="my-6 mb-2 overflow-x-auto">
       <div className="mb-3 text-center">
-        <p className="font-bold text-gray-900 dark:text-gray-100">{title}</p>
-        {subtitle && <p className="text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>}
+        <p className="font-bold text-gray-900">{title}</p>
+        {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
       </div>
       <div
         className="obc-table-container"
@@ -307,9 +307,9 @@ export default function SectionView({ id, title, content, highlight, equations, 
         const sectionId = sectionMarkerMatch[1];
         const sectionTitle = sectionMarkerMatch[2];
         result.push(
-          <div key={`section-${sectionId}`} id={sectionId} className="mt-12 mb-6 scroll-mt-20 border-b-2 border-gray-300 dark:border-gray-600 pb-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              <span className="text-gray-900 dark:text-gray-100 font-bold">{sectionId}</span>
+          <div key={`section-${sectionId}`} id={sectionId} className="mt-12 mb-6 scroll-mt-20 border-b-2 border-gray-300 pb-4">
+            <h2 className="text-2xl font-bold text-gray-900">
+              <span className="text-gray-900 font-bold">{sectionId}</span>
               {sectionTitle && <span className="ml-3">{sectionTitle}</span>}
             </h2>
           </div>
@@ -325,8 +325,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
         const subsectionTitle = subsectionMarkerMatch[2];
         result.push(
           <div key={`subsection-${subsectionId}`} id={subsectionId} className="mt-10 mb-4 scroll-mt-20 ml-4">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              <span className="text-gray-900 dark:text-gray-100 font-bold">{subsectionId}</span>
+            <h2 className="text-xl font-bold text-gray-900">
+              <span className="text-gray-900 font-bold">{subsectionId}</span>
               {subsectionTitle && <span className="ml-3">{subsectionTitle}</span>}
             </h2>
           </div>
@@ -342,8 +342,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
         const articleTitle = articleMarkerMatch[2];
         result.push(
           <div key={`article-${articleId}`} id={articleId} className="mt-4 mb-0 scroll-mt-20 ml-8">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-              <span className="text-gray-900 dark:text-gray-100 font-semibold">{articleId}</span>
+            <h3 className="text-lg font-semibold text-gray-900">
+              <span className="text-gray-900 font-semibold">{articleId}</span>
               {articleTitle && <span className="ml-2">{articleTitle}</span>}
             </h3>
           </div>
@@ -462,9 +462,9 @@ export default function SectionView({ id, title, content, highlight, equations, 
         // 1. 헤더 추가 - 3줄 형식 (Table번호 / Caption / Forming Part)
         tableElements.push(
           <div key="header" className="text-center mb-4">
-            <p className="text-sm font-bold text-black dark:text-gray-200">Table {tableId}</p>
-            {caption && <p className="text-sm font-bold text-black dark:text-gray-200">{caption}</p>}
-            {formingPart && <p className="text-xs text-gray-600 dark:text-gray-400">{formingPart}</p>}
+            <p className="text-sm font-bold text-black">Table {tableId}</p>
+            {caption && <p className="text-sm font-bold text-black">{caption}</p>}
+            {formingPart && <p className="text-xs text-gray-600">{formingPart}</p>}
           </div>
         );
 
@@ -575,7 +575,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
       const formingPartMatch = trimmed.match(/^Forming Part of\s+(.+)$/);
       if (formingPartMatch) {
         result.push(
-          <p key={`forming-${i}`} className="text-sm text-gray-500 dark:text-gray-400 my-2">
+          <p key={`forming-${i}`} className="text-sm text-gray-500 my-2">
             {trimmed}
           </p>
         );
@@ -681,8 +681,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
             }
 
             articleContent.push(
-              <div key={`clause-${i}`} className="my-2 ml-6 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-                <span className="shrink-0 text-black dark:text-white">({clauseNum})</span>
+              <div key={`clause-${i}`} className="my-2 ml-6 flex gap-2 text-sm leading-relaxed text-gray-800">
+                <span className="shrink-0 text-black">({clauseNum})</span>
                 <span><TextRenderer text={clauseText} /></span>
               </div>
             );
@@ -693,8 +693,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
           const subclauseMatch = nextLine.match(/^\(([a-z])\)\s*(.*)$/);
           if (subclauseMatch) {
             articleContent.push(
-              <div key={`subclause-${i}`} className="my-2 ml-6 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-                <span className="shrink-0 text-black dark:text-white">({subclauseMatch[1]})</span>
+              <div key={`subclause-${i}`} className="my-2 ml-6 flex gap-2 text-sm leading-relaxed text-gray-800">
+                <span className="shrink-0 text-black">({subclauseMatch[1]})</span>
                 <span><TextRenderer text={subclauseMatch[2]} /></span>
               </div>
             );
@@ -706,8 +706,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
           const romanMatch = nextLine.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
           if (romanMatch) {
             articleContent.push(
-              <div key={`roman-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-                <span className="shrink-0 text-black dark:text-white">({romanMatch[1]})</span>
+              <div key={`roman-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800">
+                <span className="shrink-0 text-black">({romanMatch[1]})</span>
                 <span><TextRenderer text={romanMatch[2]} /></span>
               </div>
             );
@@ -719,8 +719,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
           const capitalMatch = nextLine.match(/^(?:-\s*)?\(([A-Z])\)\s*(.*)$/);
           if (capitalMatch) {
             articleContent.push(
-              <div key={`capital-${i}`} className="my-1 ml-18 flex gap-1 text-xs leading-relaxed text-gray-800 dark:text-gray-200">
-                <span className="shrink-0 text-black dark:text-white">({capitalMatch[1]})</span>
+              <div key={`capital-${i}`} className="my-1 ml-18 flex gap-1 text-xs leading-relaxed text-gray-800">
+                <span className="shrink-0 text-black">({capitalMatch[1]})</span>
                 <span><TextRenderer text={capitalMatch[2]} /></span>
               </div>
             );
@@ -780,7 +780,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
                 const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
                 if (seeNoteMatch) {
                   seeNoteContent = (
-                    <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                    <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200">
                       (See Note {seeNoteMatch[1]})
                     </span>
                   );
@@ -855,7 +855,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
               const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
               if (seeNoteMatch) {
                 seeNoteContent = (
-                  <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                  <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200">
                     (See Note {seeNoteMatch[1]})
                   </span>
                 );
@@ -898,7 +898,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
           // 일반 텍스트
           if (nextLine) {
             articleContent.push(
-              <p key={`text-${i}`} className="my-2 text-gray-700 dark:text-gray-300">
+              <p key={`text-${i}`} className="my-2 text-gray-700">
                 <TextRenderer text={nextLine} />
               </p>
             );
@@ -912,8 +912,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
             id={articleId}
             className="mt-6 first:mt-0 py-2 ml-6"
           >
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              <span className="font-mono text-gray-900 dark:text-gray-100 font-semibold mr-2">{articleMatch[1]}</span>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <span className="font-mono text-gray-900 font-semibold mr-2">{articleMatch[1]}</span>
               {articleMatch[2]}
             </h3>
             {articleContent}
@@ -929,10 +929,10 @@ export default function SectionView({ id, title, content, highlight, equations, 
           <CopyableSection
             key={`subsection-block-${i}`}
             id={subsectionId}
-            className="mt-8 first:mt-0 border-t dark:border-gray-700 pt-6"
+            className="mt-8 first:mt-0 border-t pt-6"
           >
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-              <span className="font-mono text-gray-900 dark:text-gray-100 font-bold mr-2">{subsectionMatch[1]}</span>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">
+              <span className="font-mono text-gray-900 font-bold mr-2">{subsectionMatch[1]}</span>
               {subsectionMatch[2]}
             </h2>
           </CopyableSection>
@@ -971,8 +971,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
         }
 
         result.push(
-          <div key={`clause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-            <span className="shrink-0 text-black dark:text-white">({clauseNum})</span>
+          <div key={`clause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800">
+            <span className="shrink-0 text-black">({clauseNum})</span>
             <span><TextRenderer text={clauseText} /></span>
           </div>
         );
@@ -982,8 +982,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
       const subclauseMatch = trimmed.match(/^\(([a-z])\)\s*(.*)$/);
       if (subclauseMatch) {
         result.push(
-          <div key={`subclause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-            <span className="shrink-0 text-black dark:text-white">({subclauseMatch[1]})</span>
+          <div key={`subclause-block-${i}`} className="my-2 ml-12 flex gap-2 text-sm leading-relaxed text-gray-800">
+            <span className="shrink-0 text-black">({subclauseMatch[1]})</span>
             <span><TextRenderer text={subclauseMatch[2]} /></span>
           </div>
         );
@@ -995,8 +995,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
       const romanMatch = trimmed.match(/^(?:-\s*)?\((i{1,3}|iv|v|vi{0,3})\)\s*(.*)$/);
       if (romanMatch) {
         result.push(
-          <div key={`roman-block-${i}`} className="my-2 ml-18 flex gap-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-            <span className="shrink-0 text-black dark:text-white">({romanMatch[1]})</span>
+          <div key={`roman-block-${i}`} className="my-2 ml-18 flex gap-2 text-sm leading-relaxed text-gray-800">
+            <span className="shrink-0 text-black">({romanMatch[1]})</span>
             <span><TextRenderer text={romanMatch[2]} /></span>
           </div>
         );
@@ -1008,8 +1008,8 @@ export default function SectionView({ id, title, content, highlight, equations, 
       const capitalMatch = trimmed.match(/^(?:-\s*)?\(([A-Z])\)\s*(.*)$/);
       if (capitalMatch) {
         result.push(
-          <div key={`capital-block-${i}`} className="my-1 ml-24 flex gap-1 text-xs leading-relaxed text-gray-800 dark:text-gray-200">
-            <span className="shrink-0 text-black dark:text-white">({capitalMatch[1]})</span>
+          <div key={`capital-block-${i}`} className="my-1 ml-24 flex gap-1 text-xs leading-relaxed text-gray-800">
+            <span className="shrink-0 text-black">({capitalMatch[1]})</span>
             <span><TextRenderer text={capitalMatch[2]} /></span>
           </div>
         );
@@ -1027,7 +1027,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         const lastClassName = (lastResult as React.ReactElement<{ className?: string }>)?.props?.className || '';
         if (lastClassName.includes('ml-12') || lastClassName.includes('ml-16') || lastClassName.includes('ml-20')) {
           result.push(
-            <div key={`continuation-${i}`} className="my-2 text-sm leading-relaxed text-gray-800 dark:text-gray-200 ml-12">
+            <div key={`continuation-${i}`} className="my-2 text-sm leading-relaxed text-gray-800 ml-12">
               <TextRenderer text={trimmed} />
             </div>
           );
@@ -1137,7 +1137,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
             const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
             if (seeNoteMatch) {
               seeNoteContent = (
-                <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200">
                   (See Note {seeNoteMatch[1]})
                 </span>
               );
@@ -1211,7 +1211,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
           const seeNoteMatch = varLine.match(/^\(See\s+Note\s+(.+)\)$/i);
           if (seeNoteMatch) {
             seeNoteContent = (
-              <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+              <span key={`see-note-${i}`} className="block text-gray-500 text-xs italic mt-3 pt-2 border-t border-gray-200">
                 (See Note {seeNoteMatch[1]})
               </span>
             );
@@ -1356,7 +1356,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
 
       if (trimmed) {
         result.push(
-          <p key={`text-${i}`} className="my-2 text-gray-700 dark:text-gray-300"><TextRenderer text={trimmed} /></p>
+          <p key={`text-${i}`} className="my-2 text-gray-700"><TextRenderer text={trimmed} /></p>
         );
       }
       i++;
@@ -1370,8 +1370,9 @@ export default function SectionView({ id, title, content, highlight, equations, 
     if (process.env.NODE_ENV !== 'development' || !content) return [];
     const issues: string[] = [];
 
-    // 1. 마크다운 헤딩 잔류 (### Table, ## Section 등)
-    if (/^#{2,4}\s+/m.test(content)) {
+    // 1. 마크다운 헤딩 잔류 (### Section 등, 단 #### Table은 정상 테이블 헤딩이므로 제외)
+    // #### Table X.X.X.X. 형식은 SectionView에서 정상적으로 렌더링됨
+    if (/^#{2,4}\s+(?!Table\s+\d)/m.test(content)) {
       issues.push('RAW_MARKDOWN_HEADING: 마크다운 헤딩(###)이 렌더링 안됨');
     }
 
@@ -1409,6 +1410,51 @@ export default function SectionView({ id, title, content, highlight, equations, 
       issues.push(`TABLE_MISMATCH: 테이블 헤딩 ${tableHeadingMatch.length}개, <table> ${tableTagCount}개`);
     }
 
+    // 6. 깨진 HTML 태그 (table 열고 닫기 불일치)
+    const openTables = (content.match(/<table/gi) || []).length;
+    const closeTables = (content.match(/<\/table>/gi) || []).length;
+    if (openTables !== closeTables) {
+      issues.push(`BROKEN_HTML: <table> ${openTables}개, </table> ${closeTables}개`);
+    }
+
+    // 7. PDF 헤더 유출
+    if (/\d{4}\s+Building Code/.test(content)) {
+      issues.push('PDF_HEADER_LEAK: PDF 헤더가 content에 포함됨');
+    }
+
+    // 8. Raw HTML 태그 잔류 (<sup>, <sub> 등)
+    const rawHtmlMatch = content.match(/<(sup|sub)>[^<]*<\/(sup|sub)>/i);
+    if (rawHtmlMatch) {
+      issues.push(`RAW_HTML_TAG: <${rawHtmlMatch[1]}> 태그 잔류`);
+    }
+
+    // 9. Clause 연속 텍스트 분리
+    if (/\([a-z]\)[^\n]*[,;]\s*\n[a-z]/.test(content)) {
+      issues.push('SEPARATED_CONTINUATION: clause 뒤 연속 텍스트 분리 의심');
+    }
+
+    // 10. (See Note...) 별도 줄
+    if (/\n\s*\(See\s+Note\s+[A-Z]?-?\d/i.test(content)) {
+      issues.push('SEPARATED_SEE_NOTE: (See Note...) 패턴이 별도 줄');
+    }
+
+    // 11. "- (See Note" 대시로 시작하는 분리된 See Note
+    if (/^- \(See Note/m.test(content)) {
+      issues.push('DASH_SEE_NOTE: "- (See Note..." 대시로 시작');
+    }
+
+    // 12. 잘못된 clause 번호: - (0.1), - (1.1) 등
+    const badClauseMatch = content.match(/^- \(\d+\.\d+\)/m);
+    if (badClauseMatch) {
+      issues.push(`BAD_CLAUSE_NUMBER: "${badClauseMatch[0]}" 잘못된 clause 번호`);
+    }
+
+    // 13. 이상한 대시 줄: "- ." 등
+    const orphanDashMatch = content.match(/^- [^(A-Za-z]/m);
+    if (orphanDashMatch) {
+      issues.push(`ORPHAN_DASH_LINE: "${orphanDashMatch[0]}" 이상한 대시 줄`);
+    }
+
     return issues;
   }, [content]);
 
@@ -1417,11 +1463,11 @@ export default function SectionView({ id, title, content, highlight, equations, 
       <article ref={containerRef} className="max-w-[720px]">
         {/* 개발 모드 파싱 이슈 경고 */}
         {parsingIssues.length > 0 && (
-          <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-600 rounded-lg">
-            <p className="font-bold text-red-800 dark:text-red-300 mb-2">
+          <div className="mb-4 p-3 bg-red-100 border border-red-400 rounded-lg">
+            <p className="font-bold text-red-800 mb-2">
               ⚠️ Parsing Issues Detected ({parsingIssues.length})
             </p>
-            <ul className="text-sm text-red-700 dark:text-red-400 list-disc list-inside">
+            <ul className="text-sm text-red-700 list-disc list-inside">
               {parsingIssues.map((issue, idx) => (
                 <li key={idx}>{issue}</li>
               ))}
@@ -1429,17 +1475,17 @@ export default function SectionView({ id, title, content, highlight, equations, 
           </div>
         )}
 
-        <header className="mb-6 pb-4 border-b-2 border-gray-300 dark:border-gray-600">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            <span className="font-mono text-gray-900 dark:text-gray-100 font-bold mr-2">{id}</span>
+        <header className="mb-6 pb-4 border-b-2 border-gray-300">
+          <h1 className="text-2xl font-bold text-gray-900">
+            <span className="font-mono text-gray-900 font-bold mr-2">{id}</span>
             {title}
           </h1>
         </header>
 
         {content ? (
-          <div className="prose prose-gray dark:prose-invert max-w-none">{formattedContent}</div>
+          <div className="prose prose-gray max-w-none">{formattedContent}</div>
         ) : (
-          <p className="text-gray-500 dark:text-gray-400">No content available for this section.</p>
+          <p className="text-gray-500">No content available for this section.</p>
         )}
       </article>
     </HighlightProvider>

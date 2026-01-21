@@ -94,8 +94,10 @@ class ParsingValidator:
 
         self.stats['total_content_length'] += len(content)
 
-        # 1. 마크다운 헤딩 잔류 검사
-        if re.search(r'^#{2,4}\s+', content, re.MULTILINE):
+        # 1. 마크다운 헤딩 잔류 검사 (테이블 헤딩 "#### Table X.X.X.X" 제외)
+        # 테이블 헤딩은 SectionView.tsx에서 정상적으로 렌더링되므로 제외
+        non_table_heading = re.search(r'^#{2,4}\s+(?!Table\s+\d)', content, re.MULTILINE)
+        if non_table_heading:
             self.errors.append(('ERROR', node_id, 'RAW_MARKDOWN_HEADING: ###/##/#### 마크다운 헤딩 잔류'))
 
         # 2. 볼드 마크다운 잔류 검사
@@ -158,6 +160,23 @@ class ParsingValidator:
         see_note_newline = re.search(r'\n\s*\(See\s+Note\s+[A-Z]?-?\d', content, re.IGNORECASE)
         if see_note_newline:
             self.warnings.append(('WARN', node_id, 'SEPARATED_SEE_NOTE: (See Note...) 패턴이 별도 줄 - 앞 clause와 분리 의심'))
+
+        # 12-1. "- (See Note" 패턴 (대시로 시작하는 분리된 See Note)
+        dash_see_note = re.search(r'^- \(See Note', content, re.MULTILINE)
+        if dash_see_note:
+            self.errors.append(('ERROR', node_id, 'DASH_SEE_NOTE: "- (See Note..." 대시로 시작 - 앞 clause와 분리됨'))
+
+        # 12-2. 잘못된 clause 번호: - (0.1), - (1.1), - (2.1) 등 (소수점 포함)
+        # OBC 정상 clause: (1), (2), (a), (b) / 잘못된: (0.1), (1.1), (2.1)
+        bad_clause = re.search(r'^- \(\d+\.\d+\)', content, re.MULTILINE)
+        if bad_clause:
+            self.errors.append(('ERROR', node_id, f'BAD_CLAUSE_NUMBER: "{bad_clause.group()}" 잘못된 clause 번호 (소수점)'))
+
+        # 12-3. 이상한 대시 줄: "- ." 등 (clause가 아닌 대시 줄)
+        orphan_dash = re.search(r'^- [^(A-Za-z]', content, re.MULTILINE)
+        if orphan_dash:
+            snippet = orphan_dash.group()[:20]
+            self.warnings.append(('WARN', node_id, f'ORPHAN_DASH_LINE: "{snippet}" 이상한 대시 줄'))
 
         # 13. 인라인 마크다운 잔류 검사
         # 예: (**4)** 볼드 clause 번호, *header line* 이탤릭 용어
