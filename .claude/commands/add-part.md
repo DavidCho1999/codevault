@@ -402,6 +402,25 @@ Playwright로 브라우저 콘솔 확인 → 실제 로드된 데이터 형식 �
 - 해결: `convert_part10_to_plaintext.py`의 `convert_markdown_table_to_html()` 사용
 - 예방: Step 3에서 테이블 변환 포함 확인
 
+### 🚨 `file:///` 링크가 콘텐츠에 표시됨 (2026-01-21 추가)
+- **증상**: 웹에서 `[3.6.5.8.](file:///C:/Users/NigroJ2/AppData/Local/...)` 같은 링크가 그대로 표시됨
+- **원인**:
+  1. **원본 OBC PDF가 Microsoft Word에서 생성**됨
+  2. Word 문서에는 **섹션 간 내부 하이퍼링크**(cross-reference)가 있었음
+  3. PDF로 내보낼 때 이 링크들이 `file:///C:/Users/NigroJ2/AppData/Local/New%20BDB/...` 형식으로 남아있음
+  4. **Marker PDF 파서가 이 링크를 마크다운 형식으로 보존**: `[텍스트](file:///...)`
+  5. 파싱 스크립트에서 필터링하지 않으면 웹에 그대로 노출됨
+- **해결**: `clean_text()` 함수에 정규식 추가
+  ```python
+  def clean_text(text: str) -> str:
+      # ... 기존 코드 ...
+      # file:/// 링크 제거 (Word 문서 내부 링크) - [text](file:///...) → text
+      text = re.sub(r'\[([^\]]+)\]\(file:///[^)]+\)', r'\1', text)
+      return text.strip()
+  ```
+- **예방**: 새 Part 파싱 스크립트에 `file:///` 필터 기본 포함
+- **발견된 Part**: Part 6 (HVAC) - 6.3.2에서 53개 링크 발견
+
 ### Flat Table (FLAT_TABLE)
 - 원인: PDF 페이지 분리로 테이블 구조 손실
 - 해결: 수동으로 HTML `<table>` 변환 필요

@@ -94,99 +94,114 @@ class ParsingValidator:
 
         self.stats['total_content_length'] += len(content)
 
-        # 1. 마크다운 헤딩 잔류 검사 (테이블 헤딩 "#### Table X.X.X.X" 제외)
-        # 테이블 헤딩은 SectionView.tsx에서 정상적으로 렌더링되므로 제외
+        # 1. 마크다운 헤딩 검사 (테이블 헤딩 제외)
         non_table_heading = re.search(r'^#{2,4}\s+(?!Table\s+\d)', content, re.MULTILINE)
         if non_table_heading:
-            self.errors.append(('ERROR', node_id, 'RAW_MARKDOWN_HEADING: ###/##/#### 마크다운 헤딩 잔류'))
+            self.errors.append(('ERROR', node_id, 'RAW_MARKDOWN_HEADING: 마크다운 헤딩 발견'))
 
-        # 2. 볼드 마크다운 잔류 검사
+        # 2. 볼드 마크다운 검사
         if re.search(r'^\*\*[A-Z].*\*\*$', content, re.MULTILINE):
-            self.errors.append(('ERROR', node_id, 'RAW_BOLD: **볼드** 마크다운 잔류'))
+            self.errors.append(('ERROR', node_id, 'RAW_BOLD: **볼드** 발견'))
 
-        # 3. 이탤릭 마크다운 잔류 검사 (볼드 제외)
+        # 3. 이탤릭 마크다운 검사 (볼드 제외)
         if re.search(r'^\*[A-Z].*[^*]\*$', content, re.MULTILINE):
             if not re.search(r'^\*\*', content, re.MULTILINE):
-                self.warnings.append(('WARN', node_id, 'RAW_ITALIC: *이탤릭* 마크다운 잔류 가능성'))
+                self.warnings.append(('WARN', node_id, 'RAW_ITALIC: *이탤릭* 발견'))
 
-        # 4. Flat table 패턴 검사 (C.A. Number)
+        # 4. Flat table 검사 (C.A. Number)
         if re.search(r'C\.A\.\s*Number.*Division B.*Compliance', content, re.IGNORECASE):
             if not re.search(r'<table[\s>]', content, re.IGNORECASE):
-                self.errors.append(('ERROR', node_id, 'FLAT_TABLE: C.A. Number 테이블이 <table>로 변환 안됨'))
+                self.errors.append(('ERROR', node_id, 'FLAT_TABLE: C.A. Number 테이블 미변환'))
 
-        # 5. H.I. 테이블 패턴 검사
+        # 5. H.I. 테이블 검사
         if re.search(r'(?:Small|Medium|Large)\s+(?:Small|Medium|Large)\s+\d', content):
             if not re.search(r'<table[\s>]', content, re.IGNORECASE):
-                self.warnings.append(('WARN', node_id, 'POSSIBLE_FLAT_HI_TABLE: H.I. 테이블 flat text 가능성'))
+                self.warnings.append(('WARN', node_id, 'FLAT_HI_TABLE: H.I. 테이블 flat text'))
 
-        # 6. 테이블 헤딩 vs <table> 태그 불일치 검사
+        # 6. 테이블 헤딩 vs <table> 불일치 검사
         table_headings = re.findall(r'Table\s+\d+\.\d+\.\d+\.?\d*-[A-Z]', content)
         table_tags = re.findall(r'<table', content, re.IGNORECASE)
         if len(table_headings) > len(table_tags) + 2:
             self.warnings.append(('WARN', node_id,
-                f'TABLE_MISMATCH: 테이블 헤딩 {len(table_headings)}개, <table> {len(table_tags)}개'))
+                f'TABLE_MISMATCH: 헤딩 {len(table_headings)}개, <table> {len(table_tags)}개'))
 
-        # 7. 짧은 content 검사 (Subsection인데 너무 짧으면)
+        # 7. 짧은 content 검사
         parts = node_id.split('.')
         if len(parts) == 3 and len(content) < 100:  # Subsection level
-            self.warnings.append(('WARN', node_id, f'SHORT_CONTENT: Subsection인데 {len(content)}자만 있음'))
+            self.warnings.append(('WARN', node_id, f'SHORT_CONTENT: {len(content)}자'))
 
         # 8. 깨진 HTML 태그 검사
         open_tables = len(re.findall(r'<table', content, re.IGNORECASE))
         close_tables = len(re.findall(r'</table>', content, re.IGNORECASE))
         if open_tables != close_tables:
             self.errors.append(('ERROR', node_id,
-                f'BROKEN_HTML: <table> {open_tables}개, </table> {close_tables}개'))
+                f'BROKEN_HTML: <table> {open_tables}, </table> {close_tables}'))
 
-        # 9. PDF 페이지 분리 징후 검사
+        # 9. PDF 헤더 검사
         if re.search(r'\d{4}\s+Building Code', content):
-            self.warnings.append(('WARN', node_id, 'PDF_HEADER_LEAK: PDF 헤더가 content에 포함됨'))
+            self.warnings.append(('WARN', node_id, 'PDF_HEADER_LEAK: PDF 헤더 포함'))
 
-        # 10. Raw HTML 태그 잔류 검사 (<sup>, <sub> 등)
+        # 10. Raw HTML 태그 검사
         raw_html_match = re.search(r'<(sup|sub|em|strong|b|i)>[^<]*</(sup|sub|em|strong|b|i)>', content, re.IGNORECASE)
         if raw_html_match:
-            self.warnings.append(('WARN', node_id, f'RAW_HTML_TAG: <{raw_html_match.group(1)}> 태그 잔류 - 유니코드로 변환 필요'))
+            self.warnings.append(('WARN', node_id, f'RAW_HTML_TAG: <{raw_html_match.group(1)}> 발견'))
 
         # 11. Clause 연속 텍스트 분리 검사
-        # (a), (b), (c) 뒤에 바로 소문자로 시작하는 별도 줄이 있으면 경고
-        # 예: "(c) something,\nwill result in..." → 연속 텍스트가 잘못 분리됨
         separated_continuation = re.search(r'\([a-z]\)[^\n]*[,;]\s*\n[a-z]', content)
         if separated_continuation:
             snippet = separated_continuation.group()[:50].replace('\n', '\\n')
-            self.warnings.append(('WARN', node_id, f'SEPARATED_CONTINUATION: clause 뒤 연속 텍스트 분리 의심 - "{snippet}..."'))
+            self.warnings.append(('WARN', node_id, f'SEPARATED_CONTINUATION: "{snippet}..."'))
 
-        # 12. (See Note...) 패턴 독립 줄 검사
-        # (See Note...)가 새 줄에서 시작하면 앞 clause와 분리된 것일 수 있음
+        # 12. (See Note...) 별도 줄 검사
         see_note_newline = re.search(r'\n\s*\(See\s+Note\s+[A-Z]?-?\d', content, re.IGNORECASE)
         if see_note_newline:
-            self.warnings.append(('WARN', node_id, 'SEPARATED_SEE_NOTE: (See Note...) 패턴이 별도 줄 - 앞 clause와 분리 의심'))
+            self.warnings.append(('WARN', node_id, 'SEPARATED_SEE_NOTE: (See Note) 별도 줄'))
 
-        # 12-1. "- (See Note" 패턴 (대시로 시작하는 분리된 See Note)
+        # 12-1. "- (See Note" 패턴
         dash_see_note = re.search(r'^- \(See Note', content, re.MULTILINE)
         if dash_see_note:
-            self.errors.append(('ERROR', node_id, 'DASH_SEE_NOTE: "- (See Note..." 대시로 시작 - 앞 clause와 분리됨'))
+            self.errors.append(('ERROR', node_id, 'DASH_SEE_NOTE: "- (See Note..." 분리됨'))
 
-        # 12-2. 잘못된 clause 번호: - (0.1), - (1.1), - (2.1) 등 (소수점 포함)
-        # OBC 정상 clause: (1), (2), (a), (b) / 잘못된: (0.1), (1.1), (2.1)
+        # 12-2. 잘못된 clause 번호 (소수점)
         bad_clause = re.search(r'^- \(\d+\.\d+\)', content, re.MULTILINE)
         if bad_clause:
-            self.errors.append(('ERROR', node_id, f'BAD_CLAUSE_NUMBER: "{bad_clause.group()}" 잘못된 clause 번호 (소수점)'))
+            self.errors.append(('ERROR', node_id, f'BAD_CLAUSE_NUMBER: "{bad_clause.group()}"'))
 
-        # 12-3. 이상한 대시 줄: "- ." 등 (clause가 아닌 대시 줄)
+        # 12-3. 이상한 대시 줄
         orphan_dash = re.search(r'^- [^(A-Za-z]', content, re.MULTILINE)
         if orphan_dash:
             snippet = orphan_dash.group()[:20]
-            self.warnings.append(('WARN', node_id, f'ORPHAN_DASH_LINE: "{snippet}" 이상한 대시 줄'))
+            self.warnings.append(('WARN', node_id, f'ORPHAN_DASH_LINE: "{snippet}"'))
 
-        # 13. 인라인 마크다운 잔류 검사
-        # 예: (**4)** 볼드 clause 번호, *header line* 이탤릭 용어
+        # 13. 인라인 마크다운 검사
         inline_bold = re.search(r'\(\*\*\d+\)\*\*', content)  # (**4)**
         if inline_bold:
-            self.errors.append(('ERROR', node_id, f'INLINE_BOLD: 인라인 볼드 마크다운 잔류 - "{inline_bold.group()}"'))
+            self.errors.append(('ERROR', node_id, f'INLINE_BOLD: "{inline_bold.group()}"'))
 
         inline_italic = re.search(r'(?<!\*)\*[a-zA-Z][^*\n]{1,30}\*(?!\*)', content)  # *italic term*
         if inline_italic:
-            self.warnings.append(('WARN', node_id, f'INLINE_ITALIC: 인라인 이탤릭 마크다운 잔류 - "{inline_italic.group()}"'))
+            self.warnings.append(('WARN', node_id, f'INLINE_ITALIC: "{inline_italic.group()}"'))
+
+        # 14. ID와 제목 사이 공백 누락 검사
+        # 예: 6.3.1Ventilation → 6.3.1 Ventilation
+        missing_space = re.search(r'\d\.\d+\.?\d*[A-Z][a-z]', content)
+        if missing_space:
+            snippet = missing_space.group()[:30]
+            self.errors.append(('ERROR', node_id, f'MISSING_SPACE: "{snippet}" ID와 제목 사이 공백 누락'))
+
+        # 15. 마크다운 링크 잔류 검사
+        # 예: [Sentence](#page-579-2), [Article 6.3.1.3.,](#page-579-3)
+        md_link = re.search(r'\[([^\]]+)\]\(#page-\d+[^)]*\)', content)
+        if md_link:
+            snippet = md_link.group()[:50]
+            self.errors.append(('ERROR', node_id, f'MD_LINK: "{snippet}" 마크다운 링크 잔류'))
+
+        # 16. 이스케이프된 괄호 링크 검사
+        # 예: Sentence[s \(4\)](#page-580-0)
+        escaped_link = re.search(r'\\\([^)]+\\\)', content)
+        if escaped_link:
+            snippet = escaped_link.group()[:30]
+            self.errors.append(('ERROR', node_id, f'ESCAPED_PAREN: "{snippet}" 이스케이프 괄호'))
 
         # 통계
         if '<table' in content.lower():

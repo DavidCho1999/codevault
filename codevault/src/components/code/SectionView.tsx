@@ -309,8 +309,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         result.push(
           <div key={`section-${sectionId}`} id={sectionId} className="mt-12 mb-6 scroll-mt-20 border-b-2 border-gray-300 pb-4">
             <h2 className="text-2xl font-bold text-gray-900">
-              <span className="text-gray-900 font-bold">{sectionId}</span>
-              {sectionTitle && <span className="ml-3">{sectionTitle}</span>}
+              {sectionId} {sectionTitle}
             </h2>
           </div>
         );
@@ -326,8 +325,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         result.push(
           <div key={`subsection-${subsectionId}`} id={subsectionId} className="mt-10 mb-4 scroll-mt-20 ml-4">
             <h2 className="text-xl font-bold text-gray-900">
-              <span className="text-gray-900 font-bold">{subsectionId}</span>
-              {subsectionTitle && <span className="ml-3">{subsectionTitle}</span>}
+              {subsectionId} {subsectionTitle}
             </h2>
           </div>
         );
@@ -343,8 +341,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
         result.push(
           <div key={`article-${articleId}`} id={articleId} className="mt-4 mb-0 scroll-mt-20 ml-8">
             <h3 className="text-lg font-semibold text-gray-900">
-              <span className="text-gray-900 font-semibold">{articleId}</span>
-              {articleTitle && <span className="ml-2">{articleTitle}</span>}
+              {articleId} {articleTitle}
             </h3>
           </div>
         );
@@ -1455,6 +1452,24 @@ export default function SectionView({ id, title, content, highlight, equations, 
       issues.push(`ORPHAN_DASH_LINE: "${orphanDashMatch[0]}" 이상한 대시 줄`);
     }
 
+    // 14. 마크다운 링크 잔류: [Sentence](#page-579-2)
+    const mdLinkMatch = content.match(/\[([^\]]+)\]\(#page-\d+[^)]*\)/);
+    if (mdLinkMatch) {
+      issues.push(`MD_LINK: "${mdLinkMatch[0].slice(0, 50)}" 마크다운 링크 잔류`);
+    }
+
+    // 15. 이스케이프 괄호: \(4\)
+    const escapedParenMatch = content.match(/\\\([^)]+\\\)/);
+    if (escapedParenMatch) {
+      issues.push(`ESCAPED_PAREN: "${escapedParenMatch[0]}" 이스케이프 괄호`);
+    }
+
+    // 16. ID와 제목 사이 공백 누락: 6.3.1Ventilation
+    const missingSpaceMatch = content.match(/\d\.\d+\.?\d*[A-Z][a-z]/);
+    if (missingSpaceMatch) {
+      issues.push(`MISSING_SPACE: "${missingSpaceMatch[0]}" ID-제목 공백 누락`);
+    }
+
     return issues;
   }, [content]);
 
@@ -1477,8 +1492,7 @@ export default function SectionView({ id, title, content, highlight, equations, 
 
         <header className="mb-6 pb-4 border-b-2 border-gray-300">
           <h1 className="text-2xl font-bold text-gray-900">
-            <span className="font-mono text-gray-900 font-bold mr-2">{id}</span>
-            {title}
+            {id} {title}
           </h1>
         </header>
 

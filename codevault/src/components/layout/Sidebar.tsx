@@ -65,12 +65,9 @@ function TocNode({ item, depth = 0, parentId }: { item: TocItem; depth?: number;
               ? "bg-gray-100 text-gray-900 font-semibold border-l-4 border-gray-900"
               : "text-gray-700 hover:bg-gray-100"
           }`}
-          title={`${item.id}. ${item.title}`}
+          title={`${item.id} ${item.title}`}
         >
-          <span className="font-mono text-xs text-gray-400 mr-1.5">
-            {item.id}
-          </span>
-          {item.title}
+          {item.id} {item.title}
         </Link>
       </div>
       {hasChildren && isOpen && (
@@ -130,6 +127,7 @@ export default function Sidebar({ toc }: SidebarProps) {
 
   // Part별로 TOC 분리
   const part2Toc = toc.filter((item) => item.id.startsWith("2."));
+  const part6Toc = toc.filter((item) => item.id.startsWith("6."));
   const part7Toc = toc.filter((item) => item.id.startsWith("7."));
   const part8Toc = toc.filter((item) => item.id.startsWith("8."));
   const part9Toc = toc.filter((item) => item.id.startsWith("9."));
@@ -139,6 +137,7 @@ export default function Sidebar({ toc }: SidebarProps) {
 
   // Part collapse 상태 (현재 보고 있는 Part는 열림)
   const [part2Open, setPart2Open] = useState(pathname?.startsWith("/code/2.") ?? false);
+  const [part6Open, setPart6Open] = useState(pathname?.startsWith("/code/6.") ?? false);
   const [part7Open, setPart7Open] = useState(pathname?.startsWith("/code/7.") ?? false);
   const [part8Open, setPart8Open] = useState(pathname?.startsWith("/code/8.") ?? false);
   const [part9Open, setPart9Open] = useState(pathname?.startsWith("/code/9.") ?? true);
@@ -224,6 +223,44 @@ export default function Sidebar({ toc }: SidebarProps) {
           <div className="text-[10px] font-bold text-green-600 uppercase tracking-wider mb-1 px-2 mt-4">
             Division B - Acceptable Solutions
           </div>
+
+          {/* Part 6 */}
+          {part6Toc.length > 0 && (
+            <>
+              <div className="flex items-center gap-1 mb-2 px-2">
+                <button
+                  onClick={() => setPart6Open(!part6Open)}
+                  className="shrink-0 hover:text-gray-700 transition-colors"
+                >
+                  <svg
+                    className={`w-3 h-3 transition-transform ${part6Open ? "rotate-90" : ""}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <Link
+                  href="/code/6"
+                  onClick={() => setPart6Open(true)}
+                  className="text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-700 transition-colors"
+                >
+                  Part 6 - HVAC
+                </Link>
+              </div>
+              {part6Open && (
+                <nav className="mb-4">
+                  {part6Toc.map((section) => (
+                    <TocNode key={section.id} item={section} />
+                  ))}
+                </nav>
+              )}
+            </>
+          )}
 
           {/* Part 7 */}
           {part7Toc.length > 0 && (

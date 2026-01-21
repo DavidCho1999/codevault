@@ -22,6 +22,10 @@ export default async function CodePage({ params, searchParams }: PageProps) {
     }
 
     const partNames: Record<string, string> = {
+      "2": "Objectives",
+      "6": "Heating, Ventilating and Air-Conditioning",
+      "7": "Plumbing",
+      "8": "Sewage Systems",
       "9": "Housing and Small Buildings",
       "10": "Change of Use",
       "11": "Renovation",
