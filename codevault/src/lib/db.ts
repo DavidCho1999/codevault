@@ -1,21 +1,52 @@
-import Database from "better-sqlite3";
-import path from "path";
+// JSON 기반 데이터 로더 (Vercel 호환)
 import type { TocItem } from "./types";
 
-// DB 경로 (프로젝트 루트의 obc.db)
-const DB_PATH = path.join(process.cwd(), "..", "data", "obc.db");
+// JSON 데이터 import
+import part2Data from "../../public/data/part2.json";
+import part6Data from "../../public/data/part6.json";
+import part7Data from "../../public/data/part7.json";
+import part8Data from "../../public/data/part8.json";
+import part9Data from "../../public/data/part9.json";
+import part10Data from "../../public/data/part10.json";
+import part11Data from "../../public/data/part11.json";
+import part12Data from "../../public/data/part12.json";
 
-// 싱글톤 DB 인스턴스
-let db: Database.Database | null = null;
-
-export function getDb(): Database.Database {
-  if (!db) {
-    db = new Database(DB_PATH, { readonly: true });
-  }
-  return db;
+// 타입 정의 (page는 optional - Part 2 등에 없음)
+interface JsonSubsection {
+  id: string;
+  title: string;
+  page?: number;
+  content?: string;
+  articles?: { id: string; title: string; content: string }[];
 }
 
-// 타입 정의
+interface JsonSection {
+  id: string;
+  title: string;
+  page?: number;
+  subsections: JsonSubsection[];
+}
+
+interface JsonPart {
+  id: string;
+  title: string;
+  division?: string;
+  sections: JsonSection[];
+}
+
+// 모든 Part 데이터
+const allParts: JsonPart[] = [
+  part2Data as JsonPart,
+  part6Data as JsonPart,
+  part7Data as JsonPart,
+  part8Data as JsonPart,
+  part9Data as JsonPart,
+  part10Data as JsonPart,
+  part11Data as JsonPart,
+  part12Data as JsonPart,
+];
+
+// DB 호환 타입
 export interface DbNode {
   id: string;
   type: "part" | "section" | "subsection" | "alt_subsection" | "article" | "article_suffix" | "article_0a" | "sub_article" | "clause";
@@ -45,70 +76,163 @@ export interface SearchResult {
   rank: number;
 }
 
-// FTS5 검색
-export function searchNodes(query: string, limit = 50): SearchResult[] {
-  const db = getDb();
+// 헬퍼: Part 번호 추출
+function getPartNum(id: string): string {
+  return id.split(".")[0];
+}
 
-  // FTS5 검색 쿼리 (search_index 테이블 사용)
-  const stmt = db.prepare(`
-    SELECT
-      n.id,
-      n.title,
-      n.content,
-      n.type,
-      n.parent_id,
-      n.page,
-      bm25(search_index) as rank
-    FROM search_index s
-    JOIN nodes n ON s.node_id = n.id
-    WHERE search_index MATCH ?
-    ORDER BY rank
-    LIMIT ?
-  `);
-
-  // FTS5 쿼리 형식으로 변환 (단순 검색어 → 토큰화)
-  const ftsQuery = query
-    .trim()
-    .split(/\s+/)
-    .map((term) => `"${term}"*`)
-    .join(" OR ");
-
-  return stmt.all(ftsQuery, limit) as SearchResult[];
+// 헬퍼: Part 데이터 찾기
+function findPart(partNum: string): JsonPart | undefined {
+  return allParts.find((p) => p.id === partNum);
 }
 
 // 노드 ID로 조회
 export function getNodeById(id: string): DbNode | null {
-  const db = getDb();
-  const stmt = db.prepare("SELECT * FROM nodes WHERE id = ?");
-  return stmt.get(id) as DbNode | null;
+  const partNum = getPartNum(id);
+  const part = findPart(partNum);
+  if (!part) return null;
+
+  // Part 자체
+  if (id === partNum) {
+    return {
+      id: part.id,
+      type: "part",
+      parent_id: null,
+      title: part.title,
+      page: part.sections[0]?.page || 0,
+      content: null,
+      seq: parseInt(partNum),
+    };
+  }
+
+  // Section 찾기
+  for (const section of part.sections) {
+    if (section.id === id) {
+      return {
+        id: section.id,
+        type: "section",
+        parent_id: partNum,
+        title: section.title,
+        page: section.page || 0,
+        content: null,
+        seq: parseFloat(section.id) * 100,
+      };
+    }
+
+    // Subsection 찾기
+    for (const sub of section.subsections) {
+      if (sub.id === id) {
+        const isAlt = /[A-Z]$/.test(sub.id);
+        return {
+          id: sub.id,
+          type: isAlt ? "alt_subsection" : "subsection",
+          parent_id: section.id,
+          title: sub.title,
+          page: sub.page || 0,
+          content: sub.content || null,
+          seq: parseFloat(sub.id.replace(/[A-Z]$/, "")) * 1000,
+        };
+      }
+    }
+  }
+
+  return null;
 }
 
 // 자식 노드 조회
 export function getChildNodes(parentId: string): DbNode[] {
-  const db = getDb();
-  const stmt = db.prepare(
-    "SELECT * FROM nodes WHERE parent_id = ? ORDER BY seq"
-  );
-  return stmt.all(parentId) as DbNode[];
+  const partNum = getPartNum(parentId);
+  const part = findPart(partNum);
+  if (!part) return [];
+
+  if (parentId === partNum) {
+    return part.sections.map((section, idx) => ({
+      id: section.id,
+      type: "section" as const,
+      parent_id: partNum,
+      title: section.title,
+      page: section.page || 0,
+      content: null,
+      seq: idx,
+    }));
+  }
+
+  for (const section of part.sections) {
+    if (section.id === parentId) {
+      return section.subsections.map((sub, idx) => {
+        const isAlt = /[A-Z]$/.test(sub.id);
+        return {
+          id: sub.id,
+          type: isAlt ? "alt_subsection" : "subsection",
+          parent_id: section.id,
+          title: sub.title,
+          page: sub.page || 0,
+          content: sub.content || null,
+          seq: idx,
+        } as DbNode;
+      });
+    }
+  }
+
+  return [];
 }
 
-// 노드의 테이블 조회
+// 테이블 조회
 export function getTablesByNodeId(nodeId: string): DbTable[] {
-  const db = getDb();
-  const stmt = db.prepare("SELECT * FROM tables WHERE parent_id = ?");
-  return stmt.all(nodeId) as DbTable[];
+  return [];
 }
 
 // 특정 타입의 모든 노드 조회
 export function getNodesByType(type: string): DbNode[] {
-  const db = getDb();
-  const stmt = db.prepare(
-    "SELECT * FROM nodes WHERE type = ? ORDER BY seq"
-  );
-  return stmt.all(type) as DbNode[];
+  const results: DbNode[] = [];
+
+  for (const part of allParts) {
+    if (type === "part") {
+      results.push({
+        id: part.id,
+        type: "part",
+        parent_id: null,
+        title: part.title,
+        page: part.sections[0]?.page || 0,
+        content: null,
+        seq: parseInt(part.id),
+      });
+    } else if (type === "section") {
+      for (const section of part.sections) {
+        results.push({
+          id: section.id,
+          type: "section",
+          parent_id: part.id,
+          title: section.title,
+          page: section.page || 0,
+          content: null,
+          seq: parseFloat(section.id) * 100,
+        });
+      }
+    } else if (type === "subsection" || type === "alt_subsection") {
+      for (const section of part.sections) {
+        for (const sub of section.subsections) {
+          const isAlt = /[A-Z]$/.test(sub.id);
+          if ((type === "alt_subsection" && isAlt) || (type === "subsection" && !isAlt)) {
+            results.push({
+              id: sub.id,
+              type: isAlt ? "alt_subsection" : "subsection",
+              parent_id: section.id,
+              title: sub.title,
+              page: sub.page || 0,
+              content: sub.content || null,
+              seq: parseFloat(sub.id.replace(/[A-Z]$/, "")) * 1000,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  return results.sort((a, b) => a.seq - b.seq);
 }
 
-// Section과 그 하위 Subsection 조회
+// Section과 하위 Subsection 조회
 export function getSectionWithSubsections(sectionId: string): {
   section: DbNode;
   subsections: DbNode[];
@@ -122,44 +246,36 @@ export function getSectionWithSubsections(sectionId: string): {
 
 // Part 번호로 해당 Part의 모든 Section 조회
 export function getSectionsByPart(partNum: string): DbNode[] {
-  const db = getDb();
-  const stmt = db.prepare(
-    "SELECT * FROM nodes WHERE type = 'section' AND id LIKE ? ORDER BY seq"
-  );
-  return stmt.all(`${partNum}.%`) as DbNode[];
+  const part = findPart(partNum);
+  if (!part) return [];
+
+  return part.sections.map((section, idx) => ({
+    id: section.id,
+    type: "section" as const,
+    parent_id: partNum,
+    title: section.title,
+    page: section.page || 0,
+    content: null,
+    seq: idx,
+  }));
 }
 
 // Part의 모든 content 재귀적으로 수집
 export function getPartFullContent(partNum: string): { sections: DbNode[]; allContent: string } {
+  const part = findPart(partNum);
+  if (!part) return { sections: [], allContent: "" };
+
   const sections = getSectionsByPart(partNum);
   const contentParts: string[] = [];
 
-  for (const section of sections) {
-    // Section 헤딩
-    contentParts.push(`[SECTION:${section.id}:${section.title || ""}]`);
+  for (const section of part.sections) {
+    contentParts.push("[SECTION:" + section.id + ":" + (section.title || "") + "]");
 
-    // Section 하위 노드들 수집
-    const children = getChildNodes(section.id);
-    for (const child of children) {
-      if (child.type === "subsection" || child.type === "alt_subsection") {
-        contentParts.push(`[SUBSECTION:${child.id}:${child.title || ""}]`);
+    for (const sub of section.subsections) {
+      contentParts.push("[SUBSECTION:" + sub.id + ":" + (sub.title || "") + "]");
 
-        // Subsection에 content가 있으면 (Part 8 스타일) - ARTICLE 마커 없이 content만 추가
-        // content 안에 이미 [ARTICLE:...] 마커가 포함되어 있을 수 있음
-        if (child.content) {
-          contentParts.push(child.content);
-        } else {
-          // Subsection에 content가 없으면 (Part 9 스타일) - 손자 노드 조회
-          const grandChildren = getChildNodes(child.id);
-          for (const gc of grandChildren) {
-            if (gc.content) {
-              contentParts.push(`[ARTICLE:${gc.id}:${gc.title || ""}]\n${gc.content}`);
-            }
-          }
-        }
-      } else if (child.content) {
-        // Subsection이 아닌 다른 타입 (Article 등)의 content
-        contentParts.push(`[ARTICLE:${child.id}:${child.title || ""}]\n${child.content}`);
+      if (sub.content) {
+        contentParts.push(sub.content);
       }
     }
   }
@@ -167,34 +283,66 @@ export function getPartFullContent(partNum: string): { sections: DbNode[]; allCo
   return { sections, allContent: contentParts.join("\n\n") };
 }
 
+// 검색 (클라이언트 검색)
+export function searchNodes(query: string, limit = 50): SearchResult[] {
+  const results: SearchResult[] = [];
+  const lowerQuery = query.toLowerCase();
+  const queryTerms = lowerQuery.split(/\s+/).filter(Boolean);
+
+  for (const part of allParts) {
+    for (const section of part.sections) {
+      for (const sub of section.subsections) {
+        const content = sub.content || "";
+        const title = sub.title || "";
+        const searchText = (title + " " + content).toLowerCase();
+
+        const matches = queryTerms.every((term) => searchText.includes(term));
+
+        if (matches) {
+          let rank = 0;
+          if (title.toLowerCase().includes(lowerQuery)) {
+            rank = -10;
+          }
+
+          results.push({
+            id: sub.id,
+            title: sub.title,
+            content: content.slice(0, 500),
+            type: "subsection",
+            parent_id: section.id,
+            page: sub.page || 0,
+            rank,
+          });
+        }
+      }
+    }
+  }
+
+  return results.sort((a, b) => a.rank - b.rank).slice(0, limit);
+}
+
 // TOC 전체 조회 (사이드바용)
 export function getToc(): TocItem[] {
-  const db = getDb();
+  const tocItems: TocItem[] = [];
 
-  // 모든 section 조회
-  const sections = db
-    .prepare("SELECT id, title FROM nodes WHERE type = 'section' ORDER BY seq")
-    .all() as { id: string; title: string }[];
+  for (const part of allParts) {
+    for (const section of part.sections) {
+      tocItems.push({
+        id: section.id,
+        title: section.title,
+        children: section.subsections.map((sub) => ({
+          id: sub.id,
+          title: sub.title,
+          children: [],
+        })),
+      });
+    }
+  }
 
-  // 각 section의 subsection 조회
-  const subsectionStmt = db.prepare(
-    "SELECT id, title FROM nodes WHERE parent_id = ? AND type IN ('subsection', 'alt_subsection') ORDER BY seq"
-  );
+  return tocItems;
+}
 
-  return sections.map((section) => {
-    const subsections = subsectionStmt.all(section.id) as {
-      id: string;
-      title: string;
-    }[];
-
-    return {
-      id: section.id,
-      title: section.title,
-      children: subsections.map((sub) => ({
-        id: sub.id,
-        title: sub.title,
-        children: [],
-      })),
-    };
-  });
+// 하위 호환성
+export function getDb(): null {
+  return null;
 }
